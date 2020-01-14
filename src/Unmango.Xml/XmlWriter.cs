@@ -6,16 +6,15 @@ namespace Unmango.Xml
 {
     public struct XmlWriter
     {
-        private readonly byte[] _bytes;
+        private byte[] _buffer;
         private int _offset;
 
-        public XmlWriter(byte[] bytes)
-            : this(bytes, 0) { }
-
-        public XmlWriter(byte[] bytes, int offset)
+        public XmlWriter(byte[] initialBuffer)
         {
-            _bytes = bytes;
-            _offset = offset;
+            _buffer = initialBuffer;
+            _offset = 0;
         }
+
+        public int CurrentOffset => _offset;
     }
 }
