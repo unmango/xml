@@ -13,10 +13,44 @@ pr:
 - master
 - release/*
 
-clean: workspace
+variables:
+- name: 'BuildConfiguration'
+  value: 'Release'
+
+workspace:
+  clean: outputs
 
 steps:
-  task: UseDotnet@2
+- task: UseDotnet@2
+  displayName: 'Install .NET Core'
   inputs:
-    type: sdk
+    packageType: sdk
     useGlobalJson: true
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build'
+  inputs:
+    command: build
+    projects: '**/*.csproj'
+    configuration: $(BuildConfiguration)
+
+- task: DotNetCoreCLI@2
+  displayName: 'Test'
+  inputs:
+    command: test
+    projects: '**/test/*.csproj'
+    configuration: $(BuildConfiguration)
+    arguments: '--no-build --no-restore'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Pack'
+  inputs:
+    command: pack
+    projects: '**/*.csproj'
+    arguments: '--no-build --no-restore -o $(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish'
+  inputs:
+    PathtoPublish: $(Build.ArtifactStagingDirectory)
+    ArtifactName: 'drop'
