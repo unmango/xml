@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29521.150
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1E90B93B-4BE9-4DED-9C98-D4C5D86C34ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C3B0D6F1-5BFF-4727-9921-0E99FF493AEB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{4ED5DC3E-8A49-42D7-806B-C5ED507ECE24}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{A7EEC2E7-7422-485F-AF3F-9BEA6273F401}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tool", "tool", "{B9948B73-AC40-41B4-B4AD-0974B7933B60}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unmango.Xml", "src\Unmango.Xml\Unmango.Xml.csproj", "{C05ACEFB-33C2-4319-9D06-EECE8964A737}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CC5553D2-F503-4155-BD83-46BBC9ACEC26}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		global.json = global.json
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C05ACEFB-33C2-4319-9D06-EECE8964A737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C05ACEFB-33C2-4319-9D06-EECE8964A737}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C05ACEFB-33C2-4319-9D06-EECE8964A737}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C05ACEFB-33C2-4319-9D06-EECE8964A737}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C05ACEFB-33C2-4319-9D06-EECE8964A737} = {1E90B93B-4BE9-4DED-9C98-D4C5D86C34ED}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8312C89B-381B-4CAA-BFD1-CA67E063217E}
+	EndGlobalSection
+EndGlobal

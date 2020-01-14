@@ -1,0 +1,22 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+    - release/*
+  paths:
+    exclude:
+    - README.md
+    - docs/*
+
+pr:
+- master
+- release/*
+
+clean: workspace
+
+steps:
+  task: UseDotnet@2
+  inputs:
+    type: sdk
+    useGlobalJson: true
