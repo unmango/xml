@@ -18,7 +18,9 @@ namespace Unmango.Xml
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            if (value == null) return SerializeAsync<object>(value!, options, cancellationToken);
+
+            return SerializeAsync(value.GetType(), options, cancellationToken);
         }
 
         public static ValueTask<byte[]> SerializeAsync(
@@ -48,7 +50,9 @@ namespace Unmango.Xml
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            if (value == null) return SerializeAsync<object>(ref writer, value!, options, cancellationToken);
+
+            return SerializeAsync(value.GetType(), ref writer, value, options, cancellationToken);
         }
 
         public static ValueTask SerializeAsync(
@@ -80,7 +84,9 @@ namespace Unmango.Xml
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            if (value == null) return SerializeAsync<object>(writer, value!, options, cancellationToken);
+
+            return SerializeAsync(value.GetType(), writer, value, options, cancellationToken);
         }
 
         public static ValueTask SerializeAsync(
@@ -112,7 +118,9 @@ namespace Unmango.Xml
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            if (value == null) return SerializeAsync<object>(stream, value!, options, cancellationToken);
+
+            return SerializeAsync(value.GetType(), stream, value, options, cancellationToken);
         }
 
         public static ValueTask SerializeAsync(

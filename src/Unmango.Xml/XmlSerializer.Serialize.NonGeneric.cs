@@ -6,9 +6,11 @@ namespace Unmango.Xml
 {
     public static partial class XmlSerializer
     {
-        public static byte[] Serialize(object value, XmlSerializerOptions? options = null)
+        public static byte[] Serialize(object? value, XmlSerializerOptions? options = null)
         {
-            throw new NotImplementedException();
+            if (value == null) return Serialize<object>(value!, options);
+
+            return Serialize(value.GetType(), value, options);
         }
 
         public static byte[] Serialize(
@@ -24,7 +26,14 @@ namespace Unmango.Xml
             object value,
             XmlSerializerOptions? options = null)
         {
-            throw new NotImplementedException();
+            if (value == null)
+            {
+                Serialize<object>(ref writer, value!, options);
+
+                return;
+            }
+
+            Serialize(value.GetType(), ref writer, value, options);
         }
 
         public static void Serialize(
@@ -41,7 +50,14 @@ namespace Unmango.Xml
             object value,
             XmlSerializerOptions? options = null)
         {
-            throw new NotImplementedException();
+            if (value == null)
+            {
+                Serialize<object>(writer, value!, options);
+
+                return;
+            }
+
+            Serialize(value.GetType(), writer, options);
         }
 
         public static void Serialize(
@@ -58,7 +74,14 @@ namespace Unmango.Xml
             object value,
             XmlSerializerOptions? options = null)
         {
-            throw new NotImplementedException();
+            if (value == null)
+            {
+                Serialize<object>(stream, value!, options);
+
+                return;
+            }
+
+            Serialize(value.GetType(), stream, value, options);
         }
 
         public static void Serialize(
