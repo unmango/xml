@@ -4,15 +4,15 @@ using System.Text;
 
 namespace Unmango.Xml
 {
-    public struct XmlReader
+    public ref struct XmlReader
     {
-        private readonly byte[] _buffer;
+        private readonly ReadOnlySpan<byte> _buffer;
         private int _offset;
 
-        public XmlReader(byte[] buffer)
+        public XmlReader(ReadOnlySpan<byte> buffer)
             : this(buffer, 0) { }
 
-        public XmlReader(byte[] buffer, int offset)
+        public XmlReader(ReadOnlySpan<byte> buffer, int offset)
         {
             _buffer = buffer;
             _offset = offset;

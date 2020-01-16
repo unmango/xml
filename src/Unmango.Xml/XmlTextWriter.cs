@@ -7,13 +7,6 @@ namespace Unmango.Xml
 {
     public class XmlTextWriter : TextWriter
     {
-        private readonly XmlWriter _writer;
-
-        public XmlTextWriter(ref XmlWriter writer)
-        {
-            _writer = writer;
-        }
-
         public override Encoding Encoding => Encoding.UTF8;
 
         public override IFormatProvider FormatProvider {
@@ -30,7 +23,8 @@ namespace Unmango.Xml
             throw new NotImplementedException();
         }
 
-        public override bool Equals(object obj) => _writer.Equals(obj);
+        //public override bool Equals(object obj) => _writer.Equals(obj);
+        public override bool Equals(object obj) => throw new NotImplementedException();
 
         public override void Flush()
         {
@@ -42,14 +36,16 @@ namespace Unmango.Xml
             throw new NotImplementedException();
         }
 
-        public override int GetHashCode() => _writer.GetHashCode();
+        //public override int GetHashCode() => _writer.GetHashCode();
+        public override int GetHashCode() => throw new NotImplementedException();
 
         public override object InitializeLifetimeService()
         {
             throw new NotImplementedException();
         }
 
-        public override string ToString() => _writer.ToString();
+        //public override string ToString() => _writer.ToString();
+        public override string ToString() => throw new NotImplementedException();
 
         public override void Write(bool value)
         {

@@ -6,21 +6,16 @@ namespace Unmango.Xml
 {
     public class XmlTextReader : TextReader
     {
-        private readonly XmlReader _reader;
-
-        public XmlTextReader(ref XmlReader reader)
-        {
-            _reader = reader;
-        }
-
         public override void Close()
         {
             throw new NotImplementedException();
         }
 
-        public override bool Equals(object obj) => _reader.Equals(obj);
+        //public override bool Equals(object obj) => _reader.Equals(obj);
+        public override bool Equals(object obj) => throw new NotImplementedException();
 
-        public override int GetHashCode() => _reader.GetHashCode();
+        //public override int GetHashCode() => _reader.GetHashCode();
+        public override int GetHashCode() => throw new NotImplementedException();
 
         public override object InitializeLifetimeService()
         {
@@ -77,7 +72,8 @@ namespace Unmango.Xml
             throw new NotImplementedException();
         }
 
-        public override string ToString() => _reader.ToString();
+        //public override string ToString() => _reader.ToString();
+        public override string ToString() => throw new NotImplementedException();
 
         protected override void Dispose(bool disposing)
         {

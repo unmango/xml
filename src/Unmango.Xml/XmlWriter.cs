@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace Unmango.Xml
 {
-    public struct XmlWriter
+    public ref struct XmlWriter
     {
-        private byte[] _buffer;
+        private ReadOnlySpan<byte> _buffer;
         private int _offset;
 
-        public XmlWriter(byte[] initialBuffer)
+        public XmlWriter(ReadOnlySpan<byte> initialBuffer)
         {
             _buffer = initialBuffer;
             _offset = 0;
