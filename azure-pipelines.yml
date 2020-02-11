@@ -1,0 +1,58 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+    - release/*
+  paths:
+    exclude:
+    - README.md
+    - docs/*
+
+pr:
+- master
+- release/*
+
+variables:
+- name: 'CI'
+  value: true
+- name: 'BuildConfiguration'
+  value: 'Release'
+
+workspace:
+  clean: outputs
+
+steps:
+- task: UseDotnet@2
+  displayName: 'Install .NET Core'
+  inputs:
+    packageType: sdk
+    useGlobalJson: true
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build'
+  inputs:
+    command: build
+    projects: '**/*.csproj'
+    configuration: $(BuildConfiguration)
+
+- task: DotNetCoreCLI@2
+  displayName: 'Test'
+  inputs:
+    command: test
+    projects: '**/test/*.csproj'
+    configuration: $(BuildConfiguration)
+    arguments: '--no-build --no-restore'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Pack'
+  inputs:
+    command: pack
+    projects: '**/*.csproj'
+    arguments: '--no-build --no-restore -o $(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish'
+  inputs:
+    PathtoPublish: $(Build.ArtifactStagingDirectory)
+    ArtifactName: 'drop'
