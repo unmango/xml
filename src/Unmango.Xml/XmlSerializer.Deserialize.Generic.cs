@@ -12,12 +12,10 @@ namespace Unmango.Xml
         }
 
         public static T Deserialize<T>(byte[] bytes, XmlSerializerOptions? options = null)
-            => Deserialize<T>(bytes, DEFAULT_OFFSET, options);
+            => Deserialize<T>(bytes.AsSpan(), options);
 
         public static T Deserialize<T>(byte[] bytes, int offset, XmlSerializerOptions? options = null)
-        {
-            throw new NotImplementedException();
-        }
+            => Deserialize<T>(bytes.AsSpan(offset), options); // TODO: Safe to call bytes.Length?
 
         public static T Deserialize<T>(ReadOnlySpan<byte> span, XmlSerializerOptions? options = null)
         {

@@ -27,21 +27,21 @@ namespace Unmango.Xml
             Type type,
             byte[] bytes,
             CancellationToken cancellationToken = default)
-            => DeserializeAsync(type, bytes, null, cancellationToken);
+            => DeserializeAsync(type, bytes.AsSpan(), null, cancellationToken);
 
         public static ValueTask<object> DeserializeAsync(
             Type type,
             byte[] bytes,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
-            => DeserializeAsync(type, bytes, DEFAULT_OFFSET, options, cancellationToken);
+            => DeserializeAsync(type, bytes.AsSpan(), options, cancellationToken);
 
         public static ValueTask<object> DeserializeAsync(
             Type type,
             byte[] bytes,
             int offset,
             CancellationToken cancellationToken = default)
-            => DeserializeAsync(type, bytes, offset, null, cancellationToken);
+            => DeserializeAsync(type, bytes.AsSpan(offset), null, cancellationToken);
 
         public static ValueTask<object> DeserializeAsync(
             Type type,
@@ -49,9 +49,7 @@ namespace Unmango.Xml
             int offset,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
+            => DeserializeAsync(type, bytes.AsSpan(offset), options, cancellationToken);
 
         public static ValueTask<object> DeserializeAsync(
             Type type,
@@ -109,8 +107,6 @@ namespace Unmango.Xml
             Stream stream,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
+            => DeserializeAsync(type, PipeReader.Create(stream), options, cancellationToken);
     }
 }

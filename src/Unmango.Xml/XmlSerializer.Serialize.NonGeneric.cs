@@ -89,8 +89,6 @@ namespace Unmango.Xml
             Stream stream,
             object value,
             XmlSerializerOptions? options = null)
-        {
-            throw new NotImplementedException();
-        }
+            => Serialize(type, PipeWriter.Create(stream), value, options);
     }
 }

@@ -24,28 +24,26 @@ namespace Unmango.Xml
         public static ValueTask<T> DeserializeAsync<T>(
             byte[] bytes,
             CancellationToken cancellationToken = default)
-            => DeserializeAsync<T>(bytes, null, cancellationToken);
+            => DeserializeAsync<T>(bytes.AsSpan(), null, cancellationToken);
 
         public static ValueTask<T> DeserializeAsync<T>(
             byte[] bytes,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
-            => DeserializeAsync<T>(bytes, DEFAULT_OFFSET, options, cancellationToken);
+            => DeserializeAsync<T>(bytes.AsSpan(), options, cancellationToken);
 
         public static ValueTask<T> DeserializeAsync<T>(
             byte[] bytes,
             int offset,
             CancellationToken cancellationToken = default)
-            => DeserializeAsync<T>(bytes, offset, null, cancellationToken);
+            => DeserializeAsync<T>(bytes.AsSpan(offset), null, cancellationToken);
 
         public static ValueTask<T> DeserializeAsync<T>(
             byte[] bytes,
             int offset,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
+            => DeserializeAsync<T>(bytes.AsSpan(offset), options, cancellationToken);
 
         public static ValueTask<T> DeserializeAsync<T>(
             ReadOnlySpan<byte> span,
@@ -95,8 +93,6 @@ namespace Unmango.Xml
             Stream stream,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
+            => DeserializeAsync<T>(PipeReader.Create(stream), options, cancellationToken);
     }
 }

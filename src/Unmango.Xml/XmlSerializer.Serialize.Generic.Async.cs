@@ -55,15 +55,13 @@ namespace Unmango.Xml
             Stream stream,
             T value,
             CancellationToken cancellationToken = default)
-            => SerializeAsync(stream, value, null, cancellationToken);
+            => SerializeAsync(PipeWriter.Create(stream), value, null, cancellationToken);
 
         public static ValueTask SerializeAsync<T>(
             Stream stream,
             T value,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
+            => SerializeAsync<T>(PipeWriter.Create(stream), value, options, cancellationToken);
     }
 }
