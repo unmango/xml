@@ -20,6 +20,13 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(IsPackable)' == 'true' ">
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
 
   <!-- Warnings and errors - From: https://github.com/aspnet/AspNetCore/blob/d7ae0e5d9adf253e57ea351ce5af83bb1ab84a77/Directory.Build.props#L44 -->
   <PropertyGroup>
