@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Unmango.Xml
 {
@@ -18,11 +19,6 @@ namespace Unmango.Xml
         {
             _buffer = buffer;
             _offset = offset;
-        }
-
-        public static XmlReader Create(ReadOnlySpan<byte> buffer)
-        {
-            return new XmlReader(buffer);
         }
     }
 }

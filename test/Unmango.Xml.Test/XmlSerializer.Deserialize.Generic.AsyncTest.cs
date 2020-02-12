@@ -11,10 +11,7 @@ namespace Unmango.Xml.Test
     [Trait("Category", "Unit")]
     public class XmlSerializerDeserializeGenericAsyncTest
     {
-        private static readonly TimeSpan _defaultTimeout = TimeSpan.FromSeconds(30);
-        private static readonly XmlSerializerOptions _defaultOptions = XmlSerializerOptions.DefaultOptions;
-
-        private readonly CancellationTokenSource _tokenSource = new CancellationTokenSource(_defaultTimeout);
+        private readonly CancellationTokenSource _tokenSource = TestOptions.GetTokenSource();
 
         [Fact]
         public async Task DeserializeXmlString_HappyPath()
@@ -23,7 +20,7 @@ namespace Unmango.Xml.Test
 
             var result = await XmlSerializer.DeserializeAsync<object>(
                 xml,
-                _defaultOptions,
+                TestOptions.DefaultSerializerOptions,
                 _tokenSource.Token);
 
             Assert.NotNull(result);
@@ -37,7 +34,7 @@ namespace Unmango.Xml.Test
 
             var result = await XmlSerializer.DeserializeAsync<object>(
                 bytes,
-                _defaultOptions,
+                TestOptions.DefaultSerializerOptions,
                 _tokenSource.Token);
 
             Assert.NotNull(result);
@@ -55,7 +52,7 @@ namespace Unmango.Xml.Test
             var result = await XmlSerializer.DeserializeAsync<object>(
                 bytes,
                 offset,
-                _defaultOptions,
+                TestOptions.DefaultSerializerOptions,
                 _tokenSource.Token);
 
             Assert.NotNull(result);
@@ -69,7 +66,7 @@ namespace Unmango.Xml.Test
 
             var result = await XmlSerializer.DeserializeAsync<object>(
                 memory.Span,
-                _defaultOptions,
+                TestOptions.DefaultSerializerOptions,
                 _tokenSource.Token);
 
             Assert.NotNull(result);
@@ -84,7 +81,7 @@ namespace Unmango.Xml.Test
 
             var result = XmlSerializer.DeserializeAsync<object>(
                 ref reader,
-                _defaultOptions,
+                TestOptions.DefaultSerializerOptions,
                 _tokenSource.Token);
 
             Assert.NotNull(result.Result);
@@ -102,7 +99,7 @@ namespace Unmango.Xml.Test
 
             var result = await XmlSerializer.DeserializeAsync<object>(
                 pipe.Reader,
-                _defaultOptions,
+                TestOptions.DefaultSerializerOptions,
                 _tokenSource.Token);
 
             Assert.NotNull(result);
@@ -117,7 +114,7 @@ namespace Unmango.Xml.Test
 
             var result = await XmlSerializer.DeserializeAsync<object>(
                 stream,
-                _defaultOptions,
+                TestOptions.DefaultSerializerOptions,
                 _tokenSource.Token);
 
             Assert.NotNull(result);
