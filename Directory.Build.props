@@ -50,4 +50,9 @@
   <PropertyGroup>
     <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
   </PropertyGroup>
+
+  <!-- https://github.com/dotnet/roslyn/issues/37379 -->
+  <ItemGroup>
+    <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+  </ItemGroup>
 </Project>
