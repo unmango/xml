@@ -12,16 +12,14 @@ namespace Unmango.Xml
         }
 
         public static object Deserialize(Type type, byte[] bytes, XmlSerializerOptions? options = null)
-            => Deserialize(type, bytes, DEFAULT_OFFSET, options);
+            => Deserialize(type, bytes.AsSpan(), options);
 
         public static object Deserialize(
             Type type,
             byte[] bytes,
             int offset,
             XmlSerializerOptions? options = null)
-        {
-            throw new NotImplementedException();
-        }
+            => Deserialize(type, bytes.AsSpan(offset), options);
 
         public static object Deserialize(
             Type type,
@@ -45,8 +43,6 @@ namespace Unmango.Xml
         }
 
         public static object Deserialize(Type type, Stream stream, XmlSerializerOptions? options = null)
-        {
-            throw new NotImplementedException();
-        }
+            => Deserialize(type, PipeReader.Create(stream), options);
     }
 }

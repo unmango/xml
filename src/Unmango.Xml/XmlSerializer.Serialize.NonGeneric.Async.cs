@@ -110,7 +110,7 @@ namespace Unmango.Xml
             Stream stream,
             object value,
             CancellationToken cancellationToken = default)
-            => SerializeAsync(stream, value, null, cancellationToken);
+            => SerializeAsync(PipeWriter.Create(stream), value, null, cancellationToken);
 
         public static ValueTask SerializeAsync(
             Stream stream,
@@ -128,7 +128,7 @@ namespace Unmango.Xml
             Stream stream,
             object value,
             CancellationToken cancellationToken = default)
-            => SerializeAsync(type, stream, value, null, cancellationToken);
+            => SerializeAsync(type, PipeWriter.Create(stream), value, null, cancellationToken);
 
         public static ValueTask SerializeAsync(
             Type type,
@@ -136,8 +136,6 @@ namespace Unmango.Xml
             object value,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
+            => SerializeAsync(type, PipeWriter.Create(stream), value, options, cancellationToken);
     }
 }

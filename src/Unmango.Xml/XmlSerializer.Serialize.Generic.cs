@@ -28,8 +28,6 @@ namespace Unmango.Xml
         }
 
         public static void Serialize<T>(Stream stream, T value, XmlSerializerOptions? options = null)
-        {
-            throw new NotImplementedException();
-        }
+            => Serialize<T>(PipeWriter.Create(stream), value, options);
     }
 }
