@@ -53,7 +53,6 @@ jobs:
   
   - task: DotNetCoreCLI@2
     displayName: .NET Test
-    continueOnError: true
     inputs:
       command: test
       projects: '**/*[Tt]est*.csproj'
