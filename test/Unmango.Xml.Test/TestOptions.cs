@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace Unmango.Xml.Test
+namespace UnMango.Xml.Test
 {
     internal static class TestOptions
     {

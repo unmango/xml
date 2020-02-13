@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Unmango.Xml
+namespace UnMango.Xml
 {
     /// <summary>
     /// Converts an object or value to or from XML.

@@ -1,4 +1,4 @@
-﻿namespace Unmango.Xml
+﻿namespace UnMango.Xml
 {
     /// <summary>
     /// Provides functionality to serialize objects or value types to XML

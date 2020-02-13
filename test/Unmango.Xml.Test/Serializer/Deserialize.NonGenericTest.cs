@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Unmango.Xml.Test
+namespace UnMango.Xml.Test
 {
     [Trait("Category", "Unit")]
     public class XmlSerializerDeserializeNonGenericTest

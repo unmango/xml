@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Unmango.Xml
+namespace UnMango.Xml
 {
     public class XmlTextWriter : TextWriter
     {

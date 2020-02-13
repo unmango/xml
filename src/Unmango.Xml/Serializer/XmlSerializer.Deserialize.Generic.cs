@@ -2,7 +2,7 @@
 using System.IO;
 using System.IO.Pipelines;
 
-namespace Unmango.Xml
+namespace UnMango.Xml
 {
     public static partial class XmlSerializer
     {

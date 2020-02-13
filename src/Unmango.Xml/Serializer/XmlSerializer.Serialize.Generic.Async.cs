@@ -4,7 +4,7 @@ using System.IO.Pipelines;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Unmango.Xml
+namespace UnMango.Xml
 {
     public static partial class XmlSerializer
     {
