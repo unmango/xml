@@ -63,7 +63,7 @@ jobs:
     condition: always()
     inputs:
       codeCoverageTool: 'cobertura'
-      summaryFileLocation: '**/coverage.cobertura.xml'
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.cobertura.xml'
       failIfCoverageEmpty: false
   
   - task: DotNetCoreCLI@2
