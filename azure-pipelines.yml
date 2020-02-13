@@ -63,7 +63,7 @@ jobs:
     displayName: Publish Code Coverage
     inputs:
       codeCoverageTool: 'cobertura'
-      summaryFileLocation: '**/TestResults/coverage.cobertura.xml'
+      summaryFileLocation: '**/TestResults/**/coverage.cobertura.xml'
       failIfCoverageEmpty: false
   
   - task: DotNetCoreCLI@2
