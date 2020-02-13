@@ -53,7 +53,6 @@ jobs:
   
   - task: DotNetCoreCLI@2
     displayName: .NET Test
-    continueOnError: true
     inputs:
       command: test
       projects: '**/*[Tt]est*.csproj'
@@ -61,9 +60,10 @@ jobs:
 
   - task: PublishCodeCoverageResults@1
     displayName: Publish Code Coverage
+    condition: always()
     inputs:
       codeCoverageTool: 'cobertura'
-      summaryFileLocation: '**/TestResults/**/coverage.cobertura.xml'
+      summaryFileLocation: '**/coverage.cobertura.xml'
       failIfCoverageEmpty: false
   
   - task: DotNetCoreCLI@2
