@@ -3,15 +3,19 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <IsPackable>true</IsPackable>
+    <Description>An XML serializer utlizing new .NET APIs.</Description>
+    <PackageId>UnMango.Xml</PackageId>
+    <PackageTags>Xml;Serializer;System.IO.Pipelines</PackageTags>
+    <!--<PackageIcon>icon.jpg</PackageIcon>-->
+    <GenerateDocumentationFile Condition=" $(Configuration) == 'Release' ">true</GenerateDocumentationFile>
+    <!--<MinVerMinimumMajorMinor>0.0</MinVerMinimumMajorMinor>-->
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.Github" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="MinVer" Version="2.1.0" PrivateAssets="All" />
     <PackageReference Include="System.IO.Pipelines" Version="4.7.0" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Converters\" />
   </ItemGroup>
 
 </Project>

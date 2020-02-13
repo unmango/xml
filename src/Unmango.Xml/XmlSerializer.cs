@@ -6,6 +6,5 @@
     /// </summary>
     public static partial class XmlSerializer
     {
-        private const int DEFAULT_OFFSET = 0;
     }
 }

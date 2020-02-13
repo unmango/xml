@@ -55,7 +55,9 @@ namespace Unmango.Xml
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var reader = new XmlReader(span);
+
+            return DeserializeAsync<T>(ref reader, options, cancellationToken);
         }
 
         public static ValueTask<T> DeserializeAsync<T>(

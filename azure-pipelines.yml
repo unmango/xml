@@ -13,46 +13,64 @@ pr:
 - master
 - release/*
 
+pool: Linux
+
 variables:
-- name: 'CI'
-  value: true
-- name: 'BuildConfiguration'
-  value: 'Release'
+  BuildConfiguration: Release
+  UnMangoFeed: 'UnMango NuGet'
+  CI: true
 
-workspace:
-  clean: outputs
-
-steps:
-- task: UseDotnet@2
-  displayName: 'Install .NET Core'
-  inputs:
-    packageType: sdk
-    useGlobalJson: true
-
-- task: DotNetCoreCLI@2
-  displayName: 'Build'
-  inputs:
-    command: build
-    projects: '**/*.csproj'
-    configuration: $(BuildConfiguration)
-
-- task: DotNetCoreCLI@2
-  displayName: 'Test'
-  inputs:
-    command: test
-    projects: '**/test/*.csproj'
-    configuration: $(BuildConfiguration)
-    arguments: '--no-build --no-restore'
-
-- task: DotNetCoreCLI@2
-  displayName: 'Pack'
-  inputs:
-    command: pack
-    projects: '**/*.csproj'
-    arguments: '--no-build --no-restore -o $(Build.ArtifactStagingDirectory)'
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish'
-  inputs:
-    PathtoPublish: $(Build.ArtifactStagingDirectory)
-    ArtifactName: 'drop'
+jobs:
+- job: build_test
+  displayName: Build and Test
+  workspace:
+    clean: outputs
+  steps:
+  - checkout: self
+  
+  - task: UseDotNet@2
+    displayName: Install .NET Core
+    inputs:
+      packageType: sdk
+      useGlobalJson: true
+  
+  - task: DotNetCoreCLI@2
+    displayName: .NET Restore
+    inputs:
+      command: restore
+      projects: '**/*.csproj'
+      nugetConfigPath: NuGet.Config
+      externalFeedCredentials: $(UnMangoFeed)   # Service Connection Name
+      arguments: '-c $(BuildConfiguration)'
+      verbosityRestore: Normal
+  
+  - task: DotNetCoreCLI@2
+    displayName: .NET Build
+    inputs:
+      command: build
+      projects: '**/*.csproj'
+      arguments: '--no-restore -c $(BuildConfiguration)'
+  
+  - task: DotNetCoreCLI@2
+    displayName: .NET Test
+    inputs:
+      command: test
+      projects: '**/*[Tt]est*.csproj'
+      arguments: '--no-build --no-restore -c $(BuildConfiguration)'
+  
+  - task: DotNetCoreCLI@2
+    displayName: .NET Pack
+    inputs:
+      command: pack
+      projects: '**/*.csproj'
+      configuration: $(BuildConfiguration)
+      nobuild: true
+      arguments: '--no-restore -o $(Build.ArtifactStagingDirectory)'
+      versioningScheme: off
+      verbosityPack: Normal
+  
+  - task: PublishBuildArtifacts@1
+    displayName: Publish Artifacts
+    inputs:
+      ArtifactName: Packages
+      PathtoPublish: $(Build.ArtifactStagingDirectory)
