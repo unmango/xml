@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Unmango.Xml\Unmango.Xml.csproj" />
+    <ProjectReference Include="..\..\src\UnMango.Xml\UnMango.Xml.csproj" />
   </ItemGroup>
 
 </Project>
