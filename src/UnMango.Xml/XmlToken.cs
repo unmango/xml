@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace UnMango.Xml
+﻿namespace UnMango.Xml
 {
+    /// <summary>
+    /// An xml token.
+    /// </summary>
     public enum XmlToken : byte
     {
     }

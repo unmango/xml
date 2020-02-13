@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace UnMango.Xml
 {
-    public class XmlTextReader : TextReader
+    internal class XmlTextReader : TextReader
     {
         public override void Close()
         {
