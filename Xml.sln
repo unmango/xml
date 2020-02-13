@@ -1,10 +1,8 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29521.150
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1E90B93B-4BE9-4DED-9C98-D4C5D86C34ED}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C3B0D6F1-5BFF-4727-9921-0E99FF493AEB}"
 	ProjectSection(SolutionItems) = preProject
 		xunit.runner.json = xunit.runner.json
@@ -22,10 +20,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{A7EEC2E7
 		Directory.Build.targets = Directory.Build.targets
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tool", "tool", "{B9948B73-AC40-41B4-B4AD-0974B7933B60}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnMango.Xml", "src\UnMango.Xml\UnMango.Xml.csproj", "{C05ACEFB-33C2-4319-9D06-EECE8964A737}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CC5553D2-F503-4155-BD83-46BBC9ACEC26}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
@@ -33,12 +27,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnMango.Xml.Test", "test\UnMango.Xml.Test\UnMango.Xml.Test.csproj", "{4D0F3F9F-8A67-40CD-B440-D1385E7C3E52}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dependabot", "dependabot", "{FE6BF0B0-4DCE-11EA-9656-89E21F3006C7}"
 	ProjectSection(SolutionItems) = preProject
 		.dependabot\config.yml = .dependabot\config.yml
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{836FD012-2D72-405D-BE43-F531E64772E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unmango.Xml", "src\UnMango.Xml\Unmango.Xml.csproj", "{37FA25CB-DDE3-4E71-91E3-E6B1A6420074}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unmango.Xml.Test", "test\UnMango.Xml.Test\Unmango.Xml.Test.csproj", "{3E2E2328-EA82-4D75-917F-1F0EA4887C09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,24 +44,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C05ACEFB-33C2-4319-9D06-EECE8964A737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C05ACEFB-33C2-4319-9D06-EECE8964A737}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C05ACEFB-33C2-4319-9D06-EECE8964A737}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C05ACEFB-33C2-4319-9D06-EECE8964A737}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D0F3F9F-8A67-40CD-B440-D1385E7C3E52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D0F3F9F-8A67-40CD-B440-D1385E7C3E52}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D0F3F9F-8A67-40CD-B440-D1385E7C3E52}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D0F3F9F-8A67-40CD-B440-D1385E7C3E52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37FA25CB-DDE3-4E71-91E3-E6B1A6420074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37FA25CB-DDE3-4E71-91E3-E6B1A6420074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37FA25CB-DDE3-4E71-91E3-E6B1A6420074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37FA25CB-DDE3-4E71-91E3-E6B1A6420074}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E2E2328-EA82-4D75-917F-1F0EA4887C09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E2E2328-EA82-4D75-917F-1F0EA4887C09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E2E2328-EA82-4D75-917F-1F0EA4887C09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E2E2328-EA82-4D75-917F-1F0EA4887C09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{C05ACEFB-33C2-4319-9D06-EECE8964A737} = {1E90B93B-4BE9-4DED-9C98-D4C5D86C34ED}
-		{4D0F3F9F-8A67-40CD-B440-D1385E7C3E52} = {C3B0D6F1-5BFF-4727-9921-0E99FF493AEB}
-		{FE6BF0B0-4DCE-11EA-9656-89E21F3006C7} = {CC5553D2-F503-4155-BD83-46BBC9ACEC26}
-	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8312C89B-381B-4CAA-BFD1-CA67E063217E}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{37FA25CB-DDE3-4E71-91E3-E6B1A6420074} = {836FD012-2D72-405D-BE43-F531E64772E2}
+		{3E2E2328-EA82-4D75-917F-1F0EA4887C09} = {C3B0D6F1-5BFF-4727-9921-0E99FF493AEB}
 	EndGlobalSection
 EndGlobal
