@@ -27,7 +27,7 @@ namespace Unmango.Xml.Test
             Assert.Equal(bytes, result);
         }
 
-        [Fact(Skip = "Still working out whether XmlReader should be a struct/ref struct/class etc.")]
+        [Fact(Skip = "Still working out whether XmlWriter should be a struct/ref struct/class etc.")]
         public void SerializeToWriter_HappyPath()
         {
             const string xml = "<Item><Property>value</Property></Item>";
