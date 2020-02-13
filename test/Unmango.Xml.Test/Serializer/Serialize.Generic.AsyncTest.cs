@@ -1,26 +1,28 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.IO.Pipelines;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Unmango.Xml.Test
+namespace UnMango.Xml.Test
 {
     [Trait("Category", "Unit")]
-    public class XmlSerializerSerializeGenericTest
+    public class XmlSerializerSerializeGenericAsyncTest
     {
         private readonly CancellationTokenSource _tokenSource = TestOptions.GetTokenSource();
 
         [Fact]
-        public void SerializeAsBytes_HappyPath()
+        public async Task SerializeAsBytes_HappyPath()
         {
             const string xml = "<Item><Property>value</Property></Item>";
             var bytes = Encoding.UTF8.GetBytes(xml);
             var obj = new { Property = "value" };
 
-            var result = XmlSerializer.Serialize(obj, TestOptions.DefaultSerializerOptions);
+            var result = await XmlSerializer.SerializeAsync(
+                obj,
+                TestOptions.DefaultSerializerOptions,
+                _tokenSource.Token);
 
             Assert.Equal(bytes, result);
         }
@@ -34,7 +36,11 @@ namespace Unmango.Xml.Test
             var buffer = new byte[bytes.Length];
             var writer = new XmlWriter(buffer);
 
-            XmlSerializer.Serialize(ref writer, obj, TestOptions.DefaultSerializerOptions);
+            var task = XmlSerializer.SerializeAsync(
+                ref writer,
+                obj,
+                TestOptions.DefaultSerializerOptions,
+                _tokenSource.Token);
 
             //Assert.Equal(bytes, writer.Something);
         }
@@ -47,7 +53,11 @@ namespace Unmango.Xml.Test
             var obj = new { Property = "value" };
             var pipe = new Pipe();
 
-            XmlSerializer.Serialize(pipe.Writer, obj, TestOptions.DefaultSerializerOptions);
+            await XmlSerializer.SerializeAsync(
+                pipe.Writer,
+                obj,
+                TestOptions.DefaultSerializerOptions,
+                _tokenSource.Token);
 
             var result = await pipe.Reader.ReadAsync(_tokenSource.Token);
             byte[] read = result.Buffer.FirstSpan.ToArray();
@@ -56,14 +66,18 @@ namespace Unmango.Xml.Test
         }
 
         [Fact]
-        public void SerializeToStream_HappyPath()
+        public async Task SerializeToStream_HappyPath()
         {
             const string xml = "<Item><Property>value</Property></Item>";
             var bytes = Encoding.UTF8.GetBytes(xml);
             var obj = new { Property = "value" };
             using var stream = new MemoryStream();
 
-            XmlSerializer.Serialize(stream, obj, TestOptions.DefaultSerializerOptions);
+            await XmlSerializer.SerializeAsync(
+                stream,
+                obj,
+                TestOptions.DefaultSerializerOptions,
+                _tokenSource.Token);
 
             var read = stream.ToArray();
 

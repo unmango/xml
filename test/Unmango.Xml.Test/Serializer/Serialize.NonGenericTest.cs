@@ -1,12 +1,11 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.IO.Pipelines;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Unmango.Xml.Test
+namespace UnMango.Xml.Test
 {
     [Trait("Category", "Unit")]
     public class XmlSerializerSerializeNonGenericTest

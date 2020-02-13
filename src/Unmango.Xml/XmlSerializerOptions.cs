@@ -1,4 +1,4 @@
-﻿namespace Unmango.Xml
+﻿namespace UnMango.Xml
 {
     /// <summary>
     /// Provides options to be used with <see cref="XmlSerializer"/>.

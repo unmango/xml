@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Unmango.Xml
+namespace UnMango.Xml
 {
     public enum XmlToken : byte
     {

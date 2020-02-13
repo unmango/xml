@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Unmango.Xml
+namespace UnMango.Xml
 {
     public class XmlTextReader : TextReader
     {
