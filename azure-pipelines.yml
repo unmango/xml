@@ -56,7 +56,13 @@ jobs:
     inputs:
       command: test
       projects: '**/*[Tt]est*.csproj'
-      arguments: '--no-build --no-restore -c $(BuildConfiguration)'
+      arguments: '--no-build --no-restore -c $(BuildConfiguration) --collect:"XPlat Code Coverage"'
+
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: 'cobertura'
+      summaryFileLocation: '**/TestResults/coverage.cobertura.xml'
+      failIfCoverageEmpty: false
   
   - task: DotNetCoreCLI@2
     displayName: .NET Pack
