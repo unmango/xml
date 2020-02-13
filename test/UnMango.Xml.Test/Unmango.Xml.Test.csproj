@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\UnMango.Xml\UnMango.Xml.csproj" />
+    <ProjectReference Include="..\..\src\UnMango.Xml\Unmango.Xml.csproj" />
   </ItemGroup>
 
 </Project>
