@@ -59,7 +59,7 @@ jobs:
     inputs:
       command: test
       projects: '**/*[Tt]est*.csproj'
-      arguments: '--no-build --no-restore -c $(BuildConfiguration) --collect:"XPlat Code Coverage"'
+      arguments: '--no-build --no-restore -c $(BuildConfiguration) --filter:"Category=Unit" --collect:"XPlat Code Coverage"'
 
   - bash: |
       dotnet tool run reportgenerator \

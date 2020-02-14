@@ -7,7 +7,7 @@ using Xunit;
 
 namespace UnMango.Xml.Test
 {
-    [Trait("Category", "Unit")]
+    //[Trait("Category", "Unit")]
     public class XmlSerializerSerializeGenericTest
     {
         private readonly CancellationTokenSource _tokenSource = TestOptions.GetTokenSource();
