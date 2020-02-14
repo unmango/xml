@@ -78,6 +78,8 @@ jobs:
     condition: always()
 
   - task: PublishTestResults@2
+    displayName: Publish Test Results
+    condition: always()
     inputs:
       testResultsFormat: 'xUnit'
       testResultsFiles: '**/*.trx' 
@@ -88,7 +90,7 @@ jobs:
     condition: always()
     inputs:
       codeCoverageTool: cobertura
-      summaryFileLocation: coverlet/reports/Cobertura.xml
+      summaryFileLocation: $(Build.StagingDirectory)/**/Cobertura.xml
       failIfCoverageEmpty: false
   
   - task: DotNetCoreCLI@2
