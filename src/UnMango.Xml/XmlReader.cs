@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnMango.Xml
 {
+    /// <summary>
+    /// Reads XML.
+    /// </summary>
     public ref struct XmlReader
     {
         private const int DEFAULT_OFFSET = 0;
@@ -12,9 +12,20 @@ namespace UnMango.Xml
         private readonly ReadOnlySpan<byte> _buffer;
         private int _offset;
 
+        /// <summary>
+        /// Initializes a new instance of a <see cref="XmlReader"/> with the
+        /// specified <paramref name="buffer"/>.
+        /// </summary>
+        /// <param name="buffer"></param>
         public XmlReader(ReadOnlySpan<byte> buffer)
             : this(buffer, DEFAULT_OFFSET) { }
 
+        /// <summary>
+        /// Initializes a new instance of a <see cref="XmlReader"/> with the
+        /// specified <paramref name="buffer"/> starting at <paramref name="offset"/>.
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="offset"></param>
         public XmlReader(ReadOnlySpan<byte> buffer, int offset)
         {
             _buffer = buffer;

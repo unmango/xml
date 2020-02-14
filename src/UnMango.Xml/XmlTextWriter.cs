@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace UnMango.Xml
 {
-    public class XmlTextWriter : TextWriter
+    internal class XmlTextWriter : TextWriter
     {
         public override Encoding Encoding => Encoding.UTF8;
 
