@@ -35,6 +35,7 @@ jobs:
       useGlobalJson: true
 
   - bash: dotnet tool restore
+    displayName: Restore .NET Tools
   
   - task: DotNetCoreCLI@2
     displayName: .NET Restore
@@ -64,6 +65,8 @@ jobs:
       | -reports:$(System.DefaultWorkingDirectory)/**/coverage.cobertura.xml
       | -targetdir:$(System.DefaultWorkingDirectory)/coverlet/reports
       | -reporttypes:Cobertura
+    displayName: Generate Code Coverage Report
+    condition: always()
 
   - task: PublishCodeCoverageResults@1
     displayName: Publish Code Coverage Results
