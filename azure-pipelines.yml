@@ -63,9 +63,9 @@ jobs:
 
   - bash: |
       dotnet tool run reportgenerator \
-      -reports:$(System.DefaultWorkingDirectory)/**/coverage.cobertura.xml \
-      -targetdir:$(System.DefaultWorkingDirectory)/coverlet/reports \
-      -reporttypes:Cobertura
+        -reports:**/coverage.cobertura.xml \
+        -targetdir:coverlet/reports \
+        -reporttypes:Cobertura
     displayName: Generate Code Coverage Report
     condition: always()
 
