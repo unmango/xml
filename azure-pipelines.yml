@@ -33,6 +33,8 @@ jobs:
     inputs:
       packageType: sdk
       useGlobalJson: true
+
+  - bash: dotnet tool restore
   
   - task: DotNetCoreCLI@2
     displayName: .NET Restore
@@ -58,12 +60,17 @@ jobs:
       projects: '**/*[Tt]est*.csproj'
       arguments: '--no-build --no-restore -c $(BuildConfiguration) --collect:"XPlat Code Coverage"'
 
+  - bash: dotnet tool run reportgenerator
+      | -reports:$(System.DefaultWorkingDirectory)/**/coverage.cobertura.xml
+      | -targetdir:$(System.DefaultWorkingDirectory)/coverlet/reports
+      | -reporttypes:Cobertura
+
   - task: PublishCodeCoverageResults@1
-    displayName: Publish Code Coverage
+    displayName: Publish Code Coverage Results
     condition: always()
     inputs:
-      codeCoverageTool: 'cobertura'
-      summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.cobertura.xml'
+      codeCoverageTool: cobertura
+      summaryFileLocation: coverlet/reports/Cobertura.xml
       failIfCoverageEmpty: false
   
   - task: DotNetCoreCLI@2
