@@ -63,16 +63,14 @@ jobs:
         --no-build
         --no-restore
         -c $(BuildConfiguration)
-        --logger trx
-        --results-directory "$(Build.StagingDirectory)/TestResults"
         --filter:"Category=Unit"
         --collect:"XPlat Code Coverage"
-      publishTestResults: false
+      publishTestResults: true
 
   - bash: |
       dotnet tool run reportgenerator \
-        -reports:$(Build.StagingDirectory)/**/coverage.cobertura.xml \
-        -targetdir:$(Build.StagingDirectory)/coverlet/reports \
+        -reports:$(Agent.TempDirectory)/**/coverage.cobertura.xml \
+        -targetdir:$(Agent.TempDirectory)/coverlet/reports \
         -reporttypes:Cobertura
     displayName: Generate Code Coverage Report
     condition: always()
@@ -83,14 +81,14 @@ jobs:
     inputs:
       testResultsFormat: 'VSTest'
       testResultsFiles: '**/*.trx' 
-      searchFolder: '$(Build.StagingDirectory)'
+      searchFolder: '$(Agent.TempDirectory)'
 
   - task: PublishCodeCoverageResults@1
     displayName: Publish Code Coverage Results
     condition: always()
     inputs:
       codeCoverageTool: cobertura
-      summaryFileLocation: $(Build.StagingDirectory)/**/Cobertura.xml
+      summaryFileLocation: $(Agent.TempDirectory)/**/Cobertura.xml
       failIfCoverageEmpty: false
   
   - task: DotNetCoreCLI@2
