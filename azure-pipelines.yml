@@ -81,7 +81,7 @@ jobs:
     displayName: Publish Test Results
     condition: always()
     inputs:
-      testResultsFormat: 'xUnit'
+      testResultsFormat: 'VSTest'
       testResultsFiles: '**/*.trx' 
       searchFolder: '$(Build.StagingDirectory)'
 
