@@ -63,10 +63,11 @@ jobs:
         --no-build
         --no-restore
         -c $(BuildConfiguration)
+        --logger trx
         --results-directory "$(Build.StagingDirectory)/TestResults"
         --filter:"Category=Unit"
         --collect:"XPlat Code Coverage"
-      publishTestResults: true
+      publishTestResults: false
 
   - bash: |
       dotnet tool run reportgenerator \
@@ -75,6 +76,12 @@ jobs:
         -reporttypes:Cobertura
     displayName: Generate Code Coverage Report
     condition: always()
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'xUnit'
+      testResultsFiles: '**/*.trx' 
+      searchFolder: '$(Build.StagingDirectory)'
 
   - task: PublishCodeCoverageResults@1
     displayName: Publish Code Coverage Results
