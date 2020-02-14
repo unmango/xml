@@ -59,12 +59,19 @@ jobs:
     inputs:
       command: test
       projects: '**/*[Tt]est*.csproj'
-      arguments: '--no-build --no-restore -c $(BuildConfiguration) --filter:"Category=Unit" --collect:"XPlat Code Coverage"'
+      arguments: >
+        --no-build
+        --no-restore
+        -c $(BuildConfiguration)
+        -r "$(Build.StagingDirectory)/TestResults"
+        --filter:"Category=Unit"
+        --collect:"XPlat Code Coverage"
+      publishTestResults: true
 
-  - bash: |
-      dotnet tool run reportgenerator \
-        -reports:**/coverage.cobertura.xml \
-        -targetdir:coverlet/reports \
+  - bash: >
+      dotnet tool run reportgenerator
+        -reports:$(Build.StagingDirectory)/**/coverage.cobertura.xml
+        -targetdir:$(Build.StagingDirectory)/coverlet/reports
         -reporttypes:Cobertura
     displayName: Generate Code Coverage Report
     condition: always()
