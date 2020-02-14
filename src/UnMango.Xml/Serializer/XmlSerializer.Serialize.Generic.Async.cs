@@ -48,7 +48,7 @@ namespace UnMango.Xml
         /// Serializes <paramref name="value"/> to <paramref name="writer"/>.
         /// </summary>
         /// <typeparam name="T">The type to serialize.</typeparam>
-        /// <param name="writer">The writer to serialize <paramref name="value"/> to.</param>
+        /// <param name="writer">The <see cref="XmlWriter"/> to serialize <paramref name="value"/> to.</param>
         /// <param name="value">The value to serialize.</param>
         /// <param name="cancellationToken">
         /// The <see cref="CancellationToken"/> used to propagate notifications that the operation should be canceled.
@@ -64,7 +64,7 @@ namespace UnMango.Xml
         /// Serializes <paramref name="value"/> to <paramref name="writer"/>.
         /// </summary>
         /// <typeparam name="T">The type to serialize.</typeparam>
-        /// <param name="writer">The writer to serialize <paramref name="value"/> to.</param>
+        /// <param name="writer">The <see cref="XmlWriter"/> to serialize <paramref name="value"/> to.</param>
         /// <param name="value">The value to serialize.</param>
         /// <param name="options">Options for the operation.</param>
         /// <param name="cancellationToken">
@@ -80,12 +80,33 @@ namespace UnMango.Xml
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Serializes <paramref name="value"/> to <paramref name="writer"/>.
+        /// </summary>
+        /// <typeparam name="T">The type to serialize.</typeparam>
+        /// <param name="writer">The <see cref="PipeWriter"/> to serialize <paramref name="value"/> to.</param>
+        /// <param name="value">The value to serialize.</param>
+        /// <param name="cancellationToken">
+        /// The <see cref="CancellationToken"/> used to propagate notifications that the operation should be canceled.
+        /// </param>
+        /// <returns>A <see cref="ValueTask"/> representing the asynchronous operation.</returns>
         public static ValueTask SerializeAsync<T>(
             PipeWriter writer,
             T value,
             CancellationToken cancellationToken = default)
             => SerializeAsync(writer, value, null, cancellationToken);
 
+        /// <summary>
+        /// Serializes <paramref name="value"/> to <paramref name="writer"/>.
+        /// </summary>
+        /// <typeparam name="T">The type to serialize.</typeparam>
+        /// <param name="writer">The <see cref="PipeWriter"/> to serialize <paramref name="value"/> to.</param>
+        /// <param name="value">The value to serialize.</param>
+        /// <param name="options">Options for the operation.</param>
+        /// <param name="cancellationToken">
+        /// The <see cref="CancellationToken"/> used to propagate notifications that the operation should be canceled.
+        /// </param>
+        /// <returns>A <see cref="ValueTask"/> representing the asynchronous operation.</returns>
         public static ValueTask SerializeAsync<T>(
             PipeWriter writer,
             T value,
@@ -95,12 +116,33 @@ namespace UnMango.Xml
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Serializes <paramref name="value"/> to <paramref name="stream"/>.
+        /// </summary>
+        /// <typeparam name="T">The type to serialize.</typeparam>
+        /// <param name="stream">The <see cref="Stream"/> to serialize <paramref name="value"/> to.</param>
+        /// <param name="value">The value to serialize.</param>
+        /// <param name="cancellationToken">
+        /// The <see cref="CancellationToken"/> used to propagate notifications that the operation should be canceled.
+        /// </param>
+        /// <returns>A <see cref="ValueTask"/> representing the asynchronous operation.</returns>
         public static ValueTask SerializeAsync<T>(
             Stream stream,
             T value,
             CancellationToken cancellationToken = default)
             => SerializeAsync(PipeWriter.Create(stream), value, null, cancellationToken);
 
+        /// <summary>
+        /// Serializes <paramref name="value"/> to <paramref name="stream"/>.
+        /// </summary>
+        /// <typeparam name="T">The type to serialize.</typeparam>
+        /// <param name="stream">The <see cref="Stream"/> to serialize <paramref name="value"/> to.</param>
+        /// <param name="value">The value to serialize.</param>
+        /// <param name="options">Options for the operation.</param>
+        /// <param name="cancellationToken">
+        /// The <see cref="CancellationToken"/> used to propagate notifications that the operation should be canceled.
+        /// </param>
+        /// <returns>A <see cref="ValueTask"/> representing the asynchronous operation.</returns>
         public static ValueTask SerializeAsync<T>(
             Stream stream,
             T value,
