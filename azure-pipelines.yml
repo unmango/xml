@@ -75,14 +75,6 @@ jobs:
     displayName: Generate Code Coverage Report
     condition: always()
 
-  - task: PublishTestResults@2
-    displayName: Publish Test Results
-    condition: always()
-    inputs:
-      testResultsFormat: 'VSTest'
-      testResultsFiles: '**/*.trx' 
-      searchFolder: '$(Agent.TempDirectory)'
-
   - task: PublishCodeCoverageResults@1
     displayName: Publish Code Coverage Results
     condition: always()
