@@ -38,6 +38,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unmango.Xml", "src\UnMango.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unmango.Xml.Test", "test\UnMango.Xml.Test\Unmango.Xml.Test.csproj", "{3E2E2328-EA82-4D75-917F-1F0EA4887C09}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tool", "tool", "{0DCC9A5E-F05A-438B-A511-D180EE1C320B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,9 +65,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8312C89B-381B-4CAA-BFD1-CA67E063217E}
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{37FA25CB-DDE3-4E71-91E3-E6B1A6420074} = {836FD012-2D72-405D-BE43-F531E64772E2}
-		{3E2E2328-EA82-4D75-917F-1F0EA4887C09} = {C3B0D6F1-5BFF-4727-9921-0E99FF493AEB}
 	EndGlobalSection
 EndGlobal
