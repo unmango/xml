@@ -61,9 +61,10 @@ jobs:
       projects: '**/*[Tt]est*.csproj'
       arguments: '--no-build --no-restore -c $(BuildConfiguration) --collect:"XPlat Code Coverage"'
 
-  - bash: dotnet tool run reportgenerator |
-      -reports:$(System.DefaultWorkingDirectory)/**/coverage.cobertura.xml
-      -targetdir:$(System.DefaultWorkingDirectory)/coverlet/reports
+  - bash: |
+      dotnet tool run reportgenerator \
+      -reports:$(System.DefaultWorkingDirectory)/**/coverage.cobertura.xml \
+      -targetdir:$(System.DefaultWorkingDirectory)/coverlet/reports \
       -reporttypes:Cobertura
     displayName: Generate Code Coverage Report
     condition: always()
