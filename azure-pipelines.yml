@@ -63,15 +63,15 @@ jobs:
         --no-build
         --no-restore
         -c $(BuildConfiguration)
-        -r "$(Build.StagingDirectory)/TestResults"
+        --results-directory "$(Build.StagingDirectory)/TestResults"
         --filter:"Category=Unit"
         --collect:"XPlat Code Coverage"
       publishTestResults: true
 
-  - bash: >
-      dotnet tool run reportgenerator
-        -reports:$(Build.StagingDirectory)/**/coverage.cobertura.xml
-        -targetdir:$(Build.StagingDirectory)/coverlet/reports
+  - bash: |
+      dotnet tool run reportgenerator \
+        -reports:$(Build.StagingDirectory)/**/coverage.cobertura.xml \
+        -targetdir:$(Build.StagingDirectory)/coverlet/reports \
         -reporttypes:Cobertura
     displayName: Generate Code Coverage Report
     condition: always()
