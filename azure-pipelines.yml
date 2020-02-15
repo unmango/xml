@@ -5,9 +5,10 @@ trigger:
     - master
     - release/*
   paths:
-    exclude:
-    - README.md
-    - docs/*
+    include:
+    - src/*
+    - test/*
+    - tool/*
 
 pr:
 - master
