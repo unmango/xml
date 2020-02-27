@@ -6,5 +6,6 @@
     /// </summary>
     public static partial class XmlSerializer
     {
+        // Implementations of [De]Serialize[Async] are located in /Serializer
     }
 }

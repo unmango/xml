@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.IO.Pipelines;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -40,9 +41,7 @@ namespace UnMango.Xml
             string xml,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
+            => DeserializeAsync<T>(Encoding.UTF8.GetBytes(xml), options, cancellationToken);
 
         /// <summary>
         /// Deserializes <paramref name="bytes"/> as a <typeparamref name="T"/>.
@@ -150,7 +149,6 @@ namespace UnMango.Xml
             CancellationToken cancellationToken = default)
         {
             var reader = new XmlReader(span);
-
             return DeserializeAsync<T>(ref reader, options, cancellationToken);
         }
 

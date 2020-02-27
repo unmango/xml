@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.IO.Pipelines;
+using System.Text;
 
 namespace UnMango.Xml
 {
@@ -14,9 +15,7 @@ namespace UnMango.Xml
         /// <param name="options">Options for the operation.</param>
         /// <returns>The deserialized value.</returns>
         public static T Deserialize<T>(string xml, XmlSerializerOptions? options = null)
-        {
-            throw new NotImplementedException();
-        }
+            => Deserialize<T>(Encoding.UTF8.GetBytes(xml), options);
 
         /// <summary>
         /// Deserializes <paramref name="bytes"/> as a <typeparamref name="T"/>.
@@ -48,7 +47,8 @@ namespace UnMango.Xml
         /// <returns>The deserialized value.</returns>
         public static T Deserialize<T>(ReadOnlySpan<byte> span, XmlSerializerOptions? options = null)
         {
-            throw new NotImplementedException();
+            var reader = new XmlReader(span);
+            return Deserialize<T>(ref reader, options);
         }
 
         /// <summary>
