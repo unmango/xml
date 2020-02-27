@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace UnMango.Xml
@@ -179,5 +180,14 @@ namespace UnMango.Xml
         {
             throw new NotImplementedException();
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj) => throw new NotSupportedException();
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => throw new NotSupportedException();
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override string ToString() => throw new NotSupportedException();
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.IO.Pipelines;
 
 namespace UnMango.Xml
 {
@@ -9,6 +11,7 @@ namespace UnMango.Xml
     {
         private const int DEFAULT_OFFSET = 0;
 
+        private readonly PipeReader _reader;
         private readonly ReadOnlySpan<byte> _buffer;
         private int _offset;
 
@@ -31,5 +34,14 @@ namespace UnMango.Xml
             _buffer = buffer;
             _offset = offset;
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj) => throw new NotSupportedException();
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => throw new NotSupportedException();
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override string ToString() => throw new NotSupportedException();
     }
 }
