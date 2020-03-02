@@ -13,14 +13,17 @@ namespace UnMango.Xml
         private readonly IBufferWriter<byte> _output;
 
         /// <summary>
-        /// Initializes a new instance of a <see cref="XmlWriter"/>.
+        /// Initializes a new instance of a <see cref="XmlWriter"/> with a specified <paramref name="bufferWriter"/>.
         /// </summary>
-        /// <param name="output">
+        /// <param name="bufferWriter">
         /// An instance of <see cref="IBufferWriter{Byte}" /> used as a destination for writing XML text into.
         /// </param>
-        public XmlWriter(IBufferWriter<byte> output)
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when the instance of <see cref="IBufferWriter{Byte}" /> that is passed in is null.
+        /// </exception>
+        public XmlWriter(IBufferWriter<byte> bufferWriter)
         {
-            _output = output;
+            _output = bufferWriter ?? throw new ArgumentNullException(nameof(bufferWriter));
         }
 
         public void WriteTrue()

@@ -1,4 +1,5 @@
-﻿using System.Buffers;
+﻿using System;
+using System.Buffers;
 using UnMango.Xml;
 using Xunit;
 
@@ -8,7 +9,13 @@ namespace Unmango.Xml.Test
     public class XmlWriterTest
     {
         [Fact]
-        public void WriteTrue()
+        public void Throws_When_BufferWriter_Is_Null()
+        {
+            Assert.Throws<ArgumentNullException>(() => new XmlWriter(null!));
+        }
+
+        [Fact]
+        public void Writes_True()
         {
             var bufferWriter = new ArrayBufferWriter<byte>(4);
             var writer = new XmlWriter(bufferWriter);
@@ -23,7 +30,7 @@ namespace Unmango.Xml.Test
         }
 
         [Fact]
-        public void WriteFalse()
+        public void Writes_False()
         {
             var bufferWriter = new ArrayBufferWriter<byte>(5);
             var writer = new XmlWriter(bufferWriter);
@@ -41,7 +48,7 @@ namespace Unmango.Xml.Test
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void WriteBoolean(bool value)
+        public void Writes_Boolean(bool value)
         {
             var bufferWriter = new ArrayBufferWriter<byte>(5);
             var writer = new XmlWriter(bufferWriter);
