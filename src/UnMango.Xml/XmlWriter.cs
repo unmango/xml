@@ -26,29 +26,6 @@ namespace UnMango.Xml
             _output = bufferWriter ?? throw new ArgumentNullException(nameof(bufferWriter));
         }
 
-        public void WriteTrue()
-        {
-            const int size = 4;
-            var span = _output.GetSpan(size);
-            span[0] = (byte)'t';
-            span[1] = (byte)'r';
-            span[2] = (byte)'u';
-            span[3] = (byte)'e';
-            _output.Advance(size); // TODO: Flush?
-        }
-
-        public void WriteFalse()
-        {
-            const int size = 5;
-            var span = _output.GetSpan(size);
-            span[0] = (byte)'f';
-            span[1] = (byte)'a';
-            span[2] = (byte)'l';
-            span[3] = (byte)'s';
-            span[4] = (byte)'e';
-            _output.Advance(size); // TODO: Flush?
-        }
-
         /// <summary>
         /// Writes a boolean value.
         /// </summary>
@@ -173,37 +150,52 @@ namespace UnMango.Xml
         }
 
         /// <summary>
-        /// Writes a character value asynchronously.
+        /// Writes "false" to the output.
         /// </summary>
-        /// <param name="value">The value to write.</param>
-        /// <returns>A task representing the operation.</returns>
-        public ValueTask WriteAsync(char value)
+        public void WriteFalse()
         {
-            throw new NotImplementedException();
+            const int size = 5;
+            var span = _output.GetSpan(size);
+            span[0] = (byte)'f';
+            span[1] = (byte)'a';
+            span[2] = (byte)'l';
+            span[3] = (byte)'s';
+            span[4] = (byte)'e';
+            _output.Advance(size); // TODO: Flush?
         }
 
         /// <summary>
-        /// Writes a number of characters specified by <paramref name="count"/>
-        /// starting at <paramref name="index"/> from <paramref name="buffer"/>
-        /// asynchronously.
+        /// Writes a byte directly to the output.
         /// </summary>
-        /// <param name="buffer">The buffer of characters to write.</param>
-        /// <param name="index">The index to start at in the buffer.</param>
-        /// <param name="count">The number of characters to write.</param>
-        /// <returns>A task representing the operation.</returns>
-        public ValueTask WriteAsync(char[] buffer, int index, int count)
+        /// <param name="byte"></param>
+        public void WriteRaw(byte @byte)
         {
-            throw new NotImplementedException();
+            const int size = 1;
+            _output.GetSpan(size)[0] = @byte;
+            _output.Advance(size);
         }
 
         /// <summary>
-        /// Writes a string value asynchronously.
+        /// Writes bytes directly to the output.
         /// </summary>
-        /// <param name="value">The value to write.</param>
-        /// <returns>A task representing the operation.</returns>
-        public ValueTask WriteAsync(string value)
+        /// <param name="bytes"></param>
+        public void WriteRaw(byte[] bytes)
         {
-            throw new NotImplementedException();
+            _output.Write(bytes);
+        }
+
+        /// <summary>
+        /// Writes "true" to the output.
+        /// </summary>
+        public void WriteTrue()
+        {
+            const int size = 4;
+            var span = _output.GetSpan(size);
+            span[0] = (byte)'t';
+            span[1] = (byte)'r';
+            span[2] = (byte)'u';
+            span[3] = (byte)'e';
+            _output.Advance(size); // TODO: Flush?
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Buffers;
-using System.Collections.Generic;
+﻿using System.Buffers;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 
@@ -8,7 +6,7 @@ namespace UnMango.Xml.Benchmarks
 {
     public class XmlWriterBenchmark
     {
-        [Benchmark]
+        [Benchmark(Baseline = true)]
         public void UnMango_WriteTrue()
         {
             var bufferWriter = new ArrayBufferWriter<byte>(4);
