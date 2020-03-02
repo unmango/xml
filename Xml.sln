@@ -34,13 +34,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dependabot", "dependabot", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{836FD012-2D72-405D-BE43-F531E64772E2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unmango.Xml", "src\UnMango.Xml\Unmango.Xml.csproj", "{37FA25CB-DDE3-4E71-91E3-E6B1A6420074}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnMango.Xml", "src\UnMango.Xml\UnMango.Xml.csproj", "{37FA25CB-DDE3-4E71-91E3-E6B1A6420074}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unmango.Xml.Test", "test\UnMango.Xml.Test\Unmango.Xml.Test.csproj", "{3E2E2328-EA82-4D75-917F-1F0EA4887C09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnMango.Xml.Test", "test\UnMango.Xml.Test\UnMango.Xml.Test.csproj", "{3E2E2328-EA82-4D75-917F-1F0EA4887C09}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tool", "tool", "{0DCC9A5E-F05A-438B-A511-D180EE1C320B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unmango.Xml.Benchmarks", "test\Unmango.Xml.Benchmarks\Unmango.Xml.Benchmarks.csproj", "{8F7FACB8-89FE-44CD-A842-DD080E9D295A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnMango.Xml.Benchmarks", "test\Unmango.Xml.Benchmarks\UnMango.Xml.Benchmarks.csproj", "{8F7FACB8-89FE-44CD-A842-DD080E9D295A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

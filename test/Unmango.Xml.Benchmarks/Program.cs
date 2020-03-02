@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Unmango.Xml.Benchmarks
+namespace UnMango.Xml.Benchmarks
 {
     internal static class Program
     {
