@@ -1,4 +1,5 @@
 ﻿using System;
+using BenchmarkDotNet.Running;
 
 namespace UnMango.Xml.Benchmarks
 {
@@ -6,7 +7,14 @@ namespace UnMango.Xml.Benchmarks
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            if (args.Length > 0)
+            {
+                BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
+            }
+            else
+            {
+                var summary = BenchmarkRunner.Run<XmlWriterBenchmark>();
+            }
         }
     }
 }
