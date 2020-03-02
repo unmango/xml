@@ -47,8 +47,7 @@ namespace UnMango.Xml
         /// <returns>The deserialized value.</returns>
         public static T Deserialize<T>(ReadOnlySpan<byte> span, XmlSerializerOptions? options = null)
         {
-            var reader = new XmlReader(span);
-            return Deserialize<T>(ref reader, options);
+            throw new NotImplementedException();
         }
 
         /// <summary>

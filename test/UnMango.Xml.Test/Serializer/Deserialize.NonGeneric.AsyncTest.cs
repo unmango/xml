@@ -87,18 +87,18 @@ namespace UnMango.Xml.Test
         [Fact(Skip = "Still working out whether XmlReader should be a struct/ref struct/class etc.")]
         public void DeserializeXmlReader_HappyPath()
         {
-            var type = typeof(object);
-            const string xml = "<Element></Element>";
-            var span = Encoding.UTF8.GetBytes(xml).AsSpan();
-            var reader = new XmlReader(span);
+            //var type = typeof(object);
+            //const string xml = "<Element></Element>";
+            //var span = Encoding.UTF8.GetBytes(xml).AsSpan();
+            //var reader = new XmlReader(span);
 
-            var result = XmlSerializer.DeserializeAsync(
-                type,
-                ref reader,
-                TestOptions.DefaultSerializerOptions,
-                _tokenSource.Token);
+            //var result = XmlSerializer.DeserializeAsync(
+            //    type,
+            //    ref reader,
+            //    TestOptions.DefaultSerializerOptions,
+            //    _tokenSource.Token);
 
-            Assert.NotNull(result.Result);
+            //Assert.NotNull(result.Result);
         }
 
         [Fact]
