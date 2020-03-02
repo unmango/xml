@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Buffers;
+using System.IO;
 using System.IO.Pipelines;
 using System.Text;
 using System.Threading;
@@ -28,10 +29,10 @@ namespace UnMango.Xml.Test
         public void SerializeToWriter_HappyPath()
         {
             const string xml = "<Item><Property>value</Property></Item>";
-            var bytes = Encoding.UTF8.GetBytes(xml);
             var obj = new { Property = "value" };
-            var buffer = new byte[bytes.Length];
-            var writer = new XmlWriter(buffer);
+            var capacity = Encoding.UTF8.GetBytes(xml).Length;
+            var bufferWriter = new ArrayBufferWriter<byte>(capacity);
+            var writer = new XmlWriter(bufferWriter);
 
             XmlSerializer.Serialize(ref writer, obj, TestOptions.DefaultSerializerOptions);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
@@ -9,16 +10,16 @@ namespace UnMango.Xml
     /// </summary>
     public ref struct XmlWriter
     {
-        private ReadOnlySpan<byte> _buffer;
+        private IBufferWriter<byte> _output;
         private int _offset;
 
         /// <summary>
         /// Initializes a new instance of a <see cref="XmlWriter"/>.
         /// </summary>
         /// <param name="initialBuffer"></param>
-        public XmlWriter(ReadOnlySpan<byte> initialBuffer)
+        public XmlWriter(IBufferWriter<byte> output)
         {
-            _buffer = initialBuffer;
+            _output = output;
             _offset = 0;
         }
 
