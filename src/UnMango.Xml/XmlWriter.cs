@@ -8,25 +8,43 @@ namespace UnMango.Xml
     /// <summary>
     /// Facilitates writing Xml to a buffer.
     /// </summary>
-    public ref struct XmlWriter
+    public readonly ref struct XmlWriter
     {
-        private IBufferWriter<byte> _output;
-        private int _offset;
+        private readonly IBufferWriter<byte> _output;
 
         /// <summary>
         /// Initializes a new instance of a <see cref="XmlWriter"/>.
         /// </summary>
-        /// <param name="initialBuffer"></param>
+        /// <param name="output">
+        /// An instance of <see cref="IBufferWriter{Byte}" /> used as a destination for writing XML text into.
+        /// </param>
         public XmlWriter(IBufferWriter<byte> output)
         {
             _output = output;
-            _offset = 0;
         }
 
-        /// <summary>
-        /// Gets the current offset.
-        /// </summary>
-        public int CurrentOffset => _offset;
+        public void WriteTrue()
+        {
+            const int size = 4;
+            var span = _output.GetSpan(size);
+            span[0] = (byte)'t';
+            span[1] = (byte)'r';
+            span[2] = (byte)'u';
+            span[3] = (byte)'e';
+            _output.Advance(size); // TODO: Flush?
+        }
+
+        public void WriteFalse()
+        {
+            const int size = 5;
+            var span = _output.GetSpan(size);
+            span[0] = (byte)'f';
+            span[1] = (byte)'a';
+            span[2] = (byte)'l';
+            span[3] = (byte)'s';
+            span[4] = (byte)'e';
+            _output.Advance(size); // TODO: Flush?
+        }
 
         /// <summary>
         /// Writes a boolean value.
@@ -34,7 +52,10 @@ namespace UnMango.Xml
         /// <param name="value">The value to write.</param>
         public void Write(bool value)
         {
-            throw new NotImplementedException();
+            if (value)
+                WriteTrue();
+            else
+                WriteFalse();
         }
 
         /// <summary>
@@ -43,7 +64,7 @@ namespace UnMango.Xml
         /// <param name="value">The value to write.</param>
         public void Write(char value)
         {
-            throw new NotImplementedException();
+            _output.Write(new[] { (byte)value });
         }
 
         /// <summary>
@@ -52,7 +73,7 @@ namespace UnMango.Xml
         /// <param name="buffer">The buffer of characters to write.</param>
         public void Write(char[] buffer)
         {
-            throw new NotImplementedException();
+
         }
 
         /// <summary>
