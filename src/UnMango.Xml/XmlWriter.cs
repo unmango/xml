@@ -189,11 +189,5 @@ namespace UnMango.Xml
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ToString() => throw new NotSupportedException();
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool operator ==(XmlWriter left, XmlWriter right) => throw new NotSupportedException();
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool operator !=(XmlWriter left, XmlWriter right) => throw new NotSupportedException();
     }
 }

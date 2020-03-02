@@ -67,18 +67,18 @@ namespace UnMango.Xml.Test
             Assert.IsType(type, result);
         }
 
-        [Fact(Skip = "Still working on the XmlReader API")]
+        [Fact]
         public void DeserializeReader_HappyPath()
         {
-            //var type = typeof(object);
-            //const string xml = "<Element></Element>";
-            //var span = Encoding.UTF8.GetBytes(xml).AsSpan();
-            //var reader = new XmlReader(span);
+            var type = typeof(object);
+            const string xml = "<Element></Element>";
+            var span = Encoding.UTF8.GetBytes(xml).AsSpan();
+            var reader = new XmlReader(span);
 
-            //var result = XmlSerializer.Deserialize(type, ref reader, TestOptions.DefaultSerializerOptions);
+            var result = XmlSerializer.Deserialize(type, ref reader, TestOptions.DefaultSerializerOptions);
 
-            //Assert.NotNull(result);
-            //Assert.IsType(type, result);
+            Assert.NotNull(result);
+            Assert.IsType(type, result);
         }
 
         [Fact]
