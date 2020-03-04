@@ -35,11 +35,11 @@ namespace UnMango.Xml
         /// A <see cref="ValueTask"/> representing the asynchronous operation, containing the serialized byte array or null.
         /// </returns>
         public static ValueTask<byte[]> SerializeAsync(
-            object value,
+            object? value,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
             => value == null
-                ? SerializeAsync<object>((object) null, options, cancellationToken)
+                ? SerializeAsync<object>((object)null!, options, cancellationToken)
                 : SerializeAsync(value.GetType(), options, cancellationToken);
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace UnMango.Xml
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
             => value == null
-                ? SerializeAsync<object>(ref writer, null, options, cancellationToken)
+                ? SerializeAsync<object>(ref writer, null!, options, cancellationToken)
                 : SerializeAsync(value.GetType(), ref writer, value, options, cancellationToken);
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace UnMango.Xml
             CancellationToken cancellationToken = default)
         {
             return value == null
-                ? SerializeAsync<object>(writer, null, options, cancellationToken)
+                ? SerializeAsync<object>(writer, null!, options, cancellationToken)
                 : SerializeAsync(value.GetType(), writer, value, options, cancellationToken);
         }
 
@@ -257,7 +257,7 @@ namespace UnMango.Xml
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
             => value == null
-                ? SerializeAsync<object>(stream, null, options, cancellationToken)
+                ? SerializeAsync<object>(stream, null!, options, cancellationToken)
                 : SerializeAsync(value.GetType(), stream, value, options, cancellationToken);
 
         /// <summary>

@@ -14,7 +14,7 @@ namespace UnMango.Xml
         /// <returns>The value serialized as a UTF8 byte array.</returns>
         public static byte[] Serialize(object? value, XmlSerializerOptions? options = null)
             => value == null
-                ? Serialize<object>(null, options)
+                ? Serialize<object>(null!, options)
                 : Serialize(value.GetType(), value, options);
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace UnMango.Xml
         {
             if (value == null)
             {
-                Serialize<object>(ref writer, null, options);
+                Serialize<object>(ref writer, null!, options);
 
                 return;
             }
@@ -82,7 +82,7 @@ namespace UnMango.Xml
         {
             if (value == null)
             {
-                Serialize<object>(writer, null, options);
+                Serialize<object>(writer, null!, options);
 
                 return;
             }
@@ -119,7 +119,7 @@ namespace UnMango.Xml
         {
             if (value == null)
             {
-                Serialize<object>(stream, null, options);
+                Serialize<object>(stream, null!, options);
 
                 return;
             }
