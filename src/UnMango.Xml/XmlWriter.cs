@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Buffers;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace UnMango.Xml
 {
@@ -41,6 +42,7 @@ namespace UnMango.Xml
         /// Writes a character value.
         /// </summary>
         /// <param name="value">The value to write.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Write(char value)
         {
             const int size = 1;
@@ -154,6 +156,7 @@ namespace UnMango.Xml
         /// <summary>
         /// Writes "false" to the output.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void WriteFalse()
         {
             const int size = 5;
@@ -170,6 +173,7 @@ namespace UnMango.Xml
         /// Writes a byte directly to the output.
         /// </summary>
         /// <param name="byte"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void WriteRaw(byte @byte)
         {
             const int size = 1;
@@ -181,6 +185,7 @@ namespace UnMango.Xml
         /// Writes bytes directly to the output.
         /// </summary>
         /// <param name="bytes"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void WriteRaw(byte[] bytes)
         {
             _output.Write(bytes);
@@ -189,6 +194,7 @@ namespace UnMango.Xml
         /// <summary>
         /// Writes "true" to the output.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void WriteTrue()
         {
             const int size = 4;
