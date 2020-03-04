@@ -16,3 +16,11 @@ update_configs:
   - match:
       dependency_type: all
       update_type: semver:patch
+
+- package_manager: dotnet:nuget
+  directory: "/test/UnMango.Xml.Benchmarks"
+  update_schedule: live
+  automerged_updates:
+    - match:
+        dependency_type: all
+        update_type: semver:patch
