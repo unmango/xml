@@ -55,6 +55,7 @@
             <e p="XmlSerializer.Serialize.NonGeneric.cs" t="Include" />
           </e>
           <e p="Unmango.Xml.csproj" t="IncludeRecursive" />
+          <e p="UnMango.Xml.csproj.DotSettings" t="Include" />
           <e p="XmlConverter.cs" t="Include" />
           <e p="XmlConverter`.cs" t="Include" />
           <e p="XmlReader.cs" t="Include" />
