@@ -148,6 +148,6 @@ namespace UnMango.Xml
             T value,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
-            => SerializeAsync<T>(PipeWriter.Create(stream), value, options, cancellationToken);
+            => SerializeAsync(PipeWriter.Create(stream), value, options, cancellationToken);
     }
 }

@@ -1,11 +1,12 @@
-﻿using System.IO;
+﻿using System.Buffers;
+using System.IO;
 using System.IO.Pipelines;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace UnMango.Xml.Test
+namespace UnMango.Xml.Test.Serializer
 {
     //[Trait("Category", "Unit")]
     public class XmlSerializerSerializeNonGenericAsyncTest
@@ -48,10 +49,10 @@ namespace UnMango.Xml.Test
         public void SerializeToWriter_HappyPath()
         {
             const string xml = "<Item><Property>value</Property></Item>";
-            var bytes = Encoding.UTF8.GetBytes(xml);
             object obj = new { Property = "value" };
-            var buffer = new byte[bytes.Length];
-            var writer = new XmlWriter(buffer);
+            var capacity = Encoding.UTF8.GetBytes(xml).Length;
+            var bufferWriter = new ArrayBufferWriter<byte>(capacity);
+            var writer = new XmlWriter(bufferWriter);
 
             var task = XmlSerializer.SerializeAsync(
                 ref writer,
@@ -66,11 +67,11 @@ namespace UnMango.Xml.Test
         public void SerializeToWriterWithType_HappyPath()
         {
             const string xml = "<Item><Property>value</Property></Item>";
-            var type = typeof(object);
-            var bytes = Encoding.UTF8.GetBytes(xml);
             object obj = new { Property = "value" };
-            var buffer = new byte[bytes.Length];
-            var writer = new XmlWriter(buffer);
+            var type = typeof(object);
+            var capacity = Encoding.UTF8.GetBytes(xml).Length;
+            var bufferWriter = new ArrayBufferWriter<byte>(capacity);
+            var writer = new XmlWriter(bufferWriter);
 
             var task = XmlSerializer.SerializeAsync(
                 type,
