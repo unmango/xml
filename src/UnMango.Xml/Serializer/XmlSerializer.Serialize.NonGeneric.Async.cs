@@ -38,14 +38,9 @@ namespace UnMango.Xml
             object value,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
-        {
-            if (value == null)
-            {
-                return SerializeAsync<object>(value!, options, cancellationToken);
-            }
-
-            return SerializeAsync(value.GetType(), options, cancellationToken);
-        }
+            => value == null
+                ? SerializeAsync<object>((object) null, options, cancellationToken)
+                : SerializeAsync(value.GetType(), options, cancellationToken);
 
         /// <summary>
         /// Serializes <paramref name="value"/> as XML to a UTF8 byte array.
@@ -115,14 +110,9 @@ namespace UnMango.Xml
             object value,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
-        {
-            if (value == null)
-            {
-                return SerializeAsync<object>(ref writer, value!, options, cancellationToken);
-            }
-
-            return SerializeAsync(value.GetType(), ref writer, value, options, cancellationToken);
-        }
+            => value == null
+                ? SerializeAsync<object>(ref writer, null, options, cancellationToken)
+                : SerializeAsync(value.GetType(), ref writer, value, options, cancellationToken);
 
         /// <summary>
         /// Serializes <paramref name="value"/> to <paramref name="writer"/>.
@@ -193,12 +183,9 @@ namespace UnMango.Xml
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
         {
-            if (value == null)
-            {
-                return SerializeAsync<object>(writer, value!, options, cancellationToken);
-            }
-
-            return SerializeAsync(value.GetType(), writer, value, options, cancellationToken);
+            return value == null
+                ? SerializeAsync<object>(writer, null, options, cancellationToken)
+                : SerializeAsync(value.GetType(), writer, value, options, cancellationToken);
         }
 
         /// <summary>
@@ -269,14 +256,9 @@ namespace UnMango.Xml
             object value,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
-        {
-            if (value == null)
-            {
-                return SerializeAsync<object>(stream, value!, options, cancellationToken);
-            }
-
-            return SerializeAsync(value.GetType(), stream, value, options, cancellationToken);
-        }
+            => value == null
+                ? SerializeAsync<object>(stream, null, options, cancellationToken)
+                : SerializeAsync(value.GetType(), stream, value, options, cancellationToken);
 
         /// <summary>
         /// Serializes <paramref name="value"/> to <paramref name="stream"/>.

@@ -15,19 +15,11 @@ namespace UnMango.Xml
 
         /// <summary>
         /// Initializes a new instance of a <see cref="XmlReader"/> with the
-        /// specified <paramref name="buffer"/>.
-        /// </summary>
-        /// <param name="buffer"></param>
-        public XmlReader(ReadOnlySpan<byte> buffer)
-            : this(buffer, DEFAULT_OFFSET) { }
-
-        /// <summary>
-        /// Initializes a new instance of a <see cref="XmlReader"/> with the
         /// specified <paramref name="buffer"/> starting at <paramref name="offset"/>.
         /// </summary>
         /// <param name="buffer"></param>
         /// <param name="offset"></param>
-        public XmlReader(ReadOnlySpan<byte> buffer, int offset)
+        public XmlReader(ReadOnlySpan<byte> buffer, int offset = DEFAULT_OFFSET)
         {
             _buffer = buffer;
             _offset = offset;

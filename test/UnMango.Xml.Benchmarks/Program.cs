@@ -1,5 +1,4 @@
-﻿using System;
-using BenchmarkDotNet.Running;
+﻿using BenchmarkDotNet.Running;
 
 namespace UnMango.Xml.Benchmarks
 {
@@ -13,7 +12,7 @@ namespace UnMango.Xml.Benchmarks
             }
             else
             {
-                var summary = BenchmarkRunner.Run<XmlWriterBenchmark>();
+                BenchmarkRunner.Run<XmlWriterBenchmark>();
             }
         }
     }

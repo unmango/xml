@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Buffers;
 using System.ComponentModel;
-using System.Threading.Tasks;
 
 namespace UnMango.Xml
 {
@@ -44,7 +43,10 @@ namespace UnMango.Xml
         /// <param name="value">The value to write.</param>
         public void Write(char value)
         {
-            _output.Write(new[] { (byte)value });
+            const int size = 1;
+            var span = _output.GetSpan(size);
+            span[0] = (byte) value;
+            _output.Advance(size);
         }
 
         /// <summary>
@@ -53,7 +55,7 @@ namespace UnMango.Xml
         /// <param name="buffer">The buffer of characters to write.</param>
         public void Write(char[] buffer)
         {
-
+            throw new NotImplementedException();
         }
 
         /// <summary>

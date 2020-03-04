@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Buffers;
-using UnMango.Xml;
 using Xunit;
 
-namespace Unmango.Xml.Test
+namespace UnMango.Xml.Test
 {
     [Trait("Category", "Unit")]
     public class XmlWriterTest

@@ -9,15 +9,6 @@ namespace UnMango.Xml
     {
         public override Encoding Encoding => Encoding.UTF8;
 
-        public override IFormatProvider FormatProvider {
-            get => base.FormatProvider;
-        }
-
-        public override string NewLine {
-            get => base.NewLine;
-            set => base.NewLine = value;
-        }
-
         public override void Close()
         {
             throw new NotImplementedException();
