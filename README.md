@@ -6,3 +6,7 @@
 [![Releases](https://img.shields.io/github/release/unmango/Xml.svg)](https://github.com/unmango/Xml/releases)
 
 Just another XML serializer
+
+[W3C Extensible Markup Language (XML) 1.0 (Fifth Edition)](https://www.w3.org/TR/2008/REC-xml-20081126/)
+
+For Reference: [W3C Canonical XML Version 2.0](https://www.w3.org/TR/2013/NOTE-xml-c14n2-20130411/)
