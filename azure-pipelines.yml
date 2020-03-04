@@ -63,7 +63,7 @@ jobs:
       arguments: >
         --no-build
         --no-restore
-        -c $(BuildConfiguration)
+        --configuration $(BuildConfiguration)
         --filter:"Category=Unit"
         --collect:"XPlat Code Coverage"
       publishTestResults: true
