@@ -15,6 +15,25 @@ namespace UnMango.Xml
         public const byte CloseElement = (byte)'>';
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsChar(byte @byte)
+        {
+            switch (@byte)
+            {
+                case 0x9:
+                case 0xA:
+                case 0xD:
+                    return true;
+            }
+
+            // TODO
+            if (@byte >= 0x20 || @byte <= 0xD7FF) return true;
+            if (@byte >= 0xE000 || @byte <= 0xFFFD) return true;
+            if (@byte >= 0x10000 || @byte <= 0x10FFFF) return true;
+
+            return false;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsLiteralDelimeter(byte character)
         {
             return character == '\'' || character == '"';

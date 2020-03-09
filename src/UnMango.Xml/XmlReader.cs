@@ -107,10 +107,10 @@ namespace UnMango.Xml
                 if (_xml[_offset] == literalDelimeter) break;
 
                 if (_xml[_offset] == '<')
-                    throw new XmlParsingException("Invalid entity value character '<'");
+                    throw new XmlParsingException("Invalid attribute value character '<'");
 
                 if (_xml[_offset] == '&')
-                    throw new XmlParsingException("Invalid entity value character '&'");
+                    throw new XmlParsingException("Invalid attribute value character '&'");
             }
 
             return _xml.Slice(start, _offset - 1);
@@ -148,6 +148,37 @@ namespace UnMango.Xml
 
                 if (!XmlConstants.IsPubidCharacter(_xml[_offset]))
                     throw new XmlParsingException($"Invalid pubid literal character '{_xml[_offset]}'");
+            }
+
+            return _xml.Slice(start, _offset - 1);
+        }
+
+        // TODO: Other conditions
+        // TODO: Loop exit condition
+        public ReadOnlySpan<byte> ReadCharacterData()
+        {
+            var start = _offset++;
+
+            for (; _offset < _xml.Length; _offset++)
+            {
+                if (_xml[_offset] == '<')
+                    throw new XmlParsingException("Invalid character data character '<'");
+
+                // TODO: character reference
+                if (_xml[_offset] == '&')
+                    throw new XmlParsingException("Invalid character data character '&'");
+            }
+
+            return _xml.Slice(start, _offset - 1);
+        }
+
+        public ReadOnlySpan<byte> ReadComment()
+        {
+            var start = ++_offset;
+
+            for (; _offset < _xml.Length; _offset++)
+            {
+                // TODO
             }
 
             return _xml.Slice(start, _offset - 1);
