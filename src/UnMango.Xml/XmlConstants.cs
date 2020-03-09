@@ -10,6 +10,7 @@ namespace UnMango.Xml
         public const byte LineFeed = (byte)'\n';
         public const byte Tab = (byte)'\t';
 
+        // Xml
         public const byte OpenElement = (byte)'<';
         public const byte CloseElement = (byte)'>';
 
@@ -42,7 +43,14 @@ namespace UnMango.Xml
                     return true;
             }
 
-            // TODO
+            return false;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNameCharacter(short character)
+        {
+            if (IsNameStartCharacter(character)) return true;
+
             if (character >= 0x0300 && character <= 0x036F) return true;
             if (character >= 0x203F && character <= 0x2040) return true;
 
@@ -64,7 +72,12 @@ namespace UnMango.Xml
             if (character >= 0xC0 && character <= 0xD6) return true;
             if (character >= 0xD8 && character <= 0xF6) return true;
 
-            // TODO
+            return character >= 0xF8;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNameStartCharacter(short character)
+        {
             if (character >= 0xF8 && character <= 0x2FF) return true;
             if (character >= 0x370 && character <= 0x37D) return true;
             if (character >= 0x37F && character <= 0x1FFF) return true;
@@ -74,9 +87,14 @@ namespace UnMango.Xml
             if (character >= 0x2C00 && character <= 0x2FEF) return true;
             if (character >= 0x2C00 && character <= 0x2FEF) return true;
             if (character >= 0x2C00 && character <= 0x2FEF) return true;
-            if (character >= 0x10000 && character <= 0xEFFFF) return true;
 
             return false;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNameStartCharacter(int character)
+        {
+            return character >= 0x10000 && character <= 0xEFFFF;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
