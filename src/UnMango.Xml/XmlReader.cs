@@ -61,7 +61,6 @@ namespace UnMango.Xml
         {
             if (!XmlConstants.IsNameCharacter(_xml[_offset]))
             {
-                // TODO: Message
                 throw new XmlParsingException("Invalid name token character");
             }
 
