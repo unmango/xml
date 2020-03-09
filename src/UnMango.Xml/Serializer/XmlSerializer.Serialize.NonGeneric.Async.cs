@@ -223,7 +223,8 @@ namespace UnMango.Xml
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var xmlWriter = new XmlWriter(writer);
+            return SerializeAsync(type, ref xmlWriter, value, options, cancellationToken);
         }
 
         /// <summary>

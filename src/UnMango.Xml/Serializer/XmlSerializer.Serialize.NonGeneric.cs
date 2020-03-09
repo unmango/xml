@@ -103,7 +103,8 @@ namespace UnMango.Xml
             object value,
             XmlSerializerOptions? options = null)
         {
-            throw new NotImplementedException();
+            var xmlWriter = new XmlWriter(writer);
+            Serialize(type, ref xmlWriter, value, options);
         }
 
         /// <summary>
