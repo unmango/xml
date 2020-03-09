@@ -23,33 +23,31 @@ namespace UnMango.Xml
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsNameCharacter(byte character)
         {
+            return IsNameCharacter((char)character);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNameCharacter(char character)
+        {
             if (IsNameStartCharacter(character)) return true;
 
             switch (character)
             {
-                case (byte)'-':
-                case (byte)'.':
-                case (byte)'0':
-                case (byte)'1':
-                case (byte)'2':
-                case (byte)'3':
-                case (byte)'4':
-                case (byte)'5':
-                case (byte)'6':
-                case (byte)'7':
-                case (byte)'8':
-                case (byte)'9':
-                case 0xB7:
+                case '-':
+                case '.':
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                case (char)0xB7:
                     return true;
             }
-
-            return false;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNameCharacter(short character)
-        {
-            if (IsNameStartCharacter(character)) return true;
 
             if (character >= 0x0300 && character <= 0x036F) return true;
             if (character >= 0x203F && character <= 0x2040) return true;
@@ -60,10 +58,16 @@ namespace UnMango.Xml
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsNameStartCharacter(byte character)
         {
+            return IsNameStartCharacter((char)character);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNameStartCharacter(char character)
+        {
             switch (character)
             {
-                case (byte)':':
-                case (byte)'_':
+                case ':':
+                case '_':
                     return true;
             }
 
@@ -71,13 +75,6 @@ namespace UnMango.Xml
             if (character >= 'a' && character <= 'z') return true;
             if (character >= 0xC0 && character <= 0xD6) return true;
             if (character >= 0xD8 && character <= 0xF6) return true;
-
-            return character >= 0xF8;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNameStartCharacter(short character)
-        {
             if (character >= 0xF8 && character <= 0x2FF) return true;
             if (character >= 0x370 && character <= 0x37D) return true;
             if (character >= 0x37F && character <= 0x1FFF) return true;
@@ -87,14 +84,9 @@ namespace UnMango.Xml
             if (character >= 0x2C00 && character <= 0x2FEF) return true;
             if (character >= 0x2C00 && character <= 0x2FEF) return true;
             if (character >= 0x2C00 && character <= 0x2FEF) return true;
+            if (character >= 0x10000 && character <= 0xEFFFF) return true;
 
             return false;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNameStartCharacter(int character)
-        {
-            return character >= 0x10000 && character <= 0xEFFFF;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
