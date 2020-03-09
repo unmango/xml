@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace UnMango.Xml
@@ -165,6 +166,7 @@ namespace UnMango.Xml
             return _xml.Slice(start, _offset - 1);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool TryReadLiteralDelimeter(out byte literal)
         {
             literal = _xml[_offset];
