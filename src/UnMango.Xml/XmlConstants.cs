@@ -60,6 +60,7 @@ namespace UnMango.Xml
             }
 
             if (@byte >= 'A' && @byte <= 'Z') return true;
+            if (@byte >= 'a' && @byte <= 'z') return true;
             if (@byte >= 0xC0 && @byte <= 0xD6) return true;
             if (@byte >= 0xD8 && @byte <= 0xF6) return true;
 
