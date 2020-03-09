@@ -14,17 +14,17 @@ namespace UnMango.Xml
         public const byte CloseElement = (byte)'>';
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsLiteralDelimeter(byte @byte)
+        public static bool IsLiteralDelimeter(byte character)
         {
-            return @byte == '\'' || @byte == '"';
+            return character == '\'' || character == '"';
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNameCharacter(byte @byte)
+        public static bool IsNameCharacter(byte character)
         {
-            if (IsNameStartCharacter(@byte)) return true;
+            if (IsNameStartCharacter(character)) return true;
 
-            switch (@byte)
+            switch (character)
             {
                 case (byte)'-':
                 case (byte)'.':
@@ -43,46 +43,46 @@ namespace UnMango.Xml
             }
 
             // TODO
-            if (@byte >= 0x0300 && @byte <= 0x036F) return true;
-            if (@byte >= 0x203F && @byte <= 0x2040) return true;
+            if (character >= 0x0300 && character <= 0x036F) return true;
+            if (character >= 0x203F && character <= 0x2040) return true;
 
             return false;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNameStartCharacter(byte @byte)
+        public static bool IsNameStartCharacter(byte character)
         {
-            switch (@byte)
+            switch (character)
             {
                 case (byte)':':
                 case (byte)'_':
                     return true;
             }
 
-            if (@byte >= 'A' && @byte <= 'Z') return true;
-            if (@byte >= 'a' && @byte <= 'z') return true;
-            if (@byte >= 0xC0 && @byte <= 0xD6) return true;
-            if (@byte >= 0xD8 && @byte <= 0xF6) return true;
+            if (character >= 'A' && character <= 'Z') return true;
+            if (character >= 'a' && character <= 'z') return true;
+            if (character >= 0xC0 && character <= 0xD6) return true;
+            if (character >= 0xD8 && character <= 0xF6) return true;
 
             // TODO
-            if (@byte >= 0xF8 && @byte <= 0x2FF) return true;
-            if (@byte >= 0x370 && @byte <= 0x37D) return true;
-            if (@byte >= 0x37F && @byte <= 0x1FFF) return true;
-            if (@byte >= 0x200C && @byte <= 0x200D) return true;
-            if (@byte >= 0x200C && @byte <= 0x200D) return true;
-            if (@byte >= 0x2C00 && @byte <= 0x2FEF) return true;
-            if (@byte >= 0x2C00 && @byte <= 0x2FEF) return true;
-            if (@byte >= 0x2C00 && @byte <= 0x2FEF) return true;
-            if (@byte >= 0x2C00 && @byte <= 0x2FEF) return true;
-            if (@byte >= 0x10000 && @byte <= 0xEFFFF) return true;
+            if (character >= 0xF8 && character <= 0x2FF) return true;
+            if (character >= 0x370 && character <= 0x37D) return true;
+            if (character >= 0x37F && character <= 0x1FFF) return true;
+            if (character >= 0x200C && character <= 0x200D) return true;
+            if (character >= 0x200C && character <= 0x200D) return true;
+            if (character >= 0x2C00 && character <= 0x2FEF) return true;
+            if (character >= 0x2C00 && character <= 0x2FEF) return true;
+            if (character >= 0x2C00 && character <= 0x2FEF) return true;
+            if (character >= 0x2C00 && character <= 0x2FEF) return true;
+            if (character >= 0x10000 && character <= 0xEFFFF) return true;
 
             return false;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsPubidCharacter(byte @byte)
+        public static bool IsPubidCharacter(byte character)
         {
-            switch (@byte)
+            switch (character)
             {
                 case 0x20:
                 case 0xD:
@@ -119,8 +119,8 @@ namespace UnMango.Xml
                     return true;
             }
 
-            if (@byte >= 'a' && @byte <= 'z') return true;
-            if (@byte >= 'A' && @byte <= 'Z') return true;
+            if (character >= 'a' && character <= 'z') return true;
+            if (character >= 'A' && character <= 'Z') return true;
 
             return false;
         }

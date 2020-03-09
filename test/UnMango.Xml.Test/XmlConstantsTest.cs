@@ -95,6 +95,67 @@ namespace UnMango.Xml.Test
             Assert.False(XmlConstants.IsNameCharacter(character));
         }
 
+        [Theory]
+        [InlineData('a')]
+        [InlineData('b')]
+        [InlineData('y')]
+        [InlineData('z')]
+        [InlineData('A')]
+        [InlineData('B')]
+        [InlineData('Y')]
+        [InlineData('Z')]
+        [InlineData(0x20)]
+        [InlineData(0xD)]
+        [InlineData(0xA)]
+        [MemberData(nameof(Range), (byte)'0', (byte)'9')]
+        [InlineData('-')]
+        [InlineData('\'')]
+        [InlineData('(')]
+        [InlineData(0x29)] // ')' This character messes with the test runner somehow
+        [InlineData('+')]
+        [InlineData(',')]
+        [InlineData('.')]
+        [InlineData('/')]
+        [InlineData(':')]
+        [InlineData('=')]
+        [InlineData('?')]
+        [InlineData(';')]
+        [InlineData('!')]
+        [InlineData('*')]
+        [InlineData('#')]
+        [InlineData('@')]
+        [InlineData('$')]
+        [InlineData('_')]
+        [InlineData('%')]
+        public void Is_Pubid_Character(byte character)
+        {
+            Assert.True(XmlConstants.IsPubidCharacter(character));
+        }
+
+        [Theory]
+        [InlineData(0x19)]
+        [InlineData(0x9)]
+        [InlineData(0xB)]
+        [InlineData(0xC)]
+        [InlineData(0xE)]
+        [InlineData('`')]
+        [InlineData(0x18)]
+        [InlineData('~')]
+        public void Is_Not_Pubid_Character(byte character)
+        {
+            Assert.False(XmlConstants.IsPubidCharacter(character));
+        }
+
+        [Theory]
+        [InlineData(' ')]
+        [InlineData('\t')]
+        [InlineData('\n')]
+        [InlineData('\r')]
+        public void Is_Whitespace(byte character)
+        {
+            Assert.True(XmlConstants.IsWhiteSpace(character));
+        }
+
         public static IEnumerable<object[]> Range(byte start, byte end)
         {
             for (byte i = start; i <= end; i++)
