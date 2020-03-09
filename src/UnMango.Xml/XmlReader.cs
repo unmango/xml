@@ -44,8 +44,7 @@ namespace UnMango.Xml
         {
             if (!XmlConstants.IsNameStartCharacter(_xml[_offset]))
             {
-                // TODO: Message
-                throw new XmlParsingException("Invalid start character");
+                throw new XmlParsingException("Invalid name start character");
             }
 
             var start = _offset++;
