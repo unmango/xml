@@ -90,10 +90,10 @@ namespace UnMango.Xml
         /// </param>
         /// <returns>A <see cref="ValueTask"/> representing the asynchronous operation.</returns>
         public static ValueTask SerializeAsync(
-            ref XmlWriter writer,
+            XmlWriter writer,
             object value,
             CancellationToken cancellationToken = default)
-            => SerializeAsync(ref writer, value, null, cancellationToken);
+            => SerializeAsync(writer, value, null, cancellationToken);
 
         /// <summary>
         /// Serializes <paramref name="value"/> to <paramref name="writer"/>.
@@ -106,13 +106,13 @@ namespace UnMango.Xml
         /// </param>
         /// <returns>A <see cref="ValueTask"/> representing the asynchronous operation.</returns>
         public static ValueTask SerializeAsync(
-            ref XmlWriter writer,
+            XmlWriter writer,
             object value,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
             => value == null
-                ? SerializeAsync<object>(ref writer, null!, options, cancellationToken)
-                : SerializeAsync(value.GetType(), ref writer, value, options, cancellationToken);
+                ? SerializeAsync<object>(writer, null!, options, cancellationToken)
+                : SerializeAsync(value.GetType(), writer, value, options, cancellationToken);
 
         /// <summary>
         /// Serializes <paramref name="value"/> to <paramref name="writer"/>.
@@ -126,10 +126,10 @@ namespace UnMango.Xml
         /// <returns>A <see cref="ValueTask"/> representing the asynchronous operation.</returns>
         public static ValueTask SerializeAsync(
             Type type,
-            ref XmlWriter writer,
+            XmlWriter writer,
             object value,
             CancellationToken cancellationToken = default)
-            => SerializeAsync(type, ref writer, value, null, cancellationToken);
+            => SerializeAsync(type, writer, value, null, cancellationToken);
 
         /// <summary>
         /// Serializes <paramref name="value"/> to <paramref name="writer"/>.
@@ -144,7 +144,7 @@ namespace UnMango.Xml
         /// <returns>A <see cref="ValueTask"/> representing the asynchronous operation.</returns>
         public static ValueTask SerializeAsync(
             Type type,
-            ref XmlWriter writer,
+            XmlWriter writer,
             object value,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
@@ -222,10 +222,7 @@ namespace UnMango.Xml
             object value,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
-        {
-            var xmlWriter = new XmlWriter(writer);
-            return SerializeAsync(type, ref xmlWriter, value, options, cancellationToken);
-        }
+            => SerializeAsync(type, new XmlWriter(writer), value, options, cancellationToken);
 
         /// <summary>
         /// Serializes <paramref name="value"/> to <paramref name="stream"/>.

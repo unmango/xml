@@ -47,7 +47,7 @@ namespace UnMango.Xml.Test.Serializer
             var bufferWriter = new ArrayBufferWriter<byte>(capacity);
             var writer = new XmlWriter(bufferWriter);
 
-            XmlSerializer.Serialize(ref writer, obj, TestOptions.DefaultSerializerOptions);
+            XmlSerializer.Serialize(writer, obj, TestOptions.DefaultSerializerOptions);
 
             //Assert.Equal(bytes, writer.Something);
         }
@@ -62,7 +62,7 @@ namespace UnMango.Xml.Test.Serializer
             var bufferWriter = new ArrayBufferWriter<byte>(capacity);
             var writer = new XmlWriter(bufferWriter);
 
-            XmlSerializer.Serialize(type, ref writer, obj, TestOptions.DefaultSerializerOptions);
+            XmlSerializer.Serialize(type, writer, obj, TestOptions.DefaultSerializerOptions);
 
             //Assert.Equal(bytes, writer.Something);
         }

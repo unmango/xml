@@ -8,7 +8,7 @@ namespace UnMango.Xml
     /// <summary>
     /// Facilitates writing Xml to a buffer.
     /// </summary>
-    public readonly ref struct XmlWriter
+    public readonly struct XmlWriter
     {
         private readonly IBufferWriter<byte> _output;
 
