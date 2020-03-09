@@ -52,17 +52,10 @@ namespace UnMango.Xml
 
             for (; _offset < _xml.Length; _offset++)
             {
-                if (XmlConstants.IsNameCharacter(_xml[_offset])) break;
+                if (!XmlConstants.IsNameCharacter(_xml[_offset])) break;
             }
 
-            // TODO: Probably better validity check
-            if (_offset == _xml.Length)
-            {
-                // TODO: Message
-                throw new XmlParsingException("Reached end of document while trying to read name");
-            }
-
-            return _xml.Slice(start, _offset - 1);
+            return _xml.Slice(start, _offset);
         }
 
         public ReadOnlySpan<byte> ReadNameToken()
