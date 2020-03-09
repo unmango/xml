@@ -55,10 +55,10 @@ namespace UnMango.Xml
         /// </param>
         /// <returns>A <see cref="ValueTask"/> representing the asynchronous operation.</returns>
         public static ValueTask SerializeAsync<T>(
-            ref XmlWriter writer,
+            XmlWriter writer,
             T value,
             CancellationToken cancellationToken = default)
-            => SerializeAsync(ref writer, value, null, cancellationToken);
+            => SerializeAsync(writer, value, null, cancellationToken);
 
         /// <summary>
         /// Serializes <paramref name="value"/> to <paramref name="writer"/>.
@@ -72,7 +72,7 @@ namespace UnMango.Xml
         /// </param>
         /// <returns>A <see cref="ValueTask"/> representing the asynchronous operation.</returns>
         public static ValueTask SerializeAsync<T>(
-            ref XmlWriter writer,
+            XmlWriter writer,
             T value,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
@@ -112,9 +112,7 @@ namespace UnMango.Xml
             T value,
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
+            => SerializeAsync(new XmlWriter(writer), value, options, cancellationToken);
 
         /// <summary>
         /// Serializes <paramref name="value"/> to <paramref name="stream"/>.

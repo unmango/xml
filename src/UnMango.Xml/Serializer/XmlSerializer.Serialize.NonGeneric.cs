@@ -39,18 +39,18 @@ namespace UnMango.Xml
         /// <param name="value">The value to serialize.</param>
         /// <param name="options">Options for the operation.</param>
         public static void Serialize(
-            ref XmlWriter writer,
+            XmlWriter writer,
             object value,
             XmlSerializerOptions? options = null)
         {
             if (value == null)
             {
-                Serialize<object>(ref writer, null!, options);
+                Serialize<object>(writer, null!, options);
 
                 return;
             }
 
-            Serialize(value.GetType(), ref writer, value, options);
+            Serialize(value.GetType(), writer, value, options);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace UnMango.Xml
         /// <param name="options">Options for the operation.</param>
         public static void Serialize(
             Type type,
-            ref XmlWriter writer,
+            XmlWriter writer,
             object value,
             XmlSerializerOptions? options = null)
         {
@@ -102,9 +102,7 @@ namespace UnMango.Xml
             PipeWriter writer,
             object value,
             XmlSerializerOptions? options = null)
-        {
-            throw new NotImplementedException();
-        }
+            => Serialize(type, new XmlWriter(writer), value, options);
 
         /// <summary>
         /// Serializes <paramref name="value"/> to <paramref name="stream"/>.

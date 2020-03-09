@@ -12,8 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ErrorProne.NET.Structs" Version="0.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.Github" Version="1.0.0" PrivateAssets="All" />
-    <PackageReference Include="MinVer" Version="2.1.0" PrivateAssets="All" />
+    <PackageReference Include="MinVer" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="System.IO.Pipelines" Version="4.7.0" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
   </ItemGroup>

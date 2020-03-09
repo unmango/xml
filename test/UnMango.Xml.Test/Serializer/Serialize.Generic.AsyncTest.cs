@@ -38,7 +38,7 @@ namespace UnMango.Xml.Test.Serializer
             var writer = new XmlWriter(bufferWriter);
 
             var task = XmlSerializer.SerializeAsync(
-                ref writer,
+                writer,
                 obj,
                 TestOptions.DefaultSerializerOptions,
                 _tokenSource.Token);

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace UnMango.Xml
 {
@@ -10,19 +12,157 @@ namespace UnMango.Xml
     {
         private const int DEFAULT_OFFSET = 0;
 
-        private readonly ReadOnlySpan<byte> _buffer;
+        private readonly ReadOnlySpan<byte> _xml;
         private int _offset;
 
         /// <summary>
         /// Initializes a new instance of a <see cref="XmlReader"/> with the
-        /// specified <paramref name="buffer"/> starting at <paramref name="offset"/>.
+        /// specified <paramref name="xml"/> starting at <paramref name="offset"/>.
         /// </summary>
-        /// <param name="buffer"></param>
+        /// <param name="xml"></param>
         /// <param name="offset"></param>
-        public XmlReader(ReadOnlySpan<byte> buffer, int offset = DEFAULT_OFFSET)
+        public XmlReader(ReadOnlySpan<byte> xml, int offset = DEFAULT_OFFSET)
         {
-            _buffer = buffer;
+            _xml = xml;
             _offset = offset;
+        }
+
+        public ReadOnlySpan<byte> ReadBeginElement()
+        {
+            if (_xml[_offset] != '<')
+            {
+                // TODO: Message
+                throw new XmlParsingException("Invalid begin element");
+            }
+
+            _offset++;
+
+            return ReadName();
+        }
+
+        public ReadOnlySpan<byte> ReadName()
+        {
+            if (!XmlConstants.IsNameStartCharacter(_xml[_offset]))
+            {
+                throw new XmlParsingException("Invalid name start character");
+            }
+
+            var start = _offset++;
+
+            for (; _offset < _xml.Length; _offset++)
+            {
+                if (!XmlConstants.IsNameCharacter(_xml[_offset])) break;
+            }
+
+            return _xml.Slice(start, _offset);
+        }
+
+        public ReadOnlySpan<byte> ReadNameToken()
+        {
+            if (!XmlConstants.IsNameCharacter(_xml[_offset]))
+            {
+                throw new XmlParsingException("Invalid name token character");
+            }
+
+            var start = _offset++;
+
+            for (; _offset < _xml.Length; _offset++)
+            {
+                if (XmlConstants.IsNameCharacter(_xml[_offset])) break;
+            }
+
+            return _xml.Slice(start, _offset);
+        }
+
+        public ReadOnlySpan<byte> ReadEntityValue()
+        {
+            if (!TryReadLiteralDelimeter(out var literalDelimeter))
+            {
+                throw new XmlParsingException("Invalid start literal");
+            }
+
+            var start = ++_offset;
+
+            for (; _offset < _xml.Length; _offset++)
+            {
+                if (_xml[_offset] == literalDelimeter) break;
+
+                if (_xml[_offset] == '%')
+                    throw new XmlParsingException("Invalid entity value character '%'");
+
+                if (_xml[_offset] == '&')
+                    throw new XmlParsingException("Invalid entity value character '&'");
+            }
+
+            return _xml.Slice(start, _offset - 1);
+        }
+
+        public ReadOnlySpan<byte> ReadAttributeValue()
+        {
+            if (!TryReadLiteralDelimeter(out var literalDelimeter))
+            {
+                throw new XmlParsingException("Invalid start literal");
+            }
+
+            var start = ++_offset;
+
+            for (; _offset < _xml.Length; _offset++)
+            {
+                if (_xml[_offset] == literalDelimeter) break;
+
+                if (_xml[_offset] == '<')
+                    throw new XmlParsingException("Invalid entity value character '<'");
+
+                if (_xml[_offset] == '&')
+                    throw new XmlParsingException("Invalid entity value character '&'");
+            }
+
+            return _xml.Slice(start, _offset - 1);
+        }
+
+        public ReadOnlySpan<byte> ReadSystemLiteral()
+        {
+            if (!TryReadLiteralDelimeter(out var literalDelimeter))
+            {
+                throw new XmlParsingException("Invalid start literal");
+            }
+
+            var start = ++_offset;
+
+            for (; _offset < _xml.Length; _offset++)
+            {
+                if (_xml[_offset] == literalDelimeter) break;
+            }
+
+            return _xml.Slice(start, _offset - 1);
+        }
+
+        public ReadOnlySpan<byte> ReadPubidLiteral()
+        {
+            if (!TryReadLiteralDelimeter(out var literalDelimeter))
+            {
+                throw new XmlParsingException("Invalid start literal");
+            }
+
+            var start = _offset++;
+
+            for (; _offset < _xml.Length; _offset++)
+            {
+                if (_xml[_offset] == literalDelimeter) break;
+
+                if (!XmlConstants.IsPubidCharacter(_xml[_offset]))
+                    throw new XmlParsingException($"Invalid pubid literal character '{_xml[_offset]}'");
+            }
+
+            return _xml.Slice(start, _offset - 1);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private bool TryReadLiteralDelimeter(out byte literal)
+        {
+            literal = _xml[_offset];
+
+            return !XmlConstants.IsLiteralDelimeter(literal);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

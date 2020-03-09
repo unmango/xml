@@ -51,7 +51,7 @@ namespace UnMango.Xml
         /// <returns>The deserialized value.</returns>
         public static object Deserialize(
             Type type,
-            ReadOnlySpan<byte> span,
+            in ReadOnlySpan<byte> span,
             XmlSerializerOptions? options = null)
         {
             throw new NotImplementedException();
