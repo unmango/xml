@@ -71,7 +71,7 @@ namespace UnMango.Xml
                 if (XmlConstants.IsNameCharacter(_xml[_offset])) break;
             }
 
-            return _xml.Slice(start, _offset + 1);
+            return _xml.Slice(start, _offset);
         }
 
         public ReadOnlySpan<byte> ReadEntityValue()
