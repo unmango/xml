@@ -44,9 +44,9 @@ namespace UnMango.Xml
                     return true;
             }
 
-            if (character >= 0x20 || character <= 0xD7FF) return true;
-            if (character >= 0xE000 || character <= 0xFFFD) return true;
-            if (character >= 0x10000 || character <= 0x10FFFF) return true;
+            if (character >= 0x20 && character <= 0xD7FF) return true;
+            if (character >= 0xE000 && character <= 0xFFFD) return true;
+            if (character >= 0x10000 && character <= 0x10FFFF) return true;
 
             return false;
         }
