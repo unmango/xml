@@ -20,12 +20,28 @@ namespace UnMango.Xml
             return character == '\'' || character == '"';
         }
 
+        /// <summary>
+        /// Checks whether <paramref name="character"/> is a NameChar.
+        /// </summary>
+        /// <param name="character">The character to check.</param>
+        /// <returns>True if <paramref name="character"/> is a NameChar, False otherwise.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-NameChar
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsNameCharacter(byte character)
         {
             return IsNameCharacter((char)character);
         }
 
+        /// <summary>
+        /// Checks whether <paramref name="character"/> is a NameChar.
+        /// </summary>
+        /// <param name="character">The character to check.</param>
+        /// <returns>True if <paramref name="character"/> is a NameChar, False otherwise.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-NameChar
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsNameCharacter(char character)
         {
@@ -55,12 +71,28 @@ namespace UnMango.Xml
             return false;
         }
 
+        /// <summary>
+        /// Checks whether <paramref name="character"/> is a NameStartChar.
+        /// </summary>
+        /// <param name="character">The character to check.</param>
+        /// <returns>True if <paramref name="character"/> is a NameStartChar, False otherwise.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-NameStartChar
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsNameStartCharacter(byte character)
         {
             return IsNameStartCharacter((char)character);
         }
 
+        /// <summary>
+        /// Checks whether <paramref name="character"/> is a NameStartChar.
+        /// </summary>
+        /// <param name="character">The character to check.</param>
+        /// <returns>True if the character is a NameStartChar, False otherwise.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-NameStartChar
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsNameStartCharacter(char character)
         {
@@ -89,6 +121,14 @@ namespace UnMango.Xml
             return false;
         }
 
+        /// <summary>
+        /// Checks whether <paramref name="character"/> is a PubidChar.
+        /// </summary>
+        /// <param name="character">The character to check.</param>
+        /// <returns>True if <paramref name="character"/> is a PubidChar, False otherwise.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-PubidChar
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsPubidCharacter(byte character)
         {
@@ -135,10 +175,18 @@ namespace UnMango.Xml
             return false;
         }
 
+        /// <summary>
+        /// Checks whether <paramref name="character"/> is White Space.
+        /// </summary>
+        /// <param name="character">The character to check.</param>
+        /// <returns>True if <paramref name="character"/> is White Space, false otherwise.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-S
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsWhiteSpace(byte @byte)
+        public static bool IsWhiteSpace(byte character)
         {
-            switch (@byte)
+            switch (character)
             {
                 case Space:
                 case CarriageReturn:

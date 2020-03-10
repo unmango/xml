@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace UnMango.Xml
 {
@@ -27,36 +26,33 @@ namespace UnMango.Xml
             _offset = offset;
         }
 
-        public ReadOnlySpan<byte> ReadBeginElement()
-        {
-            if (_xml[_offset] != '<')
-            {
-                // TODO: Message
-                throw new XmlParsingException("Invalid begin element");
-            }
-
-            _offset++;
-
-            return ReadName();
-        }
-
+        /// <summary>
+        /// Reads the current offset as an XML name.
+        /// </summary>
+        /// <returns>The name at the current offset.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-Name
+        /// </remarks>
         public ReadOnlySpan<byte> ReadName()
         {
+            // TODO: Redundant IsNameCharacter check when calling ReadNameToken
+            // Could add a private ReadNameToken that accepts a boolean to skip the check?
             if (!XmlConstants.IsNameStartCharacter(_xml[_offset]))
             {
                 throw new XmlParsingException("Invalid name start character");
             }
 
-            var start = _offset++;
-
-            for (; _offset < _xml.Length; _offset++)
-            {
-                if (!XmlConstants.IsNameCharacter(_xml[_offset])) break;
-            }
-
-            return _xml.Slice(start, _offset);
+            // A Name is an Nmtoken with a restricted set of initial characters
+            return ReadNameToken();
         }
 
+        /// <summary>
+        /// Reads the current offset as an XML Nmtoken
+        /// </summary>
+        /// <returns>The name token at the current offset.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-Nmtoken
+        /// </remarks>
         public ReadOnlySpan<byte> ReadNameToken()
         {
             if (!XmlConstants.IsNameCharacter(_xml[_offset]))
@@ -68,7 +64,7 @@ namespace UnMango.Xml
 
             for (; _offset < _xml.Length; _offset++)
             {
-                if (XmlConstants.IsNameCharacter(_xml[_offset])) break;
+                if (!XmlConstants.IsNameCharacter(_xml[_offset])) break;
             }
 
             return _xml.Slice(start, _offset);

@@ -5,7 +5,7 @@ using Xunit;
 namespace UnMango.Xml.Test
 {
     [Trait("Category", "Unit")]
-    public class XmlConstantsTest
+    public class XmlConstantsTests
     {
         public static readonly IEnumerable<object[]> NameStartCharacters = new byte[]
         {

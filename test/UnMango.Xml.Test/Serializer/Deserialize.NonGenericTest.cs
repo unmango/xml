@@ -8,12 +8,12 @@ using Xunit;
 
 namespace UnMango.Xml.Test.Serializer
 {
-    //[Trait("Category", "Unit")]
+    [Trait("Category", "Unit")]
     public class XmlSerializerDeserializeNonGenericTest
     {
         private readonly CancellationTokenSource _tokenSource = TestOptions.GetTokenSource();
 
-        [Fact]
+        [Fact(Skip = "Serializer not implemented")]
         public void DeserializeString_HappyPath()
         {
             var type = typeof(object);
@@ -25,7 +25,7 @@ namespace UnMango.Xml.Test.Serializer
             Assert.IsType(type, result);
         }
 
-        [Fact]
+        [Fact(Skip = "Serializer not implemented")]
         public void DeserializeBytes_HappyPath()
         {
             var type = typeof(object);
@@ -38,7 +38,7 @@ namespace UnMango.Xml.Test.Serializer
             Assert.IsType(type, result);
         }
 
-        [Fact]
+        [Fact(Skip = "Serializer not implemented")]
         public void DeserializeBytesWithOffset_HappyPath()
         {
             var type = typeof(object);
@@ -54,7 +54,7 @@ namespace UnMango.Xml.Test.Serializer
             Assert.IsType(type, result);
         }
 
-        [Fact]
+        [Fact(Skip = "Serializer not implemented")]
         public void DeserializeSpan_HappyPath()
         {
             var type = typeof(object);
@@ -67,7 +67,7 @@ namespace UnMango.Xml.Test.Serializer
             Assert.IsType(type, result);
         }
 
-        [Fact]
+        [Fact(Skip = "Serializer not implemented")]
         public void DeserializeReader_HappyPath()
         {
             var type = typeof(object);
@@ -81,7 +81,7 @@ namespace UnMango.Xml.Test.Serializer
             Assert.IsType(type, result);
         }
 
-        [Fact]
+        [Fact(Skip = "Serializer not implemented")]
         public async Task DeserializePipeReader_HappyPath()
         {
             var type = typeof(object);
@@ -97,7 +97,7 @@ namespace UnMango.Xml.Test.Serializer
             Assert.IsType(type, result);
         }
 
-        [Fact]
+        [Fact(Skip = "Serializer not implemented")]
         public void DeserializeStream_HappyPath()
         {
             var type = typeof(object);

@@ -5,7 +5,7 @@ using Xunit;
 namespace UnMango.Xml.Test
 {
     [Trait("Category", "Unit")]
-    public class XmlWriterTest
+    public class XmlWriterTests
     {
         [Fact]
         public void Throws_When_BufferWriter_Is_Null()
