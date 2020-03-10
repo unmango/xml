@@ -77,6 +77,22 @@ namespace UnMango.Xml
         }
 
         /// <summary>
+        /// Checks whether the character specified by <paramref name="first"/>
+        /// and <paramref name="second"/> is a NameChar.
+        /// </summary>
+        /// <param name="first">The high-order byte.</param>
+        /// <param name="second">The low-order byte.</param>
+        /// <returns>True if the input is a NameChar, False otherwise.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-NameChar
+        /// </remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNameCharacter(byte first, byte second)
+        {
+            return IsNameCharacter((char)NumberConverter.ToInt16(first, second));
+        }
+
+        /// <summary>
         /// Checks whether <paramref name="character"/> is a NameChar.
         /// </summary>
         /// <param name="character">The character to check.</param>
