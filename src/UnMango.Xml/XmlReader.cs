@@ -35,15 +35,13 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadName()
         {
-            // TODO: Redundant IsNameCharacter check when calling ReadNameToken
-            // Could add a private ReadNameToken that accepts a boolean to skip the check?
             if (!XmlConstants.IsNameStartCharacter(_xml[_offset]))
             {
                 throw new XmlParsingException("Invalid name start character");
             }
 
             // A Name is an Nmtoken with a restricted set of initial characters
-            return ReadNameToken();
+            return ReadNameToken(validate: false);
         }
 
         /// <summary>
@@ -55,19 +53,7 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadNameToken()
         {
-            if (!XmlConstants.IsNameCharacter(_xml[_offset]))
-            {
-                throw new XmlParsingException("Invalid name token character");
-            }
-
-            var start = _offset++;
-
-            for (; _offset < _xml.Length; _offset++)
-            {
-                if (!XmlConstants.IsNameCharacter(_xml[_offset])) break;
-            }
-
-            return _xml.Slice(start, _offset);
+            return ReadNameToken(validate: true);
         }
 
         public ReadOnlySpan<byte> ReadEntityValue()
@@ -182,6 +168,24 @@ namespace UnMango.Xml
             }
 
             return _xml.Slice(start, _offset - 1);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ReadOnlySpan<byte> ReadNameToken(bool validate)
+        {
+            if (validate && !XmlConstants.IsNameCharacter(_xml[_offset]))
+            {
+                throw new XmlParsingException("Invalid name token character");
+            }
+
+            var start = _offset++;
+
+            for (; _offset < _xml.Length; _offset++)
+            {
+                if (!XmlConstants.IsNameCharacter(_xml[_offset])) break;
+            }
+
+            return _xml.Slice(start, _offset);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
