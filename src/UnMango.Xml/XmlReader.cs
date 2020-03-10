@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -45,7 +45,7 @@ namespace UnMango.Xml
         /// </summary>
         /// <returns>The name at the current offset.</returns>
         /// <remarks>
-        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#sec-common-syn
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-Name
         /// </remarks>
         public ReadOnlySpan<byte> ReadName()
         {
@@ -54,16 +54,16 @@ namespace UnMango.Xml
                 throw new XmlParsingException("Invalid name start character");
             }
 
-            var start = _offset++;
-
-            for (; _offset < _xml.Length; _offset++)
-            {
-                if (!XmlConstants.IsNameCharacter(_xml[_offset])) break;
-            }
-
-            return _xml.Slice(start, _offset);
+            return ReadNameToken();
         }
 
+        /// <summary>
+        /// Reads the current offset as an XML Nmtoken
+        /// </summary>
+        /// <returns>The name token at the current offset.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-Nmtoken
+        /// </remarks>
         public ReadOnlySpan<byte> ReadNameToken()
         {
             if (!XmlConstants.IsNameCharacter(_xml[_offset]))
