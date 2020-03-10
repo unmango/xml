@@ -7,6 +7,7 @@ namespace UnMango.Xml
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static short ToInt16(byte first, byte second)
         {
+            // TODO: Endian-ness probably?
             return (short)((first << 8) | second);
         }
     }
