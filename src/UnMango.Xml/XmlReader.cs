@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace UnMango.Xml
 {
@@ -25,19 +24,6 @@ namespace UnMango.Xml
         {
             _xml = xml;
             _offset = offset;
-        }
-
-        public ReadOnlySpan<byte> ReadBeginElement()
-        {
-            if (_xml[_offset] != '<')
-            {
-                // TODO: Message
-                throw new XmlParsingException("Invalid begin element");
-            }
-
-            _offset++;
-
-            return ReadName();
         }
 
         /// <summary>
