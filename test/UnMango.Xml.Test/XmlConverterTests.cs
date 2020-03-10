@@ -4,7 +4,7 @@ using Xunit;
 namespace UnMango.Xml.Test
 {
     [Trait("Category", "Unit")]
-    public class XmlConverterTest
+    public class XmlConverterTests
     {
         [Fact]
         public void BaseTypeToConvert_IsNull()
