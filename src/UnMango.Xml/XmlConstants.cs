@@ -14,25 +14,48 @@ namespace UnMango.Xml
         public const byte OpenElement = (byte)'<';
         public const byte CloseElement = (byte)'>';
 
+        /// <summary>
+        /// Checks whether <paramref name="character"/> is a Char.
+        /// </summary>
+        /// <param name="character">The character to check.</param>
+        /// <returns>True is <paramref name="character"/> is a Char, False otherwise.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-Char
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsChar(byte @byte)
+        public static bool IsChar(byte character) => IsChar((char)character);
+
+        /// <summary>
+        /// Checks whether <paramref name="character"/> is a Char.
+        /// </summary>
+        /// <param name="character">The character to check.</param>
+        /// <returns>True is <paramref name="character"/> is a Char, False otherwise.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-Char
+        /// </remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsChar(char character)
         {
-            switch (@byte)
+            switch (character)
             {
-                case 0x9:
-                case 0xA:
-                case 0xD:
+                case (char)0x9:
+                case (char)0xA:
+                case (char)0xD:
                     return true;
             }
 
-            // TODO
-            if (@byte >= 0x20 || @byte <= 0xD7FF) return true;
-            if (@byte >= 0xE000 || @byte <= 0xFFFD) return true;
-            if (@byte >= 0x10000 || @byte <= 0x10FFFF) return true;
+            if (character >= 0x20 || character <= 0xD7FF) return true;
+            if (character >= 0xE000 || character <= 0xFFFD) return true;
+            if (character >= 0x10000 || character <= 0x10FFFF) return true;
 
             return false;
         }
 
+        /// <summary>
+        /// Checks whether <paramref name="character"/> is a literal delimeter.
+        /// </summary>
+        /// <param name="character">The character to check.</param>
+        /// <returns>True if <paramref name="character"/> is a literal delimeter, False otherwise.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsLiteralDelimeter(byte character)
         {
