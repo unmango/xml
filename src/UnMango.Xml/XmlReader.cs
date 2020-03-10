@@ -49,11 +49,14 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadName()
         {
+            // TODO: Redundant IsNameCharacter check when calling ReadNameToken
+            // Could add a private ReadNameToken that accepts a boolean to skip the check?
             if (!XmlConstants.IsNameStartCharacter(_xml[_offset]))
             {
                 throw new XmlParsingException("Invalid name start character");
             }
 
+            // A Name is an Nmtoken with a restricted set of initial characters
             return ReadNameToken();
         }
 
