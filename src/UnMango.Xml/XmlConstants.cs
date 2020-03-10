@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace UnMango.Xml
 {
@@ -80,16 +81,16 @@ namespace UnMango.Xml
         /// Checks whether the character specified by <paramref name="high"/>
         /// and <paramref name="low"/> is a NameChar.
         /// </summary>
-        /// <param name="high">The high-order byte.</param>
-        /// <param name="low">The low-order byte.</param>
+        /// <param name="character"></param>
         /// <returns>True if the input is a NameChar, False otherwise.</returns>
         /// <remarks>
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-NameChar
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNameCharacter(byte high, byte low)
+        public static bool IsNameCharacter(ReadOnlySpan<byte> character)
         {
-            return IsNameCharacter((char)NumberConverter.ToInt16(high, low));
+            //return IsNameCharacter(BitConverter.ToChar(character));
+            throw new NotImplementedException();
         }
 
         /// <summary>
