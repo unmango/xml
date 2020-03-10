@@ -75,7 +75,7 @@ namespace UnMango.Xml
 
             for (; _offset < _xml.Length; _offset++)
             {
-                if (XmlConstants.IsNameCharacter(_xml[_offset])) break;
+                if (!XmlConstants.IsNameCharacter(_xml[_offset])) break;
             }
 
             return _xml.Slice(start, _offset);
