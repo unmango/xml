@@ -31,27 +31,28 @@ namespace UnMango.Xml.Test.Reader
         private static readonly IEnumerable<char> _validNameInvalidStartNameIntersection =
             _validNameCharacters.Intersect(_invalidStartNameCharacters);
 
-        public static readonly IEnumerable<object[]> Invalid_Start_Name_Character =
+        public static readonly IEnumerable<object[]> Invalid_Start_Name_Character_Names =
             _invalidStartNameCharacters.SelectAsTestParameters(x => x + "Element");
 
         public static readonly IEnumerable<object[]> Invalid_Names =
             TestHelper.CartesianProduct(_validStartNameCharacters, _invalidNameCharacters)
                 .SelectAsTestParameters(x => new[] { x.Item1 + $"Elem{x.Item2}ent", x.Item1 + "Elem" });
 
-        public static readonly IEnumerable<object[]> Valid_Start_Name_Character =
+        public static readonly IEnumerable<object[]> Valid_Start_Name_Character_Names =
             _validStartNameCharacters.SelectAsTestParameters(x => x + "Element");
 
-        public static readonly IEnumerable<object[]> Valid_Name_Containing_Name_Only_Characters =
+        public static readonly IEnumerable<object[]> Valid_Names_Containing_Name_Only_Characters =
             TestHelper.CartesianProduct(_validStartNameCharacters, _validNameInvalidStartNameIntersection)
                 .SelectAsTestParameters(x => x.Item1 + $"Elem{x.Item2}ent");
 
-        public static readonly IEnumerable<object[]> Valid_Name_Containing_Start_Name_Characters =
+        public static readonly IEnumerable<object[]> Valid_Names_Containing_Start_Name_Characters =
             TestHelper.CartesianProduct(_validStartNameCharacters, _validNameCharacters)
                 .SelectAsTestParameters(x => x.Item1 + $"Elem{x.Item2}ent");
 
         [Theory]
-        [MemberData(nameof(Valid_Start_Name_Character))]
-        [MemberData(nameof(Valid_Name_Containing_Start_Name_Characters))]
+        [MemberData(nameof(Valid_Start_Name_Character_Names))]
+        [MemberData(nameof(Valid_Names_Containing_Name_Only_Characters))]
+        [MemberData(nameof(Valid_Names_Containing_Start_Name_Characters))]
         public void Valid_Name(string name)
         {
             var bytes = Encoding.UTF8.GetBytes(name);
@@ -64,9 +65,8 @@ namespace UnMango.Xml.Test.Reader
         }
 
         [Theory]
-        [MemberData(nameof(Invalid_Start_Name_Character))]
-        [MemberData(nameof(Invalid_Names))]
-        public void Invalid_Name(string name)
+        [MemberData(nameof(Invalid_Start_Name_Character_Names))]
+        public void Invalid_Start_Name_Character(string name)
         {
             var bytes = Encoding.UTF8.GetBytes(name);
 
@@ -78,8 +78,8 @@ namespace UnMango.Xml.Test.Reader
         }
 
         [Theory]
-        [MemberData(nameof(Valid_Name_Containing_Name_Only_Characters))]
-        public void Early_Name_Character_Non_Name_Start_Character(string name, string expected)
+        [MemberData(nameof(Invalid_Names))]
+        public void Invalid_Name_Returns_Substring(string name, string expected)
         {
             var bytes = Encoding.UTF8.GetBytes(name);
             var reader = new XmlReader(bytes);
