@@ -16,28 +16,28 @@ namespace UnMango.Xml
         public const byte CloseElement = (byte)'>';
 
         /// <summary>
-        /// Checks whether <paramref name="character"/> is a Char.
+        /// Checks whether <paramref name="value"/> is a Char.
         /// </summary>
-        /// <param name="character">The character to check.</param>
-        /// <returns>True is <paramref name="character"/> is a Char, False otherwise.</returns>
+        /// <param name="value">The character to check.</param>
+        /// <returns>True is <paramref name="value"/> is a Char, False otherwise.</returns>
         /// <remarks>
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-Char
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsChar(byte character) => IsChar((char)character);
+        public static bool IsChar(byte value) => IsChar((char)value);
 
         /// <summary>
-        /// Checks whether <paramref name="character"/> is a Char.
+        /// Checks whether <paramref name="value"/> is a Char.
         /// </summary>
-        /// <param name="character">The character to check.</param>
-        /// <returns>True is <paramref name="character"/> is a Char, False otherwise.</returns>
+        /// <param name="value">The character to check.</param>
+        /// <returns>True is <paramref name="value"/> is a Char, False otherwise.</returns>
         /// <remarks>
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-Char
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsChar(char character)
+        public static bool IsChar(char value)
         {
-            switch (character)
+            switch (value)
             {
                 case (char)0x9:
                 case (char)0xA:
@@ -45,68 +45,67 @@ namespace UnMango.Xml
                     return true;
             }
 
-            if (character >= 0x20 && character <= 0xD7FF) return true;
-            if (character >= 0xE000 && character <= 0xFFFD) return true;
-            if (character >= 0x10000 && character <= 0x10FFFF) return true;
+            if (value >= 0x20 && value <= 0xD7FF) return true;
+            if (value >= 0xE000 && value <= 0xFFFD) return true;
+            if (value >= 0x10000 && value <= 0x10FFFF) return true;
 
             return false;
         }
 
         /// <summary>
-        /// Checks whether <paramref name="character"/> is a literal delimeter.
+        /// Checks whether <paramref name="value"/> is a literal delimeter.
         /// </summary>
-        /// <param name="character">The character to check.</param>
-        /// <returns>True if <paramref name="character"/> is a literal delimeter, False otherwise.</returns>
+        /// <param name="value">The character to check.</param>
+        /// <returns>True if <paramref name="value"/> is a literal delimeter, False otherwise.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsLiteralDelimeter(byte character)
+        public static bool IsLiteralDelimeter(byte value)
         {
-            return character == '\'' || character == '"';
+            return value == '\'' || value == '"';
         }
 
         /// <summary>
-        /// Checks whether <paramref name="character"/> is a NameChar.
+        /// Checks whether <paramref name="value"/> is a NameChar.
         /// </summary>
-        /// <param name="character">The character to check.</param>
-        /// <returns>True if <paramref name="character"/> is a NameChar, False otherwise.</returns>
+        /// <param name="value">The character to check.</param>
+        /// <returns>True if <paramref name="value"/> is a NameChar, False otherwise.</returns>
         /// <remarks>
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-NameChar
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNameCharacter(byte character)
+        public static bool IsNameCharacter(byte value)
         {
-            return IsNameCharacter((char)character);
+            return IsNameCharacter((char)value);
         }
 
         /// <summary>
-        /// Checks whether the character specified by <paramref name="high"/>
-        /// and <paramref name="low"/> is a NameChar.
+        /// Checks whether <paramref name="value"/> is a NameChar.
         /// </summary>
-        /// <param name="character"></param>
+        /// <param name="value"></param>
         /// <returns>True if the input is a NameChar, False otherwise.</returns>
         /// <remarks>
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-NameChar
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNameCharacter(ReadOnlySpan<byte> character)
+        public static bool IsNameCharacter(ReadOnlySpan<byte> value)
         {
             //return IsNameCharacter(BitConverter.ToChar(character));
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Checks whether <paramref name="character"/> is a NameChar.
+        /// Checks whether <paramref name="value"/> is a NameChar.
         /// </summary>
-        /// <param name="character">The character to check.</param>
-        /// <returns>True if <paramref name="character"/> is a NameChar, False otherwise.</returns>
+        /// <param name="value">The character to check.</param>
+        /// <returns>True if <paramref name="value"/> is a NameChar, False otherwise.</returns>
         /// <remarks>
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-NameChar
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNameCharacter(char character)
+        public static bool IsNameCharacter(char value)
         {
-            if (IsNameStartCharacter(character)) return true;
+            if (IsNameStartCharacter(value)) return true;
 
-            switch (character)
+            switch (value)
             {
                 case '-':
                 case '.':
@@ -124,74 +123,74 @@ namespace UnMango.Xml
                     return true;
             }
 
-            if (character >= 0x0300 && character <= 0x036F) return true;
-            if (character >= 0x203F && character <= 0x2040) return true;
+            if (value >= 0x0300 && value <= 0x036F) return true;
+            if (value >= 0x203F && value <= 0x2040) return true;
 
             return false;
         }
 
         /// <summary>
-        /// Checks whether <paramref name="character"/> is a NameStartChar.
+        /// Checks whether <paramref name="value"/> is a NameStartChar.
         /// </summary>
-        /// <param name="character">The character to check.</param>
-        /// <returns>True if <paramref name="character"/> is a NameStartChar, False otherwise.</returns>
+        /// <param name="value">The character to check.</param>
+        /// <returns>True if <paramref name="value"/> is a NameStartChar, False otherwise.</returns>
         /// <remarks>
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-NameStartChar
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNameStartCharacter(byte character)
+        public static bool IsNameStartCharacter(byte value)
         {
-            return IsNameStartCharacter((char)character);
+            return IsNameStartCharacter((char)value);
         }
 
         /// <summary>
-        /// Checks whether <paramref name="character"/> is a NameStartChar.
+        /// Checks whether <paramref name="value"/> is a NameStartChar.
         /// </summary>
-        /// <param name="character">The character to check.</param>
+        /// <param name="value">The character to check.</param>
         /// <returns>True if the character is a NameStartChar, False otherwise.</returns>
         /// <remarks>
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-NameStartChar
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNameStartCharacter(char character)
+        public static bool IsNameStartCharacter(char value)
         {
-            switch (character)
+            switch (value)
             {
                 case ':':
                 case '_':
                     return true;
             }
 
-            if (character >= 'A' && character <= 'Z') return true;
-            if (character >= 'a' && character <= 'z') return true;
-            if (character >= 0xC0 && character <= 0xD6) return true;
-            if (character >= 0xD8 && character <= 0xF6) return true;
-            if (character >= 0xF8 && character <= 0x2FF) return true;
-            if (character >= 0x370 && character <= 0x37D) return true;
-            if (character >= 0x37F && character <= 0x1FFF) return true;
-            if (character >= 0x200C && character <= 0x200D) return true;
-            if (character >= 0x200C && character <= 0x200D) return true;
-            if (character >= 0x2C00 && character <= 0x2FEF) return true;
-            if (character >= 0x2C00 && character <= 0x2FEF) return true;
-            if (character >= 0x2C00 && character <= 0x2FEF) return true;
-            if (character >= 0x2C00 && character <= 0x2FEF) return true;
-            if (character >= 0x10000 && character <= 0xEFFFF) return true;
+            if (value >= 'A' && value <= 'Z') return true;
+            if (value >= 'a' && value <= 'z') return true;
+            if (value >= 0xC0 && value <= 0xD6) return true;
+            if (value >= 0xD8 && value <= 0xF6) return true;
+            if (value >= 0xF8 && value <= 0x2FF) return true;
+            if (value >= 0x370 && value <= 0x37D) return true;
+            if (value >= 0x37F && value <= 0x1FFF) return true;
+            if (value >= 0x200C && value <= 0x200D) return true;
+            if (value >= 0x200C && value <= 0x200D) return true;
+            if (value >= 0x2C00 && value <= 0x2FEF) return true;
+            if (value >= 0x2C00 && value <= 0x2FEF) return true;
+            if (value >= 0x2C00 && value <= 0x2FEF) return true;
+            if (value >= 0x2C00 && value <= 0x2FEF) return true;
+            if (value >= 0x10000 && value <= 0xEFFFF) return true;
 
             return false;
         }
 
         /// <summary>
-        /// Checks whether <paramref name="character"/> is a PubidChar.
+        /// Checks whether <paramref name="value"/> is a PubidChar.
         /// </summary>
-        /// <param name="character">The character to check.</param>
-        /// <returns>True if <paramref name="character"/> is a PubidChar, False otherwise.</returns>
+        /// <param name="value">The character to check.</param>
+        /// <returns>True if <paramref name="value"/> is a PubidChar, False otherwise.</returns>
         /// <remarks>
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-PubidChar
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsPubidCharacter(byte character)
+        public static bool IsPubidCharacter(byte value)
         {
-            switch (character)
+            switch (value)
             {
                 case 0x20:
                 case 0xD:
@@ -228,24 +227,24 @@ namespace UnMango.Xml
                     return true;
             }
 
-            if (character >= 'a' && character <= 'z') return true;
-            if (character >= 'A' && character <= 'Z') return true;
+            if (value >= 'a' && value <= 'z') return true;
+            if (value >= 'A' && value <= 'Z') return true;
 
             return false;
         }
 
         /// <summary>
-        /// Checks whether <paramref name="character"/> is White Space.
+        /// Checks whether <paramref name="value"/> is White Space.
         /// </summary>
-        /// <param name="character">The character to check.</param>
-        /// <returns>True if <paramref name="character"/> is White Space, false otherwise.</returns>
+        /// <param name="value">The character to check.</param>
+        /// <returns>True if <paramref name="value"/> is White Space, false otherwise.</returns>
         /// <remarks>
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-S
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsWhiteSpace(byte character)
+        public static bool IsWhiteSpace(byte value)
         {
-            switch (character)
+            switch (value)
             {
                 case Space:
                 case CarriageReturn:
