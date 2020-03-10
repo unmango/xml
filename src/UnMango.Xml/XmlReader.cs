@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -40,6 +40,13 @@ namespace UnMango.Xml
             return ReadName();
         }
 
+        /// <summary>
+        /// Reads the current offset as an XML name.
+        /// </summary>
+        /// <returns>The name at the current offset.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#sec-common-syn
+        /// </remarks>
         public ReadOnlySpan<byte> ReadName()
         {
             if (!XmlConstants.IsNameStartCharacter(_xml[_offset]))
