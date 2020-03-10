@@ -8,12 +8,12 @@ using Xunit;
 
 namespace UnMango.Xml.Test.Serializer
 {
-    //[Trait("Category", "Unit")]
+    [Trait("Category", "Unit")]
     public class XmlSerializerDeserializeGenericAsyncTest
     {
         private readonly CancellationTokenSource _tokenSource = TestOptions.GetTokenSource();
 
-        [Fact]
+        [Fact(Skip = "Serializer not implemented")]
         public async Task DeserializeXmlString_HappyPath()
         {
             const string xml = "<Element></Element>";
@@ -26,7 +26,7 @@ namespace UnMango.Xml.Test.Serializer
             Assert.NotNull(result);
         }
 
-        [Fact]
+        [Fact(Skip = "Serializer not implemented")]
         public async Task DeserializeBytes_HappyPath()
         {
             const string xml = "<Element></Element>";
@@ -40,7 +40,7 @@ namespace UnMango.Xml.Test.Serializer
             Assert.NotNull(result);
         }
 
-        [Fact]
+        [Fact(Skip = "Serializer not implemented")]
         public async Task DeserializeBytesAtOffset_HappyPath()
         {
             const string xml = "<Element></Element>";
@@ -58,7 +58,7 @@ namespace UnMango.Xml.Test.Serializer
             Assert.NotNull(result);
         }
 
-        [Fact]
+        [Fact(Skip = "Serializer not implemented")]
         public async Task DeserializeSpan_HappyPath()
         {
             const string xml = "<Element></Element>";
@@ -87,7 +87,7 @@ namespace UnMango.Xml.Test.Serializer
             Assert.NotNull(result.Result);
         }
 
-        [Fact]
+        [Fact(Skip = "Serializer not implemented")]
         public async Task DeserializePipeReader_HappyPath()
         {
             const string xml = "<Element></Element>";
@@ -105,7 +105,7 @@ namespace UnMango.Xml.Test.Serializer
             Assert.NotNull(result);
         }
 
-        [Fact]
+        [Fact(Skip = "Serializer not implemented")]
         public async Task DeserializeStream_HappyPath()
         {
             const string xml = "<Element></Element>";
