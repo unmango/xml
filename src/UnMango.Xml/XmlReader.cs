@@ -65,7 +65,7 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadEntityValue()
         {
-            if (!TryReadLiteralDelimeter(out var literalDelimeter))
+            if (!TryReadLiteralDelimeter(out var literal, out var alternate))
             {
                 throw new XmlParsingException("Invalid start literal");
             }
@@ -74,7 +74,10 @@ namespace UnMango.Xml
 
             for (; _offset < _xml.Length; _offset++)
             {
-                if (_xml[_offset] == literalDelimeter) break;
+                if (_xml[_offset] == literal) break;
+
+                if (_xml[_offset] == alternate)
+                    throw new XmlParsingException($"Invalid entity value character '{alternate}'");
 
                 if (_xml[_offset] == '%')
                     throw new XmlParsingException("Invalid entity value character '%'");
@@ -83,9 +86,9 @@ namespace UnMango.Xml
                     throw new XmlParsingException("Invalid entity value character '&'");
             }
 
-            if (_offset == _xml.Length || _xml[_offset] != literalDelimeter)
+            if (_offset == _xml.Length || _xml[_offset] != literal)
             {
-                throw new XmlParsingException($"Invalid entity value. Expected '{literalDelimeter}'");
+                throw new XmlParsingException($"Invalid entity value. Expected '{literal}'");
             }
 
             return _xml.Slice(start, _offset - 1);
@@ -100,7 +103,7 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadAttributeValue()
         {
-            if (!TryReadLiteralDelimeter(out var literalDelimeter))
+            if (!TryReadLiteralDelimeter(out var literal, out var alternate))
             {
                 throw new XmlParsingException("Invalid start literal");
             }
@@ -109,7 +112,10 @@ namespace UnMango.Xml
 
             for (; _offset < _xml.Length; _offset++)
             {
-                if (_xml[_offset] == literalDelimeter) break;
+                if (_xml[_offset] == literal) break;
+
+                if (_xml[_offset] == alternate)
+                    throw new XmlParsingException($"Invalid attribute value character '{alternate}'");
 
                 if (_xml[_offset] == '<')
                     throw new XmlParsingException("Invalid attribute value character '<'");
@@ -130,7 +136,7 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadSystemLiteral()
         {
-            if (!TryReadLiteralDelimeter(out var literalDelimeter))
+            if (!TryReadLiteralDelimeter(out var literal, out var alternate))
             {
                 throw new XmlParsingException("Invalid start literal");
             }
@@ -139,7 +145,10 @@ namespace UnMango.Xml
 
             for (; _offset < _xml.Length; _offset++)
             {
-                if (_xml[_offset] == literalDelimeter) break;
+                if (_xml[_offset] == literal) break;
+
+                if (_xml[_offset] == alternate)
+                    throw new XmlParsingException($"Invalid system literal character '{alternate}'");
             }
 
             return _xml.Slice(start, _offset - 1);
@@ -154,7 +163,7 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadPubidLiteral()
         {
-            if (!TryReadLiteralDelimeter(out var literalDelimeter))
+            if (!TryReadLiteralDelimeter(out var literal, out var alternate))
             {
                 throw new XmlParsingException("Invalid start literal");
             }
@@ -163,7 +172,10 @@ namespace UnMango.Xml
 
             for (; _offset < _xml.Length; _offset++)
             {
-                if (_xml[_offset] == literalDelimeter) break;
+                if (_xml[_offset] == literal) break;
+
+                if (_xml[_offset] == alternate)
+                    throw new XmlParsingException($"Invalid attribute value character '{alternate}'");
 
                 if (!XmlConstants.IsPubidCharacter(_xml[_offset]))
                     throw new XmlParsingException($"Invalid pubid literal character '{_xml[_offset]}'");
@@ -241,6 +253,16 @@ namespace UnMango.Xml
             literal = _xml[_offset];
 
             return XmlConstants.IsLiteralDelimeter(literal);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private bool TryReadLiteralDelimeter(out byte literal, out byte alternate)
+        {
+            var result = TryReadLiteralDelimeter(out literal);
+
+            alternate = XmlConstants.SwapLiteral(literal);
+
+            return result;
         }
 
         /// <summary>

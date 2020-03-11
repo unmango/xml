@@ -255,5 +255,16 @@ namespace UnMango.Xml
 
             return false;
         }
+
+        /// <summary>
+        /// Swap between ' and ".
+        /// </summary>
+        /// <param name="literal">The initial literal.</param>
+        /// <returns>The literal opposite to <paramref name="literal"/>.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static byte SwapLiteral(byte literal)
+        {
+            return (byte)(~literal ^ 0x8F);
+        }
     }
 }
