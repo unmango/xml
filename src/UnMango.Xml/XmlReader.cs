@@ -35,15 +35,13 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadName()
         {
-            // TODO: Redundant IsNameCharacter check when calling ReadNameToken
-            // Could add a private ReadNameToken that accepts a boolean to skip the check?
             if (!XmlConstants.IsNameStartCharacter(_xml[_offset]))
             {
                 throw new XmlParsingException("Invalid name start character");
             }
 
             // A Name is an Nmtoken with a restricted set of initial characters
-            return ReadNameToken();
+            return ReadNameToken(validate: false);
         }
 
         /// <summary>
@@ -55,21 +53,16 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadNameToken()
         {
-            if (!XmlConstants.IsNameCharacter(_xml[_offset]))
-            {
-                throw new XmlParsingException("Invalid name token character");
-            }
-
-            var start = _offset++;
-
-            for (; _offset < _xml.Length; _offset++)
-            {
-                if (!XmlConstants.IsNameCharacter(_xml[_offset])) break;
-            }
-
-            return _xml.Slice(start, _offset);
+            return ReadNameToken(validate: true);
         }
 
+        /// <summary>
+        /// Reads the current offset as an XML EntityValue.
+        /// </summary>
+        /// <returns>The entity value at the current offset.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-EntityValue
+        /// </remarks>
         public ReadOnlySpan<byte> ReadEntityValue()
         {
             if (!TryReadLiteralDelimeter(out var literalDelimeter))
@@ -93,6 +86,13 @@ namespace UnMango.Xml
             return _xml.Slice(start, _offset - 1);
         }
 
+        /// <summary>
+        /// Reads the current offset as an XML AttValue.
+        /// </summary>
+        /// <returns>The attribute value at the current offset.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-AttValue
+        /// </remarks>
         public ReadOnlySpan<byte> ReadAttributeValue()
         {
             if (!TryReadLiteralDelimeter(out var literalDelimeter))
@@ -107,15 +107,22 @@ namespace UnMango.Xml
                 if (_xml[_offset] == literalDelimeter) break;
 
                 if (_xml[_offset] == '<')
-                    throw new XmlParsingException("Invalid entity value character '<'");
+                    throw new XmlParsingException("Invalid attribute value character '<'");
 
                 if (_xml[_offset] == '&')
-                    throw new XmlParsingException("Invalid entity value character '&'");
+                    throw new XmlParsingException("Invalid attribute value character '&'");
             }
 
             return _xml.Slice(start, _offset - 1);
         }
 
+        /// <summary>
+        /// Reads the current offset as an XML SystemLiteral.
+        /// </summary>
+        /// <returns>The system literal at the current offset.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-SystemLiteral
+        /// </remarks>
         public ReadOnlySpan<byte> ReadSystemLiteral()
         {
             if (!TryReadLiteralDelimeter(out var literalDelimeter))
@@ -133,6 +140,13 @@ namespace UnMango.Xml
             return _xml.Slice(start, _offset - 1);
         }
 
+        /// <summary>
+        /// Reads the current offset as an XML PubidLiteral.
+        /// </summary>
+        /// <returns>The pubid literal at the current offset.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-PubidLiteral
+        /// </remarks>
         public ReadOnlySpan<byte> ReadPubidLiteral()
         {
             if (!TryReadLiteralDelimeter(out var literalDelimeter))
@@ -153,6 +167,69 @@ namespace UnMango.Xml
             return _xml.Slice(start, _offset - 1);
         }
 
+        /// <summary>
+        /// Reads the current offset as XML CharData.
+        /// </summary>
+        /// <returns>The character data at the current offset.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-CharData
+        /// </remarks>
+        // TODO: Other conditions
+        // TODO: Loop exit condition
+        public ReadOnlySpan<byte> ReadCharacterData()
+        {
+            var start = _offset++;
+
+            for (; _offset < _xml.Length; _offset++)
+            {
+                if (_xml[_offset] == '<')
+                    throw new XmlParsingException("Invalid character data character '<'");
+
+                // TODO: character reference
+                if (_xml[_offset] == '&')
+                    throw new XmlParsingException("Invalid character data character '&'");
+            }
+
+            return _xml.Slice(start, _offset - 1);
+        }
+
+        /// <summary>
+        /// Reads the current offset as an XML Comment.
+        /// </summary>
+        /// <returns>The comment at the current offset.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-Comment
+        /// </remarks>
+        public ReadOnlySpan<byte> ReadComment()
+        {
+            var start = ++_offset;
+
+            for (; _offset < _xml.Length; _offset++)
+            {
+                // TODO: Everything
+            }
+
+            return _xml.Slice(start, _offset - 1);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private ReadOnlySpan<byte> ReadNameToken(bool validate)
+        {
+            if (validate && !XmlConstants.IsNameCharacter(_xml[_offset]))
+            {
+                throw new XmlParsingException("Invalid name token character");
+            }
+
+            var start = _offset++;
+
+            for (; _offset < _xml.Length; _offset++)
+            {
+                if (!XmlConstants.IsNameCharacter(_xml[_offset])) break;
+            }
+
+            return _xml.Slice(start, _offset);
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool TryReadLiteralDelimeter(out byte literal)
         {
@@ -161,18 +238,43 @@ namespace UnMango.Xml
             return !XmlConstants.IsLiteralDelimeter(literal);
         }
 
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        /// <param name="obj">NA</param>
+        /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object obj) => throw new NotSupportedException();
 
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => throw new NotSupportedException();
 
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ToString() => throw new NotSupportedException();
 
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        /// <param name="left">NA</param>
+        /// <param name="right">NA</param>
+        /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool operator ==(XmlReader left, XmlReader right) => throw new NotSupportedException();
 
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        /// <param name="left">NA</param>
+        /// <param name="right">NA</param>
+        /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool operator !=(XmlReader left, XmlReader right) => throw new NotSupportedException();
     }

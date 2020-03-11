@@ -206,18 +206,43 @@ namespace UnMango.Xml
             _output.Advance(size); // TODO: Flush?
         }
 
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        /// <param name="obj">NA</param>
+        /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object obj) => throw new NotSupportedException();
 
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => throw new NotSupportedException();
 
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ToString() => throw new NotSupportedException();
 
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        /// <param name="left">NA</param>
+        /// <param name="right">NA</param>
+        /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool operator ==(XmlWriter left, XmlWriter right) => throw new NotSupportedException();
 
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        /// <param name="left">NA</param>
+        /// <param name="right">NA</param>
+        /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool operator !=(XmlWriter left, XmlWriter right) => throw new NotSupportedException();
     }
