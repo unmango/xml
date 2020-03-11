@@ -13,6 +13,10 @@ namespace UnMango.Xml.Test.Reader
         [InlineData("\n")]
         [InlineData("\r")]
         [InlineData("\t")]
+        [InlineData(" A")]
+        [InlineData("\nA")]
+        [InlineData("\rA")]
+        [InlineData("\tA")]
         public void Starting_At_WhiteSpace(string whitespace)
         {
             var bytes = Encoding.UTF8.GetBytes(whitespace);
