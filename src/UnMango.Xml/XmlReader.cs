@@ -12,19 +12,33 @@ namespace UnMango.Xml
         private const int DEFAULT_OFFSET = 0;
 
         private readonly ReadOnlySpan<byte> _xml;
+        private readonly XmlReaderOptions _options;
         private int _offset;
 
         /// <summary>
         /// Initializes a new instance of a <see cref="XmlReader"/> with the
-        /// specified <paramref name="xml"/> starting at <paramref name="offset"/>.
+        /// specified <paramref name="xml"/> starting at <paramref name="offset"/>
+        /// with the specified <paramref name="options"/>.
         /// </summary>
-        /// <param name="xml"></param>
-        /// <param name="offset"></param>
-        public XmlReader(ReadOnlySpan<byte> xml, int offset = DEFAULT_OFFSET)
+        /// <param name="xml">XML source to read from.</param>
+        /// <param name="offset">Starting offset in <paramref name="xml"/>.</param>
+        /// <param name="options">XML reader options.</param>
+        public XmlReader(ReadOnlySpan<byte> xml, int offset = DEFAULT_OFFSET, XmlReaderOptions options = default)
         {
             _xml = xml;
+            _options = options;
             _offset = offset;
         }
+
+        /// <summary>
+        /// Initializes a new instance of a <see cref="XmlReader"/> with the
+        /// specified <paramref name="xml"/> starting at the default offset
+        /// with the specified <paramref name="options"/>.
+        /// </summary>
+        /// <param name="xml">XML source to read from.</param>
+        /// <param name="options">XML reader options.</param>
+        public XmlReader(ReadOnlySpan<byte> xml, XmlReaderOptions options)
+            : this(xml, DEFAULT_OFFSET, options) { }
 
         /// <summary>
         /// Reads the current offset as an XML name.
