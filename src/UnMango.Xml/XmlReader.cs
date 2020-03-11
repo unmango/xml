@@ -244,6 +244,22 @@ namespace UnMango.Xml
             return _xml.Slice(start, _offset - 1);
         }
 
+        /// <summary>
+        /// Reads the current offset as XML White Space.
+        /// </summary>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-S
+        /// </remarks>
+        public void ReadWhiteSpace()
+        {
+            if (!XmlConstants.IsWhiteSpace(_xml[_offset]))
+            {
+                throw new XmlParsingException("Reader was not positioned at whitespace");
+            }
+
+            while (++_offset < _xml.Length && XmlConstants.IsWhiteSpace(_xml[_offset])) { }
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private ReadOnlySpan<byte> ReadNameToken(bool validate)
         {
