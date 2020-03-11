@@ -34,7 +34,7 @@ namespace UnMango.Xml.Test.Reader
 
         [Theory]
         [InlineData("Character]]> Data")]
-        public void Invalid_Sequence(string data)
+        public void Invalid_CData_Close_Delimiter(string data)
         {
             var bytes = Encoding.UTF8.GetBytes(data);
             var reader = new XmlReader(bytes);
@@ -43,6 +43,20 @@ namespace UnMango.Xml.Test.Reader
 
             var result = Encoding.UTF8.GetString(resultSpan);
             Assert.Equal("Character", result);
+        }
+
+        [Theory]
+        [InlineData("Character] Data")]
+        [InlineData("Character]] Data")]
+        public void Valid_CData_Close_Delimiter(string data)
+        {
+            var bytes = Encoding.UTF8.GetBytes(data);
+            var reader = new XmlReader(bytes);
+
+            var resultSpan = reader.ReadCharacterData();
+
+            var result = Encoding.UTF8.GetString(resultSpan);
+            Assert.Equal(data, result);
         }
     }
 }
