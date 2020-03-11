@@ -79,7 +79,7 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadEntityValue()
         {
-            if (!TryReadLiteralDelimeter(out var literal, out var alternate))
+            if (!TryReadLiteralDelimeter(out var literal))
             {
                 throw new XmlParsingException("Invalid start literal");
             }
@@ -89,9 +89,6 @@ namespace UnMango.Xml
             for (; _offset < _xml.Length; _offset++)
             {
                 if (_xml[_offset] == literal) break;
-
-                if (_xml[_offset] == alternate)
-                    throw new XmlParsingException($"Invalid entity value character '{alternate}'");
 
                 if (_xml[_offset] == '%')
                     throw new XmlParsingException("Invalid entity value character '%'");
@@ -117,7 +114,7 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadAttributeValue()
         {
-            if (!TryReadLiteralDelimeter(out var literal, out var alternate))
+            if (!TryReadLiteralDelimeter(out var literal))
             {
                 throw new XmlParsingException("Invalid start literal");
             }
@@ -127,9 +124,6 @@ namespace UnMango.Xml
             for (; _offset < _xml.Length; _offset++)
             {
                 if (_xml[_offset] == literal) break;
-
-                if (_xml[_offset] == alternate)
-                    throw new XmlParsingException($"Invalid attribute value character '{alternate}'");
 
                 if (_xml[_offset] == '<')
                     throw new XmlParsingException("Invalid attribute value character '<'");
@@ -150,7 +144,7 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadSystemLiteral()
         {
-            if (!TryReadLiteralDelimeter(out var literal, out var alternate))
+            if (!TryReadLiteralDelimeter(out var literal))
             {
                 throw new XmlParsingException("Invalid start literal");
             }
@@ -160,9 +154,6 @@ namespace UnMango.Xml
             for (; _offset < _xml.Length; _offset++)
             {
                 if (_xml[_offset] == literal) break;
-
-                if (_xml[_offset] == alternate)
-                    throw new XmlParsingException($"Invalid system literal character '{alternate}'");
             }
 
             return _xml.Slice(start, _offset - 1);
