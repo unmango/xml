@@ -83,6 +83,11 @@ namespace UnMango.Xml
                     throw new XmlParsingException("Invalid entity value character '&'");
             }
 
+            if (_offset == _xml.Length || _xml[_offset] != literalDelimeter)
+            {
+                throw new XmlParsingException($"Invalid entity value. Expected '{literalDelimeter}'");
+            }
+
             return _xml.Slice(start, _offset - 1);
         }
 
