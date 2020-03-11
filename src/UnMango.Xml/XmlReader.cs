@@ -215,8 +215,6 @@ namespace UnMango.Xml
         /// <remarks>
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-CharData
         /// </remarks>
-        // TODO: Other conditions
-        // TODO: Loop exit condition
         public ReadOnlySpan<byte> ReadCharacterData()
         {
             var start = _offset;
@@ -225,10 +223,13 @@ namespace UnMango.Xml
             {
                 if (_xml[_offset] == '<') break;
                 if (_xml[_offset] == '&') break;
+
                 if (_xml[_offset] == ']' &&
-                    _xml[_offset + 1] == ']' &&
-                    _xml[_offset + 2] == '>')
+                    _offset + 1 < _xml.Length && _xml[_offset + 1] == ']' &&
+                    _offset + 2 < _xml.Length && _xml[_offset + 2] == '>')
+                {
                     break;
+                }
             }
 
             return _xml.Slice(start, _offset - 1);
