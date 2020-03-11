@@ -219,16 +219,16 @@ namespace UnMango.Xml
         // TODO: Loop exit condition
         public ReadOnlySpan<byte> ReadCharacterData()
         {
-            var start = _offset++;
+            var start = _offset;
 
             for (; _offset < _xml.Length; _offset++)
             {
-                if (_xml[_offset] == '<')
-                    throw new XmlParsingException("Invalid character data character '<'");
-
-                // TODO: character reference
-                if (_xml[_offset] == '&')
-                    throw new XmlParsingException("Invalid character data character '&'");
+                if (_xml[_offset] == '<') break;
+                if (_xml[_offset] == '&') break;
+                if (_xml[_offset] == ']' &&
+                    _xml[_offset + 1] == ']' &&
+                    _xml[_offset + 2] == '>')
+                    break;
             }
 
             return _xml.Slice(start, _offset - 1);
