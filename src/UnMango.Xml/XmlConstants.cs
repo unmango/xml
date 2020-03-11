@@ -3,6 +3,14 @@ using System.Runtime.CompilerServices;
 
 namespace UnMango.Xml
 {
+    using BitConverter =
+#if NETSTANDARD2_0
+    // NetStandard 2.0 System.BitConverter doesn't have ReadOnlySpan<byte> overlaods
+    Internal.BitConverter;
+#else
+    System.BitConverter;
+#endif
+
     internal static class XmlConstants
     {
         // Whitespace
@@ -25,6 +33,20 @@ namespace UnMango.Xml
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsChar(byte value) => IsChar((char)value);
+
+        /// <summary>
+        /// Checks whether <paramref name="value"/> is a Char.
+        /// </summary>
+        /// <param name="value">The character to check.</param>
+        /// <returns>True is <paramref name="value"/> is a Char, False otherwise.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-Char
+        /// </remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsChar(ReadOnlySpan<byte> value)
+        {
+            return IsChar(BitConverter.ToChar(value));
+        }
 
         /// <summary>
         /// Checks whether <paramref name="value"/> is a Char.
@@ -88,8 +110,7 @@ namespace UnMango.Xml
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsNameCharacter(in ReadOnlySpan<byte> value)
         {
-            //return IsNameCharacter(BitConverter.ToChar(character));
-            throw new NotImplementedException();
+            return IsNameCharacter(BitConverter.ToChar(value));
         }
 
         /// <summary>
@@ -141,6 +162,20 @@ namespace UnMango.Xml
         public static bool IsNameStartCharacter(byte value)
         {
             return IsNameStartCharacter((char)value);
+        }
+
+        /// <summary>
+        /// Checks whether <paramref name="value"/> is a NameStartChar.
+        /// </summary>
+        /// <param name="value">The character to check.</param>
+        /// <returns>True if <paramref name="value"/> is a NameStartChar, False otherwise.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-NameStartChar
+        /// </remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNameStartCharacter(ReadOnlySpan<byte> value)
+        {
+            return IsNameStartCharacter(BitConverter.ToChar(value));
         }
 
         /// <summary>
