@@ -79,7 +79,7 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadEntityValue()
         {
-            if (!TryReadLiteralDelimeter(out var literal))
+            if (!TryReadLiteralDelimiter(out var literal))
             {
                 throw new XmlParsingException("Invalid start literal");
             }
@@ -114,7 +114,7 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadAttributeValue()
         {
-            if (!TryReadLiteralDelimeter(out var literal))
+            if (!TryReadLiteralDelimiter(out var literal))
             {
                 throw new XmlParsingException("Invalid start literal");
             }
@@ -144,7 +144,7 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadSystemLiteral()
         {
-            if (!TryReadLiteralDelimeter(out var literal))
+            if (!TryReadLiteralDelimiter(out var literal))
             {
                 throw new XmlParsingException("Invalid start literal");
             }
@@ -253,17 +253,17 @@ namespace UnMango.Xml
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private bool TryReadLiteralDelimeter(out byte literal)
+        private bool TryReadLiteralDelimiter(out byte literal)
         {
             literal = _xml[_offset];
 
-            return XmlConstants.IsLiteralDelimeter(literal);
+            return XmlConstants.IsLiteralDelimiter(literal);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool TryReadLiteralDelimeter(out byte literal, out byte alternate)
         {
-            var result = TryReadLiteralDelimeter(out literal);
+            var result = TryReadLiteralDelimiter(out literal);
 
             alternate = XmlConstants.SwapLiteral(literal);
 

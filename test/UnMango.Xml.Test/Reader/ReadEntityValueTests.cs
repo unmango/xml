@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using Xunit;
 
 namespace UnMango.Xml.Test.Reader
@@ -57,7 +55,7 @@ namespace UnMango.Xml.Test.Reader
         [InlineData("'Entity")]
         [InlineData("\"Entity'")]
         [InlineData("'Entity\"")]
-        public void Expect_Closing_Delimeter(string value)
+        public void Expect_Closing_Delimiter(string value)
         {
             var bytes = Encoding.UTF8.GetBytes(value);
 

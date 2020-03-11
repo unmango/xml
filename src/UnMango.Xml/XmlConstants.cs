@@ -75,12 +75,12 @@ namespace UnMango.Xml
         }
 
         /// <summary>
-        /// Checks whether <paramref name="value"/> is a literal delimeter.
+        /// Checks whether <paramref name="value"/> is a literal delimiter.
         /// </summary>
         /// <param name="value">The character to check.</param>
-        /// <returns>True if <paramref name="value"/> is a literal delimeter, False otherwise.</returns>
+        /// <returns>True if <paramref name="value"/> is a literal delimiter, False otherwise.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsLiteralDelimeter(byte value)
+        public static bool IsLiteralDelimiter(byte value)
         {
             return value == '\'' || value == '"';
         }
