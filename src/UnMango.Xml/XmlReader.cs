@@ -244,6 +244,16 @@ namespace UnMango.Xml
             return _xml.Slice(start, _offset - 1);
         }
 
+        public void ReadWhiteSpace()
+        {
+            if (!XmlConstants.IsWhiteSpace(_xml[_offset]))
+            {
+                throw new XmlParsingException("Reader was not positioned at whitespace");
+            }
+
+            while (_offset < _xml.Length && XmlConstants.IsWhiteSpace(_xml[++_offset])) { }
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private ReadOnlySpan<byte> ReadNameToken(bool validate)
         {
