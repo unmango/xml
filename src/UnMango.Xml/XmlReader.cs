@@ -175,7 +175,7 @@ namespace UnMango.Xml
                 if (_xml[_offset] == literal) break;
 
                 if (_xml[_offset] == alternate)
-                    throw new XmlParsingException($"Invalid attribute value character '{alternate}'");
+                    throw new XmlParsingException($"Invalid publid literal character '{alternate}'");
 
                 if (!XmlConstants.IsPubidCharacter(_xml[_offset]))
                     throw new XmlParsingException($"Invalid pubid literal character '{_xml[_offset]}'");
