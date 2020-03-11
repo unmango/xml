@@ -235,7 +235,7 @@ namespace UnMango.Xml
         {
             literal = _xml[_offset];
 
-            return !XmlConstants.IsLiteralDelimeter(literal);
+            return XmlConstants.IsLiteralDelimeter(literal);
         }
 
         /// <summary>
