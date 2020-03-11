@@ -217,6 +217,11 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadCharacterData()
         {
+            if (_xml[_offset] == '<' || _xml[_offset] == '&')
+            {
+                return ReadOnlySpan<byte>.Empty;
+            }
+
             var start = _offset;
 
             for (; _offset < _xml.Length; _offset++)
@@ -232,7 +237,7 @@ namespace UnMango.Xml
                 }
             }
 
-            return _xml.Slice(start, _offset - 1);
+            return _xml.Slice(start, _offset);
         }
 
         /// <summary>
