@@ -257,7 +257,7 @@ namespace UnMango.Xml
                 throw new XmlParsingException("Reader was not positioned at whitespace");
             }
 
-            while (_offset < _xml.Length && XmlConstants.IsWhiteSpace(_xml[++_offset])) { }
+            while (++_offset < _xml.Length && XmlConstants.IsWhiteSpace(_xml[_offset])) { }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
