@@ -38,7 +38,7 @@ namespace UnMango.Xml.Test.Reader
 
         [Theory]
         [InlineData("'&Attribute")]
-        [InlineData("'%Attribute")]
+        [InlineData("'<Attribute")]
         public void Invalid_Attribute_Character(string value)
         {
             var bytes = Encoding.UTF8.GetBytes(value);
