@@ -56,6 +56,13 @@ namespace UnMango.Xml
             return ReadNameToken(validate: true);
         }
 
+        /// <summary>
+        /// Reads the current offset as an XML EntityValue.
+        /// </summary>
+        /// <returns>The entity value at the current offset.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-EntityValue
+        /// </remarks>
         public ReadOnlySpan<byte> ReadEntityValue()
         {
             if (!TryReadLiteralDelimeter(out var literalDelimeter))
@@ -79,6 +86,13 @@ namespace UnMango.Xml
             return _xml.Slice(start, _offset - 1);
         }
 
+        /// <summary>
+        /// Reads the current offset as an XML AttValue.
+        /// </summary>
+        /// <returns>The attribute value at the current offset.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-AttValue
+        /// </remarks>
         public ReadOnlySpan<byte> ReadAttributeValue()
         {
             if (!TryReadLiteralDelimeter(out var literalDelimeter))
@@ -102,6 +116,13 @@ namespace UnMango.Xml
             return _xml.Slice(start, _offset - 1);
         }
 
+        /// <summary>
+        /// Reads the current offset as an XML SystemLiteral.
+        /// </summary>
+        /// <returns>The system literal at the current offset.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-SystemLiteral
+        /// </remarks>
         public ReadOnlySpan<byte> ReadSystemLiteral()
         {
             if (!TryReadLiteralDelimeter(out var literalDelimeter))
@@ -119,6 +140,13 @@ namespace UnMango.Xml
             return _xml.Slice(start, _offset - 1);
         }
 
+        /// <summary>
+        /// Reads the current offset as an XML PubidLiteral.
+        /// </summary>
+        /// <returns>The pubid literal at the current offset.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-PubidLiteral
+        /// </remarks>
         public ReadOnlySpan<byte> ReadPubidLiteral()
         {
             if (!TryReadLiteralDelimeter(out var literalDelimeter))
@@ -139,6 +167,13 @@ namespace UnMango.Xml
             return _xml.Slice(start, _offset - 1);
         }
 
+        /// <summary>
+        /// Reads the current offset as XML CharData.
+        /// </summary>
+        /// <returns>The character data at the current offset.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-CharData
+        /// </remarks>
         // TODO: Other conditions
         // TODO: Loop exit condition
         public ReadOnlySpan<byte> ReadCharacterData()
@@ -158,13 +193,20 @@ namespace UnMango.Xml
             return _xml.Slice(start, _offset - 1);
         }
 
+        /// <summary>
+        /// Reads the current offset as an XML Comment.
+        /// </summary>
+        /// <returns>The comment at the current offset.</returns>
+        /// <remarks>
+        /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-Comment
+        /// </remarks>
         public ReadOnlySpan<byte> ReadComment()
         {
             var start = ++_offset;
 
             for (; _offset < _xml.Length; _offset++)
             {
-                // TODO
+                // TODO: Everything
             }
 
             return _xml.Slice(start, _offset - 1);
@@ -196,18 +238,43 @@ namespace UnMango.Xml
             return !XmlConstants.IsLiteralDelimeter(literal);
         }
 
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        /// <param name="obj">NA</param>
+        /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object obj) => throw new NotSupportedException();
 
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => throw new NotSupportedException();
 
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ToString() => throw new NotSupportedException();
 
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        /// <param name="left">NA</param>
+        /// <param name="right">NA</param>
+        /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool operator ==(XmlReader left, XmlReader right) => throw new NotSupportedException();
 
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        /// <param name="left">NA</param>
+        /// <param name="right">NA</param>
+        /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool operator !=(XmlReader left, XmlReader right) => throw new NotSupportedException();
     }

@@ -45,7 +45,7 @@ namespace UnMango.Xml
         /// <param name="span">The <see cref="ReadOnlySpan{T}"/> to deserialize.</param>
         /// <param name="options">Options for the operation.</param>
         /// <returns>The deserialized value.</returns>
-        public static T Deserialize<T>(in ReadOnlySpan<byte> span, XmlSerializerOptions? options = null)
+        public static T Deserialize<T>(ReadOnlySpan<byte> span, XmlSerializerOptions? options = null)
         {
             var reader = new XmlReader(span);
             return Deserialize<T>(ref reader, options);
