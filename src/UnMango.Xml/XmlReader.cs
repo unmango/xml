@@ -183,7 +183,7 @@ namespace UnMango.Xml
                 throw new XmlParsingException("Invalid start literal");
             }
 
-            var start = _offset++;
+            var start = ++_offset;
 
             for (; _offset < _xml.Length; _offset++)
             {
@@ -194,6 +194,13 @@ namespace UnMango.Xml
 
                 if (!XmlConstants.IsPubidCharacter(_xml[_offset]))
                     throw new XmlParsingException($"Invalid pubid literal character '{_xml[_offset]}'");
+            }
+
+            // TODO: Scan for markup? Based on the comment about SystemLiteral
+            // TODO: Second case will never be hit
+            if (_offset == _xml.Length || _xml[_offset] != literal)
+            {
+                throw new XmlParsingException($"Invalid pubid literal. Expected '{literal}'");
             }
 
             return _xml.Slice(start, _offset - 1);
