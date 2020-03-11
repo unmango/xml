@@ -86,7 +86,7 @@ namespace UnMango.Xml
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-NameChar
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNameCharacter(ReadOnlySpan<byte> value)
+        public static bool IsNameCharacter(in ReadOnlySpan<byte> value)
         {
             //return IsNameCharacter(BitConverter.ToChar(character));
             throw new NotImplementedException();
