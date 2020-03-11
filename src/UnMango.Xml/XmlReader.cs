@@ -97,6 +97,7 @@ namespace UnMango.Xml
                     throw new XmlParsingException("Invalid entity value character '&'");
             }
 
+            // TODO: Second case will never be hit
             if (_offset == _xml.Length || _xml[_offset] != literal)
             {
                 throw new XmlParsingException($"Invalid entity value. Expected '{literal}'");
@@ -132,6 +133,12 @@ namespace UnMango.Xml
                     throw new XmlParsingException("Invalid attribute value character '&'");
             }
 
+            // TODO: Second case will never be hit
+            if (_offset == _xml.Length || _xml[_offset] != literal)
+            {
+                throw new XmlParsingException($"Invalid attribute value. Expected '{literal}'");
+            }
+
             return _xml.Slice(start, _offset - 1);
         }
 
@@ -141,6 +148,7 @@ namespace UnMango.Xml
         /// <returns>The system literal at the current offset.</returns>
         /// <remarks>
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-SystemLiteral
+        /// A SystemLiteral can be parsed without scanning for markup.
         /// </remarks>
         public ReadOnlySpan<byte> ReadSystemLiteral()
         {
