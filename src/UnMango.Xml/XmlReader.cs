@@ -97,6 +97,7 @@ namespace UnMango.Xml
                     throw new XmlParsingException("Invalid entity value character '&'");
             }
 
+            // TODO: Scan for markup? Based on the comment about SystemLiteral
             // TODO: Second case will never be hit
             if (_offset == _xml.Length || _xml[_offset] != literal)
             {
@@ -133,6 +134,7 @@ namespace UnMango.Xml
                     throw new XmlParsingException("Invalid attribute value character '&'");
             }
 
+            // TODO: Scan for markup? Based on the comment about SystemLiteral
             // TODO: Second case will never be hit
             if (_offset == _xml.Length || _xml[_offset] != literal)
             {
