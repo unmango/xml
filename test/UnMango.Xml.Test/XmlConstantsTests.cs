@@ -36,7 +36,7 @@ namespace UnMango.Xml.Test
         [InlineData('"')]
         public void Is_Literal_Delimeter(char character)
         {
-            Assert.True(XmlConstants.IsLiteralDelimeter((byte)character));
+            Assert.True(XmlConstants.IsLiteralDelimiter((byte)character));
         }
 
         [Theory]
@@ -44,7 +44,7 @@ namespace UnMango.Xml.Test
         [InlineData('>')]
         public void Is_Not_Literal_Delimeter(char character)
         {
-            Assert.False(XmlConstants.IsLiteralDelimeter((byte)character));
+            Assert.False(XmlConstants.IsLiteralDelimiter((byte)character));
         }
 
         [Theory]

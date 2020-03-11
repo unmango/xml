@@ -12,19 +12,33 @@ namespace UnMango.Xml
         private const int DEFAULT_OFFSET = 0;
 
         private readonly ReadOnlySpan<byte> _xml;
+        private readonly XmlReaderOptions _options;
         private int _offset;
 
         /// <summary>
         /// Initializes a new instance of a <see cref="XmlReader"/> with the
-        /// specified <paramref name="xml"/> starting at <paramref name="offset"/>.
+        /// specified <paramref name="xml"/> starting at <paramref name="offset"/>
+        /// with the specified <paramref name="options"/>.
         /// </summary>
-        /// <param name="xml"></param>
-        /// <param name="offset"></param>
-        public XmlReader(ReadOnlySpan<byte> xml, int offset = DEFAULT_OFFSET)
+        /// <param name="xml">XML source to read from.</param>
+        /// <param name="offset">Starting offset in <paramref name="xml"/>.</param>
+        /// <param name="options">XML reader options.</param>
+        public XmlReader(ReadOnlySpan<byte> xml, int offset = DEFAULT_OFFSET, XmlReaderOptions options = default)
         {
             _xml = xml;
+            _options = options;
             _offset = offset;
         }
+
+        /// <summary>
+        /// Initializes a new instance of a <see cref="XmlReader"/> with the
+        /// specified <paramref name="xml"/> starting at the default offset
+        /// with the specified <paramref name="options"/>.
+        /// </summary>
+        /// <param name="xml">XML source to read from.</param>
+        /// <param name="options">XML reader options.</param>
+        public XmlReader(ReadOnlySpan<byte> xml, XmlReaderOptions options)
+            : this(xml, DEFAULT_OFFSET, options) { }
 
         /// <summary>
         /// Reads the current offset as an XML name.
@@ -65,7 +79,7 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadEntityValue()
         {
-            if (!TryReadLiteralDelimeter(out var literal, out var alternate))
+            if (!TryReadLiteralDelimiter(out var literal))
             {
                 throw new XmlParsingException("Invalid start literal");
             }
@@ -76,9 +90,6 @@ namespace UnMango.Xml
             {
                 if (_xml[_offset] == literal) break;
 
-                if (_xml[_offset] == alternate)
-                    throw new XmlParsingException($"Invalid entity value character '{alternate}'");
-
                 if (_xml[_offset] == '%')
                     throw new XmlParsingException("Invalid entity value character '%'");
 
@@ -86,6 +97,8 @@ namespace UnMango.Xml
                     throw new XmlParsingException("Invalid entity value character '&'");
             }
 
+            // TODO: Scan for markup? Based on the comment about SystemLiteral
+            // TODO: Second case will never be hit
             if (_offset == _xml.Length || _xml[_offset] != literal)
             {
                 throw new XmlParsingException($"Invalid entity value. Expected '{literal}'");
@@ -103,7 +116,7 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadAttributeValue()
         {
-            if (!TryReadLiteralDelimeter(out var literal, out var alternate))
+            if (!TryReadLiteralDelimiter(out var literal))
             {
                 throw new XmlParsingException("Invalid start literal");
             }
@@ -114,14 +127,18 @@ namespace UnMango.Xml
             {
                 if (_xml[_offset] == literal) break;
 
-                if (_xml[_offset] == alternate)
-                    throw new XmlParsingException($"Invalid attribute value character '{alternate}'");
-
                 if (_xml[_offset] == '<')
                     throw new XmlParsingException("Invalid attribute value character '<'");
 
                 if (_xml[_offset] == '&')
                     throw new XmlParsingException("Invalid attribute value character '&'");
+            }
+
+            // TODO: Scan for markup? Based on the comment about SystemLiteral
+            // TODO: Second case will never be hit
+            if (_offset == _xml.Length || _xml[_offset] != literal)
+            {
+                throw new XmlParsingException($"Invalid attribute value. Expected '{literal}'");
             }
 
             return _xml.Slice(start, _offset - 1);
@@ -133,10 +150,11 @@ namespace UnMango.Xml
         /// <returns>The system literal at the current offset.</returns>
         /// <remarks>
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-SystemLiteral
+        /// A SystemLiteral can be parsed without scanning for markup.
         /// </remarks>
         public ReadOnlySpan<byte> ReadSystemLiteral()
         {
-            if (!TryReadLiteralDelimeter(out var literal, out var alternate))
+            if (!TryReadLiteralDelimiter(out var literal))
             {
                 throw new XmlParsingException("Invalid start literal");
             }
@@ -146,9 +164,6 @@ namespace UnMango.Xml
             for (; _offset < _xml.Length; _offset++)
             {
                 if (_xml[_offset] == literal) break;
-
-                if (_xml[_offset] == alternate)
-                    throw new XmlParsingException($"Invalid system literal character '{alternate}'");
             }
 
             return _xml.Slice(start, _offset - 1);
@@ -248,17 +263,17 @@ namespace UnMango.Xml
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private bool TryReadLiteralDelimeter(out byte literal)
+        private bool TryReadLiteralDelimiter(out byte literal)
         {
             literal = _xml[_offset];
 
-            return XmlConstants.IsLiteralDelimeter(literal);
+            return XmlConstants.IsLiteralDelimiter(literal);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool TryReadLiteralDelimeter(out byte literal, out byte alternate)
         {
-            var result = TryReadLiteralDelimeter(out literal);
+            var result = TryReadLiteralDelimiter(out literal);
 
             alternate = XmlConstants.SwapLiteral(literal);
 

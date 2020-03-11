@@ -4,27 +4,27 @@ using Xunit;
 namespace UnMango.Xml.Test.Reader
 {
     [Trait("Category", "Unit")]
-    public class ReadEntityValueTests
+    public class ReadAttributeValueTests
     {
         [Theory]
-        [InlineData("\"Entity\"")]
-        [InlineData("'Entity'")]
-        public void Valid_Entity_Value(string value)
+        [InlineData("\"Attribute\"")]
+        [InlineData("'Attribute'")]
+        public void Valid_Attribute_Value(string value)
         {
             var bytes = Encoding.UTF8.GetBytes(value);
             var reader = new XmlReader(bytes);
 
-            var resultSpan = reader.ReadEntityValue();
+            var resultSpan = reader.ReadAttributeValue();
 
             var result = Encoding.UTF8.GetString(resultSpan);
-            Assert.Equal("Entity", result);
+            Assert.Equal("Attribute", result);
         }
 
         [Theory]
-        [InlineData("!Entity")]
-        [InlineData("#Entity")]
-        [InlineData("&Entity")]
-        [InlineData("(Entity")]
+        [InlineData("!Attribute")]
+        [InlineData("#Attribute")]
+        [InlineData("&Attribute")]
+        [InlineData("(Attribute")]
         public void Invalid_Start_Character(string value)
         {
             var bytes = Encoding.UTF8.GetBytes(value);
@@ -32,29 +32,29 @@ namespace UnMango.Xml.Test.Reader
             Assert.Throws<XmlParsingException>(() =>
             {
                 var reader = new XmlReader(bytes);
-                reader.ReadEntityValue();
+                reader.ReadAttributeValue();
             });
         }
 
         [Theory]
-        [InlineData("'&Entity")]
-        [InlineData("'%Entity")]
-        public void Invalid_Entity_Character(string value)
+        [InlineData("'&Attribute")]
+        [InlineData("'<Attribute")]
+        public void Invalid_Attribute_Character(string value)
         {
             var bytes = Encoding.UTF8.GetBytes(value);
 
             Assert.Throws<XmlParsingException>(() =>
             {
                 var reader = new XmlReader(bytes);
-                reader.ReadEntityValue();
+                reader.ReadAttributeValue();
             });
         }
 
         [Theory]
-        [InlineData("\"Entity")]
-        [InlineData("'Entity")]
-        [InlineData("\"Entity'")]
-        [InlineData("'Entity\"")]
+        [InlineData("\"Attribute")]
+        [InlineData("'Attribute")]
+        [InlineData("\"Attribute'")]
+        [InlineData("'Attribute\"")]
         public void Expect_Closing_Delimiter(string value)
         {
             var bytes = Encoding.UTF8.GetBytes(value);
@@ -62,7 +62,7 @@ namespace UnMango.Xml.Test.Reader
             Assert.Throws<XmlParsingException>(() =>
             {
                 var reader = new XmlReader(bytes);
-                reader.ReadEntityValue();
+                reader.ReadAttributeValue();
             });
         }
     }
