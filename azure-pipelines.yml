@@ -107,3 +107,35 @@ jobs:
     inputs:
       ArtifactName: Packages
       PathtoPublish: $(Build.ArtifactStagingDirectory)
+
+- deployment: deploy
+  displayName: Deploy UnMango.Xml to GitHub
+  pool: Linux
+  dependsOn: build_test_pack
+  condition: contains(variables['Build.SourceBranch'], 'master')
+  variables:
+    DotNetSdkVersion: 3.x
+
+  environment: GitHub
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - download: current
+          artifact: Packages
+
+        - task: UseDotNet@2
+          displayName: Install .NET Core
+          inputs:
+            packageType: sdk
+            version: $(DotNetSdkVersion)
+
+        - task: DotNetCoreCLI@2
+          displayName: Push Packages
+          inputs:
+            command: push
+            packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg;!$(Pipeline.Workspace)/**/*.symbols.nupkg'
+            nuGetFeedType: external
+            externalEndpoint: $(UnMangoFeed)   # Service Connection Name
+            publishPackageMetadata: true
+            verbosityPush: Normal
