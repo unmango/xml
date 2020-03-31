@@ -7,12 +7,19 @@ trigger:
   paths:
     include:
     - src/*
-    - test/*
     - tool/*
 
 pr:
-- master
-- release/*
+  branches:
+    include:
+    - master
+    - release/*
+  paths:
+    exclude:
+    - docs/*
+    - README.md
+    - .dependabot/*
+    - .editorconfig
 
 pool: Linux
 
