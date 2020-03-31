@@ -29,8 +29,8 @@ variables:
   CI: true
 
 jobs:
-- job: build_test
-  displayName: Build and Test
+- job: build_test_pack
+  displayName: 'Build, Test, and Pack'
   workspace:
     clean: outputs
   steps:
