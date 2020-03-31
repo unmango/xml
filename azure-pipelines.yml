@@ -112,7 +112,7 @@ jobs:
   displayName: Deploy UnMango.Xml to GitHub
   pool: Linux
   dependsOn: build_test_pack
-  condition: contains(variables['Build.SourceBranch'], 'master')
+  condition: or( contains(variables['Build.SourceBranch'], 'master'), contains(variables['Build.SourceBranch'], 'release') )
   variables:
     DotNetSdkVersion: 3.x
 
