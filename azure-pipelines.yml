@@ -8,6 +8,7 @@ trigger:
     include:
     - src/*
     - tool/*
+    - azure-pipelines.yml
 
 pr:
   branches:
@@ -136,6 +137,6 @@ jobs:
             command: push
             packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg;!$(Pipeline.Workspace)/**/*.symbols.nupkg'
             nuGetFeedType: external
-            externalEndpoint: 'UnMango.Xml NuGet'   # Service Connection Name
+            externalEndpoint: 'UnMango NuGet'   # Service Connection Name
             publishPackageMetadata: true
             verbosityPush: Normal
