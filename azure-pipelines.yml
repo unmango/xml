@@ -10,7 +10,6 @@ trigger:
     - tool/*
 
 pr:
-  batch: true
   branches:
     include:
     - master
