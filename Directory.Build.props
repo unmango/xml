@@ -10,7 +10,7 @@
     <Product>UnMango.Xml</Product>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageProjectUrl>https://github.com/unmango/xml</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/unmango/xml.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/unmango/xml</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <DebugType>portable</DebugType>
     <IsPackable>false</IsPackable>
