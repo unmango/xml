@@ -52,7 +52,7 @@ jobs:
       command: restore
       projects: '**/*.csproj'
       nugetConfigPath: NuGet.Config
-      externalFeedCredentials: 'UnMango NuGet'   # Service Connection Name
+      externalFeedCredentials: 'UnMango GitHub NuGet'   # Service Connection Name
       arguments: '-c $(BuildConfiguration)'
       verbosityRestore: Normal
   
@@ -137,6 +137,6 @@ jobs:
             command: push
             packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg;!$(Pipeline.Workspace)/**/*.symbols.nupkg'
             nuGetFeedType: external
-            externalEndpoint: 'UnMango NuGet'   # Service Connection Name
+            externalEndpoint: 'UnMango GitHub NuGet'   # Service Connection Name
             publishPackageMetadata: true
             verbosityPush: Normal
