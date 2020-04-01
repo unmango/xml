@@ -112,6 +112,8 @@ jobs:
 - deployment: deploy
   displayName: Deploy UnMango.Xml to GitHub
   pool: Linux
+  workspace:
+    clean: all
   dependsOn: build_test_pack
   condition: or( contains(variables['Build.SourceBranch'], 'master'), contains(variables['Build.SourceBranch'], 'release') )
   variables:
