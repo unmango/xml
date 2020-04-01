@@ -24,8 +24,8 @@ pr:
 pool: Linux
 
 variables:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   BuildConfiguration: Release
-  UnMangoFeed: 'UnMango NuGet'
   CI: true
 
 jobs:
@@ -51,7 +51,7 @@ jobs:
       command: restore
       projects: '**/*.csproj'
       nugetConfigPath: NuGet.Config
-      externalFeedCredentials: $(UnMangoFeed)   # Service Connection Name
+      externalFeedCredentials: 'UnMango NuGet'   # Service Connection Name
       arguments: '-c $(BuildConfiguration)'
       verbosityRestore: Normal
   
@@ -136,6 +136,6 @@ jobs:
             command: push
             packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg;!$(Pipeline.Workspace)/**/*.symbols.nupkg'
             nuGetFeedType: external
-            externalEndpoint: $(UnMangoFeed)   # Service Connection Name
+            externalEndpoint: 'UnMango.Xml NuGet'   # Service Connection Name
             publishPackageMetadata: true
             verbosityPush: Normal
