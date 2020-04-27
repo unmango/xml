@@ -27,6 +27,7 @@ pool: Linux
 variables:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   BuildConfiguration: Release
+  NuGetFeed: 'UnMango GitHub NuGet'
   CI: true
 
 stages:
@@ -55,7 +56,7 @@ stages:
         command: restore
         projects: '**/*.csproj'
         nugetConfigPath: NuGet.Config
-        externalFeedCredentials: 'UnMango GitHub NuGet'   # Service Connection Name
+        externalFeedCredentials: $(NuGetFeed)   # Service Connection Name
         arguments: '-c $(BuildConfiguration)'
         verbosityRestore: Normal
       
@@ -149,5 +150,5 @@ stages:
               command: push
               packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg;!$(Pipeline.Workspace)/**/*.symbols.nupkg'
               nuGetFeedType: external
-              externalEndpoint: 'UnMango GitHub NuGet'   # Service Connection Name
+              externalEndpoint: $(NuGetFeed)   # Service Connection Name
               publishPackageMetadata: true
