@@ -19,17 +19,100 @@
       <e p="build" t="Include" />
       <e p="docs" t="Include" />
       <e p="global.json" t="Include" />
+      <e p="packages" t="ExcludeRecursive" />
       <e p="src" t="Include">
         <e p="UnMango.Xml" t="IncludeRecursive">
+          <e p="Converters" t="Include">
+            <e p="Int32Converter.cs" t="Include" />
+          </e>
+          <e p="Internal" t="Include">
+            <e p="BitConverter.cs" t="Include" />
+          </e>
+          <e p="Properties" t="Include">
+            <e p="AssemblyInfo.cs" t="Include" />
+          </e>
+          <e p="Serializer" t="Include">
+            <e p="XmlSerializer.Deserialize.Generic.Async.cs" t="Include" />
+            <e p="XmlSerializer.Deserialize.Generic.cs" t="Include" />
+            <e p="XmlSerializer.Deserialize.NonGeneric.Async.cs" t="Include" />
+            <e p="XmlSerializer.Deserialize.NonGeneric.cs" t="Include" />
+            <e p="XmlSerializer.Serialize.Generic.Async.cs" t="Include" />
+            <e p="XmlSerializer.Serialize.Generic.cs" t="Include" />
+            <e p="XmlSerializer.Serialize.NonGeneric.Async.cs" t="Include" />
+            <e p="XmlSerializer.Serialize.NonGeneric.cs" t="Include" />
+          </e>
           <e p="UnMango.Xml.csproj" t="IncludeRecursive" />
+          <e p="UnMango.Xml.csproj.DotSettings" t="Include" />
+          <e p="XmlConstants.cs" t="Include" />
+          <e p="XmlConverter.cs" t="Include" />
+          <e p="XmlConverter`.cs" t="Include" />
+          <e p="XmlParsingException.cs" t="Include" />
+          <e p="XmlReader.cs" t="Include" />
+          <e p="XmlReaderOptions.cs" t="Include" />
+          <e p="XmlSerializer.cs" t="Include" />
+          <e p="XmlSerializerOptions.cs" t="Include" />
+          <e p="XmlTextReader.cs" t="Include" />
+          <e p="XmlTextWriter.cs" t="Include" />
+          <e p="XmlToken.cs" t="Include" />
+          <e p="XmlWriter.cs" t="Include" />
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="obj" t="ExcludeRecursive">
+            <e p="Debug" t="Include">
+              <e p="netstandard2.0" t="Include">
+                <e p="UnMango.Xml.AssemblyInfo.cs" t="Include" />
+              </e>
+            </e>
+          </e>
         </e>
       </e>
       <e p="test" t="Include">
         <e p="UnMango.Xml.Benchmarks" t="IncludeRecursive">
+          <e p="Program.cs" t="Include" />
           <e p="UnMango.Xml.Benchmarks.csproj" t="IncludeRecursive" />
+          <e p="XmlWriterBenchmark.cs" t="Include" />
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="obj" t="ExcludeRecursive">
+            <e p="Debug" t="Include">
+              <e p="netcoreapp3.1" t="Include">
+                <e p="UnMango.Xml.Benchmarks.AssemblyInfo.cs" t="Include" />
+              </e>
+            </e>
+          </e>
         </e>
         <e p="UnMango.Xml.Test" t="IncludeRecursive">
+          <e p="Reader" t="Include">
+            <e p="ReadAttributeValueTests.cs" t="Include" />
+            <e p="ReadEntityValueTests.cs" t="Include" />
+            <e p="ReadNameTests.cs" t="Include" />
+            <e p="ReadNameTokenTests.cs" t="Include" />
+            <e p="ReadPubidLiteralTests.cs" t="Include" />
+            <e p="ReadWhiteSpaceTests.cs" t="Include" />
+          </e>
+          <e p="Serializer" t="Include">
+            <e p="Deserialize.Generic.AsyncTest.cs" t="Include" />
+            <e p="Deserialize.GenericTest.cs" t="Include" />
+            <e p="Deserialize.NonGeneric.AsyncTest.cs" t="Include" />
+            <e p="Deserialize.NonGenericTest.cs" t="Include" />
+            <e p="Serialize.Generic.AsyncTest.cs" t="Include" />
+            <e p="Serialize.GenericTest.cs" t="Include" />
+            <e p="Serialize.NonGeneric.AsyncTest.cs" t="Include" />
+            <e p="Serialize.NonGenericTest.cs" t="Include" />
+          </e>
+          <e p="TestData.cs" t="Include" />
+          <e p="TestHelper.cs" t="Include" />
+          <e p="TestOptions.cs" t="Include" />
           <e p="UnMango.Xml.Test.csproj" t="IncludeRecursive" />
+          <e p="XmlConstantsTests.cs" t="Include" />
+          <e p="XmlConverterTests.cs" t="Include" />
+          <e p="XmlWriterTests.cs" t="Include" />
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="obj" t="ExcludeRecursive">
+            <e p="Debug" t="Include">
+              <e p="netcoreapp3.1" t="Include">
+                <e p="UnMango.Xml.Test.AssemblyInfo.cs" t="Include" />
+              </e>
+            </e>
+          </e>
         </e>
       </e>
       <e p="tool" t="Include" />
