@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.Github" Version="1.0.0" PrivateAssets="All" />
-    <PackageReference Include="MinVer" Version="2.3.1" PrivateAssets="All" />
+    <PackageReference Include="MinVer" Version="2.4.0" PrivateAssets="All" />
     <PackageReference Include="System.IO.Pipelines" Version="4.7.3" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
   </ItemGroup>
