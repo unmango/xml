@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$USER_HOME$/.cache/JetBrains/Rider2020.1/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/.cache/JetBrains/Rider2020.1/resharper-host/local/Transient/ReSharperHost/v201/SolutionCaches/_Xml.1750905371.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/.cache/JetBrains/Rider2020.3/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.cache/JetBrains/Rider2020.3/resharper-host/local/Transient/Rider/v203/SolutionCaches/_Xml.1750905371.00" t="ExcludeRecursive" />
     <e p="$USER_HOME$/.nuget/packages/microsoft.diagnostics.tracing.traceevent/2.0.49/lib/native/amd64" t="Include">
       <e p="KernelTraceControl.dll" t="Include" />
       <e p="msdia140.dll" t="Include" />
@@ -15,12 +15,13 @@
     <e p="$USER_HOME$/.nuget/packages/microsoft.diagnostics.tracing.traceevent/2.0.49/lib/netstandard1.6/Dia2Lib.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/microsoft.diagnostics.tracing.traceevent/2.0.49/lib/netstandard1.6/OSExtensions.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/microsoft.diagnostics.tracing.traceevent/2.0.49/lib/netstandard1.6/TraceReloggerLib.dll" t="Include" />
-    <e p="$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/16.6.1/build/netcoreapp2.1" t="Include">
+    <e p="$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/16.9.1/build/netcoreapp2.1" t="Include">
       <e p="Microsoft.NET.Test.Sdk.Program.cs" t="Include" />
     </e>
-    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.2/build/netcoreapp2.1/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
-    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.2/build/netcoreapp2.1/xunit.runner.utility.netcoreapp10.dll" t="Include" />
-    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.2/build/netcoreapp2.1/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/microsoft.testplatform.testhost/16.9.1/build/netcoreapp2.1/Microsoft.TestPlatform.PlatformAbstractions.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.3/build/netcoreapp2.1/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.3/build/netcoreapp2.1/xunit.runner.utility.netcoreapp10.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.3/build/netcoreapp2.1/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p=".config/dotnet-tools.json" t="Include" />
       <e p=".dependabot/config.yml" t="Include" />
@@ -126,7 +127,7 @@
           <e p="bin" t="ExcludeRecursive" />
           <e p="obj" t="ExcludeRecursive">
             <e p="Debug" t="Include">
-              <e p="netcoreapp3.1" t="Include">
+              <e p="net5.0" t="Include">
                 <e p="UnMango.Xml.Test.AssemblyInfo.cs" t="Include" />
               </e>
             </e>
