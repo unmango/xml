@@ -101,6 +101,7 @@
         <e p="UnMango.Xml.Test" t="IncludeRecursive">
           <e p="Reader" t="Include">
             <e p="ReadAttributeValueTests.cs" t="Include" />
+            <e p="ReadCharacterDataTests.cs" t="Include" />
             <e p="ReadEntityValueTests.cs" t="Include" />
             <e p="ReadNameTests.cs" t="Include" />
             <e p="ReadNameTokenTests.cs" t="Include" />
