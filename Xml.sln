@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C3B0D6F1-5BFF-4727-9921-0E99FF493AEB}"
 ProjectSection(SolutionItems) = preProject
 	test\xunit.runner.json = test\xunit.runner.json
+	test\Directory.Build.props = test\Directory.Build.props
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{4ED5DC3E-8A49-42D7-806B-C5ED507ECE24}"
@@ -26,6 +27,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{836FD012-2D72-405D-BE43-F531E64772E2}"
+ProjectSection(SolutionItems) = preProject
+	src\Directory.Build.props = src\Directory.Build.props
+EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tool", "tool", "{0DCC9A5E-F05A-438B-A511-D180EE1C320B}"
 ProjectSection(SolutionItems) = preProject
