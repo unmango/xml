@@ -212,7 +212,7 @@ namespace UnMango.Xml
         /// <param name="obj">NA</param>
         /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object obj) => throw new NotSupportedException();
+        public override bool Equals(object? obj) => throw new NotSupportedException();
 
         /// <summary>
         /// Not Supported.
