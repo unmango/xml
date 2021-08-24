@@ -1,9 +1,9 @@
 {
-    "recommendations": [
-        "editorconfig.editorconfig",
-        "davidanson.vscode-markdownlint",
-        "ms-dotnettools.csharp",
-        "tintoy.msbuild-project-tools",
-        "fernandoescolar.vscode-solution-explorer"
-    ]
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "davidanson.vscode-markdownlint",
+    "ms-dotnettools.csharp",
+    "tintoy.msbuild-project-tools",
+    "fernandoescolar.vscode-solution-explorer"
+  ]
 }
