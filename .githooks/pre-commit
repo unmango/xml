@@ -1,4 +1,7 @@
 #!/bin/sh
+
+# https://github.com/dotnet/format/blob/7e05791723459806c6e7fdf805c38275006fc39f/docs/integrations.md
+
 LC_ALL=C
 
 # Select files to format
