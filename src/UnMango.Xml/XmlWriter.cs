@@ -47,7 +47,7 @@ namespace UnMango.Xml
         {
             const int size = 1;
             var span = _output.GetSpan(size);
-            span[0] = (byte) value;
+            span[0] = (byte)value;
             _output.Advance(size);
         }
 
@@ -212,7 +212,7 @@ namespace UnMango.Xml
         /// <param name="obj">NA</param>
         /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object obj) => throw new NotSupportedException();
+        public override bool Equals(object? obj) => throw new NotSupportedException();
 
         /// <summary>
         /// Not Supported.

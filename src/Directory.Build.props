@@ -1,0 +1,13 @@
+<Project>
+  
+  <Import Project="../Directory.Build.props" />
+  
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+</Project>

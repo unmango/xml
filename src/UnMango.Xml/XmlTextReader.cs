@@ -12,15 +12,10 @@ namespace UnMango.Xml
         }
 
         //public override bool Equals(object obj) => _reader.Equals(obj);
-        public override bool Equals(object obj) => throw new NotImplementedException();
+        public override bool Equals(object? obj) => throw new NotImplementedException();
 
         //public override int GetHashCode() => _reader.GetHashCode();
         public override int GetHashCode() => throw new NotImplementedException();
-
-        public override object InitializeLifetimeService()
-        {
-            throw new NotImplementedException();
-        }
 
         public override int Peek()
         {
@@ -57,7 +52,7 @@ namespace UnMango.Xml
             throw new NotImplementedException();
         }
 
-        public override Task<string> ReadLineAsync()
+        public override Task<string?> ReadLineAsync()
         {
             throw new NotImplementedException();
         }

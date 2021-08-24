@@ -9,7 +9,7 @@ namespace UnMango.Xml
     /// </summary>
     public ref struct XmlReader
     {
-        private const int DEFAULT_OFFSET = 0;
+        private const int DefaultOffset = 0;
 
         private readonly ReadOnlySpan<byte> _xml;
         private readonly XmlReaderOptions _options;
@@ -23,7 +23,7 @@ namespace UnMango.Xml
         /// <param name="xml">XML source to read from.</param>
         /// <param name="offset">Starting offset in <paramref name="xml"/>.</param>
         /// <param name="options">XML reader options.</param>
-        public XmlReader(ReadOnlySpan<byte> xml, int offset = DEFAULT_OFFSET, XmlReaderOptions options = default)
+        public XmlReader(ReadOnlySpan<byte> xml, int offset = DefaultOffset, XmlReaderOptions options = default)
         {
             _xml = xml;
             _options = options;
@@ -38,7 +38,7 @@ namespace UnMango.Xml
         /// <param name="xml">XML source to read from.</param>
         /// <param name="options">XML reader options.</param>
         public XmlReader(ReadOnlySpan<byte> xml, XmlReaderOptions options)
-            : this(xml, DEFAULT_OFFSET, options) { }
+            : this(xml, DefaultOffset, options) { }
 
         /// <summary>
         /// Reads the current offset as an XML name.
@@ -309,7 +309,7 @@ namespace UnMango.Xml
         /// <param name="obj">NA</param>
         /// <returns>NA</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object obj) => throw new NotSupportedException();
+        public override bool Equals(object? obj) => throw new NotSupportedException();
 
         /// <summary>
         /// Not Supported.

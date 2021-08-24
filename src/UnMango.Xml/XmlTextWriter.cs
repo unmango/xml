@@ -15,7 +15,7 @@ namespace UnMango.Xml
         }
 
         //public override bool Equals(object obj) => _writer.Equals(obj);
-        public override bool Equals(object obj) => throw new NotImplementedException();
+        public override bool Equals(object? obj) => throw new NotImplementedException();
 
         public override void Flush()
         {
@@ -30,11 +30,6 @@ namespace UnMango.Xml
         //public override int GetHashCode() => _writer.GetHashCode();
         public override int GetHashCode() => throw new NotImplementedException();
 
-        public override object InitializeLifetimeService()
-        {
-            throw new NotImplementedException();
-        }
-
         //public override string ToString() => _writer.ToString();
         public override string ToString() => throw new NotImplementedException();
 
@@ -48,7 +43,7 @@ namespace UnMango.Xml
             throw new NotImplementedException();
         }
 
-        public override void Write(char[] buffer)
+        public override void Write(char[]? buffer)
         {
             throw new NotImplementedException();
         }
@@ -78,7 +73,7 @@ namespace UnMango.Xml
             throw new NotImplementedException();
         }
 
-        public override void Write(object value)
+        public override void Write(object? value)
         {
             throw new NotImplementedException();
         }
@@ -88,27 +83,27 @@ namespace UnMango.Xml
             throw new NotImplementedException();
         }
 
-        public override void Write(string value)
+        public override void Write(string? value)
         {
             throw new NotImplementedException();
         }
 
-        public override void Write(string format, object arg0)
+        public override void Write(string format, object? arg0)
         {
             throw new NotImplementedException();
         }
 
-        public override void Write(string format, object arg0, object arg1)
+        public override void Write(string format, object? arg0, object? arg1)
         {
             throw new NotImplementedException();
         }
 
-        public override void Write(string format, object arg0, object arg1, object arg2)
+        public override void Write(string format, object? arg0, object? arg1, object? arg2)
         {
             throw new NotImplementedException();
         }
 
-        public override void Write(string format, params object[] arg)
+        public override void Write(string format, params object?[] arg)
         {
             throw new NotImplementedException();
         }
@@ -133,7 +128,7 @@ namespace UnMango.Xml
             throw new NotImplementedException();
         }
 
-        public override Task WriteAsync(string value)
+        public override Task WriteAsync(string? value)
         {
             throw new NotImplementedException();
         }
@@ -153,7 +148,7 @@ namespace UnMango.Xml
             throw new NotImplementedException();
         }
 
-        public override void WriteLine(char[] buffer)
+        public override void WriteLine(char[]? buffer)
         {
             throw new NotImplementedException();
         }
@@ -183,7 +178,7 @@ namespace UnMango.Xml
             throw new NotImplementedException();
         }
 
-        public override void WriteLine(object value)
+        public override void WriteLine(object? value)
         {
             throw new NotImplementedException();
         }
@@ -193,27 +188,27 @@ namespace UnMango.Xml
             throw new NotImplementedException();
         }
 
-        public override void WriteLine(string value)
+        public override void WriteLine(string? value)
         {
             throw new NotImplementedException();
         }
 
-        public override void WriteLine(string format, object arg0)
+        public override void WriteLine(string format, object? arg0)
         {
             throw new NotImplementedException();
         }
 
-        public override void WriteLine(string format, object arg0, object arg1)
+        public override void WriteLine(string format, object? arg0, object? arg1)
         {
             throw new NotImplementedException();
         }
 
-        public override void WriteLine(string format, object arg0, object arg1, object arg2)
+        public override void WriteLine(string format, object? arg0, object? arg1, object? arg2)
         {
             throw new NotImplementedException();
         }
 
-        public override void WriteLine(string format, params object[] arg)
+        public override void WriteLine(string format, params object?[] arg)
         {
             throw new NotImplementedException();
         }
@@ -243,7 +238,7 @@ namespace UnMango.Xml
             throw new NotImplementedException();
         }
 
-        public override Task WriteLineAsync(string value)
+        public override Task WriteLineAsync(string? value)
         {
             throw new NotImplementedException();
         }
