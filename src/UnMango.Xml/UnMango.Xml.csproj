@@ -2,13 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <IsPackable>true</IsPackable>
     <Description>An XML serializer utlizing new .NET APIs.</Description>
     <PackageId>UnMango.Xml</PackageId>
     <PackageTags>Xml;Serializer;System.IO.Pipelines</PackageTags>
-    <!--<PackageIcon>icon.jpg</PackageIcon>-->
     <GenerateDocumentationFile Condition=" $(Configuration) == 'Release' ">true</GenerateDocumentationFile>
-    <!--<MinVerMinimumMajorMinor>0.0</MinVerMinimumMajorMinor>-->
   </PropertyGroup>
 
   <ItemGroup>
