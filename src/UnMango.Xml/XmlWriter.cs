@@ -47,7 +47,7 @@ namespace UnMango.Xml
         {
             const int size = 1;
             var span = _output.GetSpan(size);
-            span[0] = (byte) value;
+            span[0] = (byte)value;
             _output.Advance(size);
         }
 
