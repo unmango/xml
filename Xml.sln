@@ -28,11 +28,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dependabot", "dependabot", "{FE6BF0B0-4DCE-11EA-9656-89E21F3006C7}"
-	ProjectSection(SolutionItems) = preProject
-		.dependabot\config.yml = .dependabot\config.yml
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{836FD012-2D72-405D-BE43-F531E64772E2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tool", "tool", "{0DCC9A5E-F05A-438B-A511-D180EE1C320B}"
@@ -42,6 +37,17 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnMango.Xml.Test", "test\UnMango.Xml.Test\UnMango.Xml.Test.csproj", "{CDFFC17D-4573-446C-A202-B6B5BD277D21}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnMango.Xml.Benchmarks", "test\UnMango.Xml.Benchmarks\UnMango.Xml.Benchmarks.csproj", "{F5654C54-1EAA-4AAA-BB3B-4B019E1E510A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{678A3172-416F-4A94-BA5B-8A51560AEB8F}"
+ProjectSection(SolutionItems) = preProject
+	.github\dependabot.yml = .github\dependabot.yml
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{D31AD8A6-6F05-4ED5-8533-2351CD6CB7D9}"
+ProjectSection(SolutionItems) = preProject
+	.github\workflows\nuget_publish.yml = .github\workflows\nuget_publish.yml
+	.github\workflows\pull_request.yml = .github\workflows\pull_request.yml
+EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,10 +72,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{FE6BF0B0-4DCE-11EA-9656-89E21F3006C7} = {CC5553D2-F503-4155-BD83-46BBC9ACEC26}
 		{E7BB5C30-9DF0-4F04-8F51-DB50AF1A7E5C} = {836FD012-2D72-405D-BE43-F531E64772E2}
 		{CDFFC17D-4573-446C-A202-B6B5BD277D21} = {C3B0D6F1-5BFF-4727-9921-0E99FF493AEB}
 		{F5654C54-1EAA-4AAA-BB3B-4B019E1E510A} = {C3B0D6F1-5BFF-4727-9921-0E99FF493AEB}
+		{D31AD8A6-6F05-4ED5-8533-2351CD6CB7D9} = {678A3172-416F-4A94-BA5B-8A51560AEB8F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8312C89B-381B-4CAA-BFD1-CA67E063217E}
