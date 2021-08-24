@@ -26,6 +26,9 @@ jobs:
 
       - name: Restore dependencies
         run: dotnet restore
+        
+      - name: Lint solution
+        run: dotnet format --verify-no-changes --no-restore
 
       - name: Build solution
         run: dotnet build --no-restore
