@@ -9,12 +9,22 @@ Just another XML serializer.
 
 I'm primarily using this to practice writing a serializer using lower-level C# APIs.
 
-This API is loosely modeled after `System.Text.Json` and `Utf8Json`.
+This API is loosely modeled after [`System.Text.Json`](https://github.com/dotnet/runtime/tree/main/src/libraries/System.Text.Json) and [`Utf8Json`](https://github.com/neuecc/Utf8Json/).
+
+## Development
+
+### Lint Hooks
+
+The easiest way to setup dotnet format to run on commit is to run `git config core.hooksPath .githooks`.
+
+## References
 
 [W3C Extensible Markup Language (XML) 1.0 (Fifth Edition)](https://www.w3.org/TR/2008/REC-xml-20081126/)
 
 For Reference: [W3C Canonical XML Version 2.0](https://www.w3.org/TR/2013/NOTE-xml-c14n2-20130411/)
 
-### Lint Hooks
+## License
 
-The easiest way to setup dotnet format to run on commit is to run `git config core.hooksPath .githooks`.
+GNU General Public License v3.0 or later
+
+See [COPYING](COPYING) to see the full text.

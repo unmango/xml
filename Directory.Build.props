@@ -8,6 +8,7 @@
 
     <Authors>UnstoppableMango</Authors>
     <Product>UnMango.Xml</Product>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageProjectUrl>https://github.com/unmango/xml</PackageProjectUrl>
     <RepositoryUrl>https://github.com/unmango/xml</RepositoryUrl>
