@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UnMango.Xml
 {
-    public static partial class XmlSerializer
+    public partial class XmlSerializer
     {
         /// <summary>
         /// Serializes <paramref name="value"/> as XML to a UTF8 byte array.

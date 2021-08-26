@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UnMango.Xml
 {
-    public static partial class XmlSerializer
+    public partial class XmlSerializer
     {
         /// <summary>
         /// Deserializes <paramref name="xml"/> as a <typeparamref name="T"/>.

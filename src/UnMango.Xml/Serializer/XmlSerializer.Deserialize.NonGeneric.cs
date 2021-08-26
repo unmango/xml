@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnMango.Xml
 {
-    public static partial class XmlSerializer
+    public partial class XmlSerializer
     {
         /// <summary>
         /// Deserializes <paramref name="xml"/> as a <paramref name="type"/>.

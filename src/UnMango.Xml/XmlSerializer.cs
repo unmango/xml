@@ -1,4 +1,4 @@
-﻿using JetBrains.Annotations;
+using JetBrains.Annotations;
 
 namespace UnMango.Xml
 {
@@ -7,7 +7,7 @@ namespace UnMango.Xml
     /// and deserialize XML into objects or value types.
     /// </summary>
     [PublicAPI]
-    public static partial class XmlSerializer
+    public partial class XmlSerializer : IXmlSerializer
     {
         // Implementations of [De]Serialize[Async] are located in /Serializer
     }
