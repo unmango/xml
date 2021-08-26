@@ -1,8 +1,9 @@
 # UnMango XML
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/unmango/xml?include_prereleases)
-![Codecov](https://img.shields.io/codecov/c/github/unmango/xml)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/unmango/xml/NuGet%20Publish)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/unmango/xml?include_prereleases)](https://github.com/unmango/xml/releases/latest)
+[![Codecov](https://img.shields.io/codecov/c/github/unmango/xml)](https://app.codecov.io/gh/unmango/xml)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/unmango/xml/NuGet%20Publish)](https://github.com/unmango/xml/actions/workflows/nuget_publish.yml)
+[![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/unmango/xml)](https://libraries.io/github/unmango/xml)
 
 Just another XML serializer.
 
