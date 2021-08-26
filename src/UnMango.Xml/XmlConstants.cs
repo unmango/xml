@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
+// ReSharper disable ConvertIfStatementToReturnStatement
+
 namespace UnMango.Xml
 {
     using BitConverter =
 #if NETSTANDARD2_0
-    // NetStandard 2.0 System.BitConverter doesn't have ReadOnlySpan<byte> overlaods
-    Internal.BitConverter;
+        // NetStandard 2.0 System.BitConverter doesn't have ReadOnlySpan<byte> overloads
+        Internal.BitConverter;
 #else
-    System.BitConverter;
+        // ReSharper disable once RedundantNameQualifier
+        System.BitConverter;
 #endif
 
     internal static class XmlConstants
@@ -27,7 +30,7 @@ namespace UnMango.Xml
         /// Checks whether <paramref name="value"/> is a Char.
         /// </summary>
         /// <param name="value">The character to check.</param>
-        /// <returns>True is <paramref name="value"/> is a Char, False otherwise.</returns>
+        /// <returns>True if <paramref name="value"/> is a Char, False otherwise.</returns>
         /// <remarks>
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-Char
         /// </remarks>
@@ -38,7 +41,7 @@ namespace UnMango.Xml
         /// Checks whether <paramref name="value"/> is a Char.
         /// </summary>
         /// <param name="value">The character to check.</param>
-        /// <returns>True is <paramref name="value"/> is a Char, False otherwise.</returns>
+        /// <returns>True if <paramref name="value"/> is a Char, False otherwise.</returns>
         /// <remarks>
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-Char
         /// </remarks>
@@ -193,11 +196,11 @@ namespace UnMango.Xml
             {
                 case ':':
                 case '_':
+                case >= 'A' and <= 'Z':
+                case >= 'a' and <= 'z':
                     return true;
             }
 
-            if (value >= 'A' && value <= 'Z') return true;
-            if (value >= 'a' && value <= 'z') return true;
             if (value >= 0xC0 && value <= 0xD6) return true;
             if (value >= 0xD8 && value <= 0xF6) return true;
             if (value >= 0xF8 && value <= 0x2FF) return true;

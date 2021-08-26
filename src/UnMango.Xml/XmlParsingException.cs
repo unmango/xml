@@ -1,10 +1,12 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace UnMango.Xml
 {
     /// <summary>
     /// Represents an error that occurred parsing XML.
     /// </summary>
+    [PublicAPI]
     public class XmlParsingException : Exception
     {
         /// <summary>

@@ -2,12 +2,14 @@
 using System.Buffers;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace UnMango.Xml
 {
     /// <summary>
     /// Facilitates writing Xml to a buffer.
     /// </summary>
+    [PublicAPI]
     public readonly struct XmlWriter
     {
         private readonly IBufferWriter<byte> _output;

@@ -29,8 +29,7 @@ namespace UnMango.Xml.Test.Reader
         {
             var bytes = Encoding.UTF8.GetBytes(value);
 
-            Assert.Throws<XmlParsingException>(() =>
-            {
+            Assert.Throws<XmlParsingException>(() => {
                 var reader = new XmlReader(bytes);
                 reader.ReadAttributeValue();
             });
@@ -43,8 +42,7 @@ namespace UnMango.Xml.Test.Reader
         {
             var bytes = Encoding.UTF8.GetBytes(value);
 
-            Assert.Throws<XmlParsingException>(() =>
-            {
+            Assert.Throws<XmlParsingException>(() => {
                 var reader = new XmlReader(bytes);
                 reader.ReadAttributeValue();
             });
@@ -59,8 +57,7 @@ namespace UnMango.Xml.Test.Reader
         {
             var bytes = Encoding.UTF8.GetBytes(value);
 
-            Assert.Throws<XmlParsingException>(() =>
-            {
+            Assert.Throws<XmlParsingException>(() => {
                 var reader = new XmlReader(bytes);
                 reader.ReadAttributeValue();
             });

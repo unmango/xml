@@ -1,7 +1,7 @@
 ﻿namespace UnMango.Xml
 {
     /// <summary>
-    /// An xml token.
+    /// An XML token.
     /// </summary>
     public enum XmlToken : byte
     {

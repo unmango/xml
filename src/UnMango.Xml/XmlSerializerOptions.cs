@@ -1,11 +1,14 @@
-﻿namespace UnMango.Xml
+﻿using JetBrains.Annotations;
+
+namespace UnMango.Xml
 {
     /// <summary>
     /// Provides options to be used with <see cref="XmlSerializer"/>.
     /// </summary>
-    public sealed class XmlSerializerOptions
+    [PublicAPI]
+    public sealed record XmlSerializerOptions
     {
-        internal static readonly XmlSerializerOptions DefaultOptions = new XmlSerializerOptions();
+        internal static readonly XmlSerializerOptions DefaultOptions = new();
 
         /// <summary>
         /// Initializes a new instance of a <see cref="XmlSerializerOptions"/>.

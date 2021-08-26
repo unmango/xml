@@ -3,7 +3,6 @@ root = true
 [*]
 insert_final_newline = true
 indent_style = space
-indent_size = 4
 
 [*.{xml,csproj,proj,props,targets}]
 indent_size = 2
@@ -17,4 +16,14 @@ indent_size = 2
 [*.{yml,yaml}]
 indent_size = 2
 
+# .NET formatting rules
+[*.{cs,vb}]
+indent_size = 4
+dotnet_sort_system_directives_first = true
+
+# CSharp formatting rules
 [*.cs]
+csharp_new_line_before_open_brace = accessors, control_blocks, events, indexers, methods, properties, types
+
+[**/*Benchmarks*/*.cs]
+dotnet_code_quality.CA1822.api_surface = private, internal
