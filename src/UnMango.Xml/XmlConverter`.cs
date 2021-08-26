@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace UnMango.Xml
 {
@@ -6,6 +7,7 @@ namespace UnMango.Xml
     /// Converts an object or value to or from XML.
     /// </summary>
     /// <typeparam name="T">The <see cref="Type"/> to convert.</typeparam>
+    [PublicAPI]
     public abstract class XmlConverter<T> : XmlConverter
     {
         /// <summary>

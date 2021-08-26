@@ -1,12 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace UnMango.Xml
 {
     /// <summary>
     /// Reads XML.
     /// </summary>
+    [PublicAPI]
     public ref struct XmlReader
     {
         private const int DefaultOffset = 0;

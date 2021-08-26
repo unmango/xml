@@ -1,10 +1,12 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace UnMango.Xml
 {
     /// <summary>
     /// Converts an object or value to or from XML.
     /// </summary>
+    [PublicAPI]
     public abstract class XmlConverter
     {
         internal XmlConverter() { }
