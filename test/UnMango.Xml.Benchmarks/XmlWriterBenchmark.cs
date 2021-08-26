@@ -8,7 +8,7 @@ namespace UnMango.Xml.Benchmarks
     public class XmlWriterBenchmark
     {
         private const int Iterations = 10_000;
-        
+
         [Benchmark(Baseline = true)]
         public void System_WriteTrue()
         {
@@ -20,7 +20,7 @@ namespace UnMango.Xml.Benchmarks
             for (var i = 0; i < Iterations; i++)
                 writer.WriteValue(true);
         }
-        
+
         [Benchmark]
         public void UnMango_WriteTrue()
         {
