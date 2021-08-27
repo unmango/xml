@@ -226,6 +226,7 @@ namespace UnMango.Xml
 
             for (; _offset < _xml.Length; _offset++)
             {
+                // TODO: These can appear as markup delimiters, or within a comment, processing instruction, or CDATA section
                 if (_xml[_offset] == '<') break;
                 if (_xml[_offset] == '&') break;
 
