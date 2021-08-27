@@ -180,7 +180,7 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadPubidLiteral()
         {
-            if (!TryReadLiteralDelimeter(out var literal, out var alternate))
+            if (!TryReadLiteralDelimiter(out var literal, out var alternate))
             {
                 throw new XmlParsingException("Invalid start literal");
             }
@@ -302,7 +302,7 @@ namespace UnMango.Xml
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private bool TryReadLiteralDelimeter(out byte literal, out byte alternate)
+        private bool TryReadLiteralDelimiter(out byte literal, out byte alternate)
         {
             var result = TryReadLiteralDelimiter(out literal);
 
