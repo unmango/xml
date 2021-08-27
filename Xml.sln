@@ -53,6 +53,8 @@ ProjectSection(SolutionItems) = preProject
 	.github\workflows\pull_request.yml = .github\workflows\pull_request.yml
 EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnMango.Xml.Abstractions", "src\UnMango.Xml.Abstractions\UnMango.Xml.Abstractions.csproj", "{C8A0AA4E-D44C-4103-9C94-9DB8DE3D4656}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{F5654C54-1EAA-4AAA-BB3B-4B019E1E510A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5654C54-1EAA-4AAA-BB3B-4B019E1E510A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5654C54-1EAA-4AAA-BB3B-4B019E1E510A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8A0AA4E-D44C-4103-9C94-9DB8DE3D4656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8A0AA4E-D44C-4103-9C94-9DB8DE3D4656}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8A0AA4E-D44C-4103-9C94-9DB8DE3D4656}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8A0AA4E-D44C-4103-9C94-9DB8DE3D4656}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{CDFFC17D-4573-446C-A202-B6B5BD277D21} = {C3B0D6F1-5BFF-4727-9921-0E99FF493AEB}
 		{F5654C54-1EAA-4AAA-BB3B-4B019E1E510A} = {C3B0D6F1-5BFF-4727-9921-0E99FF493AEB}
 		{D31AD8A6-6F05-4ED5-8533-2351CD6CB7D9} = {678A3172-416F-4A94-BA5B-8A51560AEB8F}
+		{C8A0AA4E-D44C-4103-9C94-9DB8DE3D4656} = {836FD012-2D72-405D-BE43-F531E64772E2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8312C89B-381B-4CAA-BFD1-CA67E063217E}
