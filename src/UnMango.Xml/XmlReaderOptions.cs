@@ -8,5 +8,6 @@ namespace UnMango.Xml
     [PublicAPI]
     public readonly struct XmlReaderOptions
     {
+        internal static XmlReaderOptions From(XmlSerializerOptions? options) => new();
     }
 }

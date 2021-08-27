@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.IO.Pipelines;
 using System.Text;
@@ -47,7 +47,8 @@ namespace UnMango.Xml
         /// <returns>The deserialized value.</returns>
         public static T Deserialize<T>(in ReadOnlySpan<byte> span, XmlSerializerOptions? options = null)
         {
-            var reader = new XmlReader(span);
+            var readerOptions = XmlReaderOptions.From(options);
+            var reader = new XmlReader(span, readerOptions);
             return Deserialize<T>(ref reader, options);
         }
 
