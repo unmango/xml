@@ -148,7 +148,8 @@ namespace UnMango.Xml
             XmlSerializerOptions? options = null,
             CancellationToken cancellationToken = default)
         {
-            var reader = new XmlReader(span);
+            var readerOptions = XmlReaderOptions.From(options);
+            var reader = new XmlReader(span, readerOptions);
             return DeserializeAsync<T>(ref reader, options, cancellationToken);
         }
 

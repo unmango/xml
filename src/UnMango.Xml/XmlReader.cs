@@ -180,7 +180,7 @@ namespace UnMango.Xml
         /// </remarks>
         public ReadOnlySpan<byte> ReadPubidLiteral()
         {
-            if (!TryReadLiteralDelimeter(out var literal, out var alternate))
+            if (!TryReadLiteralDelimiter(out var literal, out var alternate))
             {
                 throw new XmlParsingException("Invalid start literal");
             }
@@ -192,7 +192,7 @@ namespace UnMango.Xml
                 if (_xml[_offset] == literal) break;
 
                 if (_xml[_offset] == alternate)
-                    throw new XmlParsingException($"Invalid publid literal character '{alternate}'");
+                    throw new XmlParsingException($"Invalid pubid literal character '{alternate}'");
 
                 if (!XmlConstants.IsPubidCharacter(_xml[_offset]))
                     throw new XmlParsingException($"Invalid pubid literal character '{_xml[_offset]}'");
@@ -215,23 +215,30 @@ namespace UnMango.Xml
         /// <remarks>
         /// Definition: https://www.w3.org/TR/2008/REC-xml-20081126/#NT-CharData
         /// </remarks>
-        // TODO: Other conditions
-        // TODO: Loop exit condition
         public ReadOnlySpan<byte> ReadCharacterData()
         {
-            var start = _offset++;
+            if (_xml[_offset] == '<' || _xml[_offset] == '&')
+            {
+                return ReadOnlySpan<byte>.Empty;
+            }
+
+            var start = _offset;
 
             for (; _offset < _xml.Length; _offset++)
             {
-                if (_xml[_offset] == '<')
-                    throw new XmlParsingException("Invalid character data character '<'");
+                // TODO: These can appear as markup delimiters, or within a comment, processing instruction, or CDATA section
+                if (_xml[_offset] == '<') break;
+                if (_xml[_offset] == '&') break;
 
-                // TODO: character reference
-                if (_xml[_offset] == '&')
-                    throw new XmlParsingException("Invalid character data character '&'");
+                if (_xml[_offset] == ']' &&
+                    _offset + 1 < _xml.Length && _xml[_offset + 1] == ']' &&
+                    _offset + 2 < _xml.Length && _xml[_offset + 2] == '>')
+                {
+                    break;
+                }
             }
 
-            return _xml.Slice(start, _offset - 1);
+            return _xml.Slice(start, _offset);
         }
 
         /// <summary>
@@ -296,7 +303,7 @@ namespace UnMango.Xml
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private bool TryReadLiteralDelimeter(out byte literal, out byte alternate)
+        private bool TryReadLiteralDelimiter(out byte literal, out byte alternate)
         {
             var result = TryReadLiteralDelimiter(out literal);
 
