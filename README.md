@@ -11,6 +11,19 @@ I'm primarily using this to practice writing a serializer using lower-level C# A
 
 This API is loosely modeled after [`System.Text.Json`](https://github.com/dotnet/runtime/tree/main/src/libraries/System.Text.Json) and [`Utf8Json`](https://github.com/neuecc/Utf8Json/).
 
+## Conventions
+
+High-level rules I try to follow.
+
+### Reader
+
+- All operations validate the current offset **
+- Validation failures throw `XmlSerializationException`s **
+- `Try*` methods do not increment the offset
+- `Try*` methods follow the .NET convention of returning a bool and accepting an `out` param
+
+** I may re-visit the validation strategy
+
 ## Development
 
 ### Lint Hooks
