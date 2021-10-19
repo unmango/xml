@@ -10,8 +10,8 @@ using BitConverter =
     // NetStandard 2.0 System.BitConverter doesn't have ReadOnlySpan<byte> overloads
     Internal.BitConverter;
 #else
-        // ReSharper disable once RedundantNameQualifier
-        System.BitConverter;
+    // ReSharper disable once RedundantNameQualifier
+    System.BitConverter;
 #endif
 
 internal static class XmlConstants
