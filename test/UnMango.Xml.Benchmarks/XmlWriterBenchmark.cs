@@ -5,6 +5,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace UnMango.Xml.Benchmarks;
 
+[MemoryDiagnoser]
 public class XmlWriterBenchmark
 {
     private const int Iterations = 10_000;
