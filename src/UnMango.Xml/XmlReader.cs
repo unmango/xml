@@ -261,6 +261,38 @@ public ref struct XmlReader
     }
 
     /// <summary>
+    /// Reads the current offset as an XML close element character.
+    /// </summary>
+    /// <exception cref="XmlParsingException">
+    /// Thrown when the current offset is not an XML close element character.
+    /// </exception>
+    public void ReadCloseElement()
+    {
+        if (_xml[_offset] != XmlConstants.CloseElement)
+        {
+            throw new XmlParsingException("Reader was not positioned at an element close character");
+        }
+
+        ++_offset;
+    }
+
+    /// <summary>
+    /// Reads the current offset as an XML open element character.
+    /// </summary>
+    /// <exception cref="XmlParsingException">
+    /// Thrown when the current offset is not an XML open element character.
+    /// </exception>
+    public void ReadOpenElement()
+    {
+        if (_xml[_offset] != XmlConstants.OpenElement)
+        {
+            throw new XmlParsingException("Reader was not positioned at an element start character");
+        }
+
+        ++_offset;
+    }
+
+    /// <summary>
     /// Reads the current offset as XML White Space.
     /// </summary>
     /// <remarks>
