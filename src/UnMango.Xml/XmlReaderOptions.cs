@@ -1,13 +1,12 @@
 ﻿using JetBrains.Annotations;
 
-namespace UnMango.Xml
+namespace UnMango.Xml;
+
+/// <summary>
+/// Configuration for an <see cref="XmlReader"/>.
+/// </summary>
+[PublicAPI]
+public readonly struct XmlReaderOptions
 {
-    /// <summary>
-    /// Configuration for an <see cref="XmlReader"/>.
-    /// </summary>
-    [PublicAPI]
-    public readonly struct XmlReaderOptions
-    {
-        internal static XmlReaderOptions From(XmlSerializerOptions? options) => new();
-    }
+    internal static XmlReaderOptions From(XmlSerializerOptions? options) => new();
 }

@@ -1,19 +1,18 @@
 ﻿using BenchmarkDotNet.Running;
 
-namespace UnMango.Xml.Benchmarks
+namespace UnMango.Xml.Benchmarks;
+
+internal static class Program
 {
-    internal static class Program
+    private static void Main(string[] args)
     {
-        private static void Main(string[] args)
+        if (args.Length > 0)
         {
-            if (args.Length > 0)
-            {
-                BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
-            }
-            else
-            {
-                BenchmarkRunner.Run<XmlWriterBenchmark>();
-            }
+            BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
+        }
+        else
+        {
+            BenchmarkRunner.Run<XmlWriterBenchmark>();
         }
     }
 }
