@@ -18,7 +18,7 @@ High-level rules I try to follow.
 ### Reader
 
 - All operations validate the current offset **
-- Validation failures throw `XmlSerializationException`s **
+- Validation failures throw `XmlParsingException`s **
 - `Try*` methods do not increment the offset
 - `Try*` methods follow the .NET convention of returning a bool and accepting an `out` param
 
