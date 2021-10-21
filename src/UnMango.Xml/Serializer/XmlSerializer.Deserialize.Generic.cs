@@ -61,7 +61,11 @@ public static partial class XmlSerializer
     /// <returns>The deserialized value.</returns>
     public static T Deserialize<T>(ref XmlReader reader, XmlSerializerOptions? options = null)
     {
-        throw new NotImplementedException();
+        options ??= XmlSerializerOptions.DefaultOptions;
+        if (!options.ConverterCache.TryGetValue(typeof(T), out var converter))
+            throw new($"No converter registered for {typeof(T)}"); // TODO: Custom exception?
+
+        return ((XmlConverter<T>)converter).Read(ref reader, typeof(T), options);
     }
 
     /// <summary>

@@ -9,6 +9,8 @@ namespace UnMango.Xml.Converters;
 [PublicAPI]
 public class Int32Converter : XmlConverter<int>
 {
+    internal static Int32Converter Instance = new();
+    
     /// <inheritdoc/>
     public override int Read(ref XmlReader reader, Type typeToConvert, XmlSerializerOptions options)
     {
