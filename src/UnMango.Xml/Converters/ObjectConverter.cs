@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 namespace UnMango.Xml.Converters;
 
@@ -20,9 +21,17 @@ public class ObjectConverter : XmlConverter<object>
         {
             if (propertyInfo.PropertyType == typeof(int))
             {
+                reader.ReadOpenElement();
+                var name = reader.ReadNameToken();
+                var temp = Encoding.UTF8.GetString(name.ToArray());
+                // TODO: Something about matching name with the prop name
+                reader.ReadCloseElement();
+                
                 var converter = options.ConverterFor<int>();
                 var value = converter.Read(ref reader, typeof(int), options);
                 propertyInfo.SetValue(result, value);
+                
+                // TODO: Advance past the close tag, validate, etc.
             }
         }
         
