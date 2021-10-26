@@ -1,7 +1,7 @@
 <Project>
-  
+
   <Import Project="../Directory.Build.props" />
-  
+
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -9,9 +9,13 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="IsExternalInit" Version="1.0.1" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>

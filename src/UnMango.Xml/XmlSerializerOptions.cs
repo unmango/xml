@@ -11,11 +11,13 @@ namespace UnMango.Xml;
 [PublicAPI]
 public sealed record XmlSerializerOptions
 {
-    internal static readonly XmlSerializerOptions DefaultOptions = new();
-
     internal static readonly Dictionary<Type, XmlConverter> DefaultConverterCache = new() {
-        [typeof(int)] = new Int32Converter()
+        [typeof(int)] = Int32Converter.Instance,
+        [typeof(object)] = ObjectConverter.Instance,
     };
+    
+    // TODO: This is order dependent due to static initialization. Kinda weird, should probably refactor
+    internal static readonly XmlSerializerOptions DefaultOptions = new();
 
     /// <summary>
     /// Initializes a new instance of a <see cref="XmlSerializerOptions"/>.
@@ -25,5 +27,5 @@ public sealed record XmlSerializerOptions
     /// <summary>
     /// Gets the cache of converters created so far.
     /// </summary>
-    public IReadOnlyDictionary<Type, XmlConverter> ConverterCache { get; } = DefaultConverterCache;
+    public IReadOnlyDictionary<Type, XmlConverter> ConverterCache { get; init; } = DefaultConverterCache;
 }
