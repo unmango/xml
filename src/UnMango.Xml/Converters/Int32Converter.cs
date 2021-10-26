@@ -16,14 +16,20 @@ public class Int32Converter : XmlConverter<int>
     public override int Read(ref XmlReader reader, Type typeToConvert, XmlSerializerOptions options)
     {
         var charData = reader.ReadCharacterData();
+        
+        int sign = 1, i = 0, value = 0;
+        if (charData[0] == '-')
+        {
+            sign = -1;
+            i = 1;
+        }
 
-#if NETSTANDARD2_0
-        var data = Encoding.UTF8.GetString(charData.ToArray());
-#else
-        var data = Encoding.UTF8.GetString(charData);
-#endif
+        for (; i < charData.Length; i++)
+        {
+            value = value * 10 + (charData[i] - '0');
+        }
 
-        return int.Parse(data);
+        return value * sign;
     }
 
     /// <inheritdoc/>

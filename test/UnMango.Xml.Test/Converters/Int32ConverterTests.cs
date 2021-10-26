@@ -10,7 +10,12 @@ public class Int32ConverterTests
 
     [Theory]
     [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(-1)]
     [InlineData(42069)]
+    [InlineData(-42069)]
+    [InlineData(int.MinValue)]
+    [InlineData(int.MaxValue)]
     public void Read(int value)
     {
         var data = value.ToString();
