@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using JetBrains.Annotations;
 
 namespace UnMango.Xml.Converters;
@@ -15,21 +14,7 @@ public class Int32Converter : XmlConverter<int>
     /// <inheritdoc/>
     public override int Read(ref XmlReader reader, Type typeToConvert, XmlSerializerOptions options)
     {
-        var charData = reader.ReadCharacterData();
-        
-        int sign = 1, i = 0, value = 0;
-        if (charData[0] == '-')
-        {
-            sign = -1;
-            i = 1;
-        }
-
-        for (; i < charData.Length; i++)
-        {
-            value = value * 10 + (charData[i] - '0');
-        }
-
-        return value * sign;
+        return (int)Int64Converter.Instance.Read(ref reader, typeof(int), options);
     }
 
     /// <inheritdoc/>
