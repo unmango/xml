@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Runtime.InteropServices;
+using System.Text;
 using JetBrains.Annotations;
 
 namespace UnMango.Xml.Converters;
@@ -11,12 +11,19 @@ namespace UnMango.Xml.Converters;
 public class Int32Converter : XmlConverter<int>
 {
     internal static Int32Converter Instance = new();
-    
+
     /// <inheritdoc/>
     public override int Read(ref XmlReader reader, Type typeToConvert, XmlSerializerOptions options)
     {
         var charData = reader.ReadCharacterData();
-        return MemoryMarshal.Read<int>(charData);
+
+#if NETSTANDARD2_0
+        var data = Encoding.UTF8.GetString(charData.ToArray());
+#else
+        var data = Encoding.UTF8.GetString(charData);
+#endif
+
+        return int.Parse(data);
     }
 
     /// <inheritdoc/>
